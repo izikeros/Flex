@@ -4503,6 +4503,11 @@ readers do not read off random characters that represent icons */
 .fa-zhihu:before {
   content: "\f63f"; }
 
+.fa-scholar {
+  content: url('images/google-scholar.svg');
+  height: 1em;
+  width: auto;
+}
 .sr-only {
   border: 0;
   clip: rect(0, 0, 0, 0);
