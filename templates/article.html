@@ -34,6 +34,20 @@
       {% if PLUGINS and 'post_stats' in PLUGINS %}
         &nbsp;&#8226;&nbsp;&nbsp; {{ _('%(minutes)s min read', minutes=article.stats['read_mins']) }}
       {% endif %}
+
+      {% if article.share_post and article.status != 'draft' %}
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="{{article.share_post['twitter']}}" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="{{article.share_post['facebook']}}" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="{{article.share_post['hacker-news']}}" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="{{article.share_post['reddit']}}" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+{% endif %}
   </header>
 
   {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.article_top %}
