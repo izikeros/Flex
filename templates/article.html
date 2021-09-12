@@ -26,14 +26,14 @@
     {% endif %}
     <h1 id="{{ article.slug }}">{{ article.title }}</h1>
     <p>
+      <!-- Posted on: -->
       {{ _('%(when)s ',
            when=article.locale_date,
            ) }}
 
       {% if PLUGINS and 'post_stats' in PLUGINS %}
-        &#8226; {{ _('%(minutes)s min read', minutes=article.stats['read_mins']) }}
+        &nbsp;&#8226;&nbsp;&nbsp; {{ _('%(minutes)s min read', minutes=article.stats['read_mins']) }}
       {% endif %}
-    </p>
   </header>
 
   {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.article_top %}
