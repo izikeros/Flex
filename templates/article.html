@@ -48,6 +48,11 @@
     <a href="{{article.share_post['reddit']}}" target="_blank" title="Share via Reddit">Reddit</a>
   </span>
 {% endif %}
+    <br/>
+<!--    {% if article.modified %}
+      Updated: {{ article.modified.strftime('%Y-%m-%d') }}
+   {% endif %} -->
+   </p>
   </header>
 
   {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.article_top %}
