@@ -27,9 +27,7 @@
     <h1 id="{{ article.slug }}">{{ article.title }}</h1>
     <p>
       <!-- Posted on: -->
-      {{ _('%(when)s ',
-           when=article.locale_date,
-           ) }}
+      {{ _('%(when)s ', when=article.locale_date)}}
 
       {% if PLUGINS and 'post_stats' in PLUGINS %}
         &nbsp;&#8226;&nbsp;&nbsp; {{ _('%(minutes)s min read', minutes=article.stats['read_mins']) }}
@@ -49,9 +47,9 @@
   </span>
 {% endif %}
     <br/>
-<!--    {% if article.modified %}
-      Updated: {{ article.modified.strftime('%Y-%m-%d') }}
-   {% endif %} -->
+{#    {% if article.modified %}#}
+{#      Updated: {{ article.modified.strftime('%Y-%m-%d') }}#}
+{#    {% endif %}#}
    </p>
   </header>
 
@@ -71,7 +69,7 @@
   <div class="tag-cloud">
     <p>
       {% if article.tags %}
-      </br></br>Tags:&nbsp;
+      <br/><br/>Tags:&nbsp;
       {% for tag in article.tags %}
       <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
       {% endfor %}
