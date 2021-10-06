@@ -35,7 +35,7 @@
   <div>
     {% if summarise or article.metadata['summary'] or SUMMARY_MAX_LENGTH %}
       {% if  article.featured_image %}
-        <img src="{{ article.featured_image }}">
+        <img src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}">
       {% endif %}
       <div>{{ article.summary }}</div>
       {% if article.content != article.summary %}
