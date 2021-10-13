@@ -19,7 +19,6 @@
                 {% for article in dates %}
                     {% if article.category == 'note' %}
                         <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-                            [{{ article.til_category }}]
                         </dd>
                     {% endif %}
                 {% endfor %}
