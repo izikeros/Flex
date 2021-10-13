@@ -2,6 +2,24 @@
 
 The minimalist [Pelican](http://blog.getpelican.com/) theme.
 
+## My mods to the theme
+- add new direct template for notes: "til" (things I learned) and related mods:
+  - do not display notes on home (index) page - let the short notes do not clutter list of blog posts (loger articles)
+  - do not display notes on archive page - for the same reason as above
+- modified archives page with my custom groupping by year (inspied by elegant theme)
+- support for new meta:
+  - til_category
+  - featured_image_alt
+  - modified (?)
+  - suggested_tags
+  - ignore_tags - list - Do not add these tags to the suggested tags. When manually editing article with front matter you can review tags and move suggested tags to tags (or til_tags) and move unfortunate tags to `ignore_tags` to avoid have them suggested next time when automated tag suggention will be running.
+  - citation_needed
+  - til_tags
+  - til_category
+  - image for article featured image (not `cover` or `featured_image`)
+  - changes in styling
+  
+Compare differences to in details: [compare this fork](https://github.com/alexandrevicenzi/Flex/compare/master...izikeros:master)
 ## Notes
 
 - If you have questions open an issue
