@@ -64,10 +64,13 @@ Full archives of {{ SITENAME|striptags|e }} blog.
                 <a href="{{ SITEURL }}/{{ article.url }}">
                     {{ article.title }}
                 </a>
-                {# &nbsp;&nbsp;#}
-                {# <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}"> #}
-                {#    {{ article.locale_date }}  #}
-                {#</time> #}
+                {% if DISPLAY_DATE_AFTER_TITLE %}
+                    &nbsp;&nbsp;
+                    <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">
+                        {{ article.locale_date }}
+                    </time>
+                {% endif %}
+
                 </div>
             {% endif %}
             {% endfor %}
