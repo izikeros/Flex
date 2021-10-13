@@ -17,7 +17,7 @@
       "name": "{{ article.author.name }}",
       "url": "{{ SITEURL }}/{{ article.author.url }}"
     },
-    "image": "{{ article.metadata.get('cover', default_cover) }}",
+    "image": "{{ article.metadata.get('image', default_cover) }}",
     "url": "{{ SITEURL }}/{{ article.url }}",
     "description": "{{ article.summary|striptags }}"
   }
