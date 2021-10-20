@@ -24,7 +24,6 @@
       {% import 'partial/translations.html' as translations with context %}
       {{ translations.translations_for(article) }}
     {% endif %}
-    <h1 id="{{ article.slug }}">{{ article.title }}</h1>
     <p>
       <!-- Posted on: -->
       {{ _('%(when)s ', when=article.locale_date)}}
@@ -47,10 +46,12 @@
   </span>
 {% endif %}
     <br/>
-{#    {% if article.modified %}#}
-{#      Updated: {{ article.modified.strftime('%Y-%m-%d') }}#}
-{#    {% endif %}#}
+      {% if SHOW_DATE_MODIFIED and article.modified %}
+        Updated: {{ article.modified.strftime('%Y-%m-%d') }}
+      {% endif %}
    </p>
+  <h1 id="{{ article.slug }}">{{ article.title }}</h1>
+  <div class="header-underline"></div>
   </header>
 
   {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.article_top %}
