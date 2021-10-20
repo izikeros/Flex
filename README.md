@@ -19,7 +19,7 @@ The minimalist [Pelican](http://blog.getpelican.com/) theme.
   - image for article featured image (not `cover` or `featured_image`)
   - changes in styling
   
-Compare differences to in details: [compare this fork](https://github.com/alexandrevicenzi/Flex/compare/master...izikeros:master)
+Compare differences to original Flex in details: [compare this fork](https://github.com/alexandrevicenzi/Flex/compare/master...izikeros:master)
 ## Notes
 
 - If you have questions open an issue
