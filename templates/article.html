@@ -67,6 +67,13 @@
   <div>
     {{ article.content }}
   </div>
+
+ {% if USE_APPLAUSE %}
+     <div id="applause-container">
+        <applause-button color="#d9411e" style="width: 58px; height: 58px;"/>
+     </div>
+ {% endif %}
+
   <div class="tag-cloud">
     <p>
       {% if article.tags %}
