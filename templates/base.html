@@ -69,7 +69,10 @@
           href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE|default('github') }}.min.css">
   {% endif %}
 
-  {% if PLUGINS and 'tipue_search' in PLUGINS %}
+  {% if PLUGINS and ('tipue_search' in PLUGINS or 'pelican.plugins.tipue_search' in PLUGINS) %}
+      {% if USE_GOOGLE_FONTS != False %}
+      <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400|Open+Sans" rel="stylesheet">
+      {% endif %}
     <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/tipuesearch/tipuesearch.min.css" />
   {% endif %}
 
@@ -83,7 +86,7 @@
   <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/font-awesome/css/solid.css">
 
   {% if CUSTOM_CSS %}
-    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ CUSTOM_CSS }}">
+  <link rel="stylesheet" type="text/css" href="{% if main_siteurl is defined %}{{ main_site }}{% else %}{{ SITEURL }}{% endif %}/{{ CUSTOM_CSS }}">
   {% endif %}
 
   {% if FEED_ALL_ATOM %}
@@ -179,7 +182,7 @@
 
       {% if SITESUBTITLE %}<p>{{ SITESUBTITLE }}</p>{% endif %}
 
-      {% if PLUGINS and 'tipue_search' in PLUGINS %}
+      {% if PLUGINS and ('tipue_search' in PLUGINS or 'pelican.plugins.tipue_search' in PLUGINS)%}
         <form class="navbar-search" action="{{ SITEURL }}/search.html" role="search">
           <input type="text" name="q" id="tipue_search_input" placeholder="{{ _('Search...') }}">
         </form>
