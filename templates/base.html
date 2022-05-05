@@ -155,12 +155,19 @@
     });
   </script>
   {% endif %}
+
+  {% if USE_GOOGLE_AUTO_ADS %}
+    {% include "partial/google_automatic_ads.html" %}
+  {% endif %}
+
   {% if GOOGLE_TAG_MANAGER %}
     {% include "partial/gtm.html" %}
   {% endif %}
+
   {% if MICROSOFT_CLARITY %}
     {% include "partial/clarity.html" %}
   {% endif %}
+
 </head>
 <body {% if not THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE %}class="{{ THEME_COLOR|default('light') }}-theme"{% endif %}>
   {% if GOOGLE_TAG_MANAGER %}
