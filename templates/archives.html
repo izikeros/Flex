@@ -1,50 +1,49 @@
 {% extends 'base.html' %}
 
 {% block title %}
-All Posts · {{ super() }}
+    All Posts · {{ super() }}
 {% endblock title %}
 
 {% block head_description %}
-Full archives of {{ SITENAME|striptags|e }} blog.
+    Full archives of {{ SITENAME|striptags|e }} blog.
 {% endblock head_description %}
 
 {% block meta_tags_in_head %}
-{{ super() }}
-{% from '_includes/_defaults.html' import FEATURED_IMAGE, ARCHIVES_URL with context %}
-<meta property="og:title" content="All Posts · {{ SITENAME|striptags|e }}"/>
-<meta name="twitter:title" content="All Posts · {{ SITENAME|striptags|e }}">
-<meta property="og:url" content="{{ SITEURL }}/{{ ARCHIVES_URL }}" />
-<meta property="og:description" content="Full archives of {{ SITENAME|striptags|e }} blog" />
-<meta name="twitter:description" content="Full archives of {{ SITENAME|striptags|e }} blog">
-<meta property="og:site_name" content="{{ SITENAME|striptags|e }}" />
-<meta property="og:article:author" content="{{ AUTHOR }}" />
-{% if FEATURED_IMAGE %}
-<meta property="og:image" content="{{ FEATURED_IMAGE }}" />
-<meta name="twitter:image" content="{{ FEATURED_IMAGE }}" >
-{% endif %}
+    {{ super() }}
+    {% from '_includes/_defaults.html' import FEATURED_IMAGE, ARCHIVES_URL with context %}
+    <meta property="og:title" content="All Posts · {{ SITENAME|striptags|e }}"/>
+    <meta name="twitter:title" content="All Posts · {{ SITENAME|striptags|e }}">
+    <meta property="og:url" content="{{ SITEURL }}/{{ ARCHIVES_URL }}"/>
+    <meta property="og:description" content="Full archives of {{ SITENAME|striptags|e }} blog"/>
+    <meta name="twitter:description" content="Full archives of {{ SITENAME|striptags|e }} blog">
+    <meta property="og:site_name" content="{{ SITENAME|striptags|e }}"/>
+    <meta property="og:article:author" content="{{ AUTHOR }}"/>
+    {% if FEATURED_IMAGE %}
+        <meta property="og:image" content="{{ FEATURED_IMAGE }}"/>
+        <meta name="twitter:image" content="{{ FEATURED_IMAGE }}">
+    {% endif %}
 {% endblock meta_tags_in_head %}
 
 {% block content %}
-{% from '_includes/_defaults.html' import ARCHIVES_URL with context %}
-<div class="row-fluid">
-    <header class="page-header span10 offset2">
-    <!-- <h1><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">All Posts</a></h1> -->
-    <h1>All Posts</h1>
-    </header>
-</div>
-<div class="row-fluid">
+    {% from '_includes/_defaults.html' import ARCHIVES_URL with context %}
+    <div class="row-fluid">
+        <header class="page-header span10 offset2">
+            <!-- <h1><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">All Posts</a></h1> -->
+            <h1>All Posts</h1>
+        </header>
+    </div>
+    <div class="row-fluid">
     <div class="span10 offset2">
-        <div class="blog-archives">
-            {% for article in dates %}
+    <div class="blog-archives">
+        {% for article in dates %}
             {% if article.category != 'note' %}
                 {% set year = article.date.strftime('%Y') %}
                 {% if loop.first %}
-{#                <h2 id="{{ year }}"><a href="#{{ year }}">{{ year }}</a></h2>#}
-                <h2 id="{{ year }}">{{ year }}</h2>
+                    <h2 id="{{ year }}">{{ year }}</h2>
                 {% else %}
                     {% set prevyear = loop.previtem.date.strftime('%Y') %}
                     {% if prevyear != year %}
-{#                        <h2 id="{{ year }}"><a href="#{{ year }}">{{ year }}</a></h2>#}
+
                         <h2 id="{{ year }}">{{ year }}</h2>
                     {% endif %}
                 {% endif %}
@@ -52,7 +51,7 @@ Full archives of {{ SITENAME|striptags|e }} blog.
                 {% if loop.last %}
                     <div itemscope class="last-entry-of-year">
                 {% else %}
-                {% set next_year = loop.nextitem.date.strftime('%Y') %}
+                    {% set next_year = loop.nextitem.date.strftime('%Y') %}
 
                     {% if next_year != year %}
                         <div itemscope class="last-entry-of-year">
@@ -61,21 +60,21 @@ Full archives of {{ SITENAME|striptags|e }} blog.
                     {% endif %}
                 {% endif %}
 
-                <a href="{{ SITEURL }}/{{ article.url }}">
-                    {{ article.title }}
-                </a>
-                {% if DISPLAY_DATE_AFTER_TITLE %}
-                    &nbsp;&nbsp;
-                    <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">
-                        {{ article.locale_date }}
-                    </time>
-                {% endif %}
-
-                </div>
+            <a href="{{ SITEURL }}/{{ article.url }}">
+                {{ article.title }}
+            </a>
+            {% if DISPLAY_DATE_AFTER_TITLE %}
+                &nbsp;&nbsp;
+                <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">
+                    {{ article.locale_date }}
+                </time>
             {% endif %}
-            {% endfor %}
+
+            </div>
+            {% endif %}
+        {% endfor %}
+        </div>
         </div>
     </div>
-</div>
 
 {% endblock content %}
