@@ -1,0 +1,16 @@
+{% if not PLUGINS or 'seo' not in PLUGINS %}
+    {% if OG_LOCALE %}
+        {% set default_locale = OG_LOCALE %}
+    {% else %}
+        {% set default_locale = 'en_US' %}
+    {% endif %}
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content="{{ SITEURL }}/{{ article.metadata['image'] }}"/>
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="{{ article.metadata['summary'] }}"/>
+    <meta name="twitter:title" content="{{ article.metadata['title'] }}"/>
+
+{% endif %}
