@@ -27,6 +27,11 @@
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/stylesheet/style.min.css">
   {% endif %}
 
+  {% if USE_MERMAID %}
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+  {% endif %}
+
   {# DARK THEME STYLES #}
   {% if THEME_COLOR == "dark" or THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE or THEME_COLOR_ENABLE_USER_OVERRIDE %}
     <link id="dark-theme-style" rel="stylesheet" type="text/css"
