@@ -6,7 +6,12 @@
     {% endif %}
 
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:image" content="{{ SITEURL }}/{{ article.metadata['image'] }}"/>
+    {% if 'image' in article.metadata %}
+    <meta property="twitter:image" content="{{ SITEURL }}/{{ article.metadata['image'] }}">
+    {% else %}
+    <meta property="twitter:image" content="{{ SITELOGO }}">
+    {% endif %}
+
     <meta name="twitter:label1" content="Est. reading time"/>
     <meta name="twitter:data1" content="4 min."/>
     <meta name="twitter:site" content="@izikeros"/>

@@ -193,6 +193,8 @@
 
       {% if SITESUBTITLE %}<p>{{ SITESUBTITLE }}</p>{% endif %}
 
+
+
       {% if PLUGINS and ('tipue_search' in PLUGINS or 'pelican.plugins.tipue_search' in PLUGINS)%}
         <form class="navbar-search" action="{{ SITEURL }}/search.html" role="search">
           <input type="text" name="q" id="tipue_search_input" placeholder="{{ _('Search...') }}">
@@ -247,6 +249,10 @@
         {% endfor %}
       </ul>
     </div>
+
+    {% if PROMO_BOX %}
+         {% include "partial/promo_box.html" %}
+    {% endif %}
 
     {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.aside %}
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
