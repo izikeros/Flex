@@ -17,6 +17,8 @@ ARTICLE
   "dateModified": "{{ article.modified }}"
 }
 
+
+
     </script>
 
 
@@ -72,11 +74,17 @@ ARTICLE
             </p>
             <h1 id="{{ article.slug }}">{{ article.title }}</h1>
             <div class="header-underline"></div>
+            {% if article.summary %}
+                <p class="summary">{{ article.summary }}</p>
+            {% endif %}
 
             {% if article.featured_image %}
-                <a href="{{ SITEURL }}/{{ article.url }}">
-                    <img src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}">
-                </a>
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="{{ SITEURL }}/{{ article.url }}">
+                        <img style="width: 100%; "
+                         src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}">
+                    </a>
+                </div>
             {% endif %}
 
 
