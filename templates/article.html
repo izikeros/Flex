@@ -74,7 +74,8 @@ ARTICLE
             </p>
             <h1 id="{{ article.slug }}">{{ article.title }}</h1>
             <div class="header-underline"></div>
-            {% if article.summary %}
+            {# display summary if summary is not empty and article category is not note #}
+            {% if article.summary and article.category != 'note' %}
                 <p class="summary">{{ article.summary }}</p>
             {% endif %}
 
