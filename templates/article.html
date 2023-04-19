@@ -19,6 +19,11 @@ ARTICLE
 
 
 
+
+
+
+
+
     </script>
 
 
@@ -83,7 +88,7 @@ ARTICLE
                 <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="{{ SITEURL }}/{{ article.url }}">
                         <img style="width: 100%; "
-                         src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}">
+                             src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}">
                     </a>
                 </div>
             {% endif %}
@@ -111,6 +116,25 @@ ARTICLE
             </div>
         {% endif %}
 
+{#        if ADD_BIBTEX_NOTE and article category is not note#}
+        {% if ADD_BIBTEX_NOTE and article.category != 'note' %}
+            {% set author_initials = "Saf" %}
+            {% set title_words = article.title.split() %}
+            {# take first word of title or empty string if title is empty#}
+            {% set title_initials = title_words[0] if title_words else "" %}
+
+            {% set bibtex = "@article{"+ author_initials + article.date.strftime('%Y') + title_initials +",\n" %}
+            {% set bibtex = bibtex + "    author  = {Krystian Safjan},\n" %}
+            {% set bibtex = bibtex + "    title   = {"+ article.title +"},\n" %}
+            {% set bibtex = bibtex + "    journal = {"+ BIBTEX_JOURNAL +"},\n" %}
+            {% set bibtex = bibtex + "    year    = {"+ article.date.strftime('%Y') +"},\n" %}
+            {% set bibtex = bibtex + "}" %}
+
+            <div class="bibtex-note">
+                <p><b>To cite this article:</b></p>
+                <pre>{{ bibtex }}</pre>
+            </div>
+        {% endif %}
         <div class="tag-cloud">
             <p>
                 {% if article.tags %}
@@ -122,6 +146,10 @@ ARTICLE
             </p>
         </div>
 
+
+
+
+
         {% if ADD_THIS_ID %}
             <div class="center social-share">
                 <p>{{ _('Like this article? Share it with your friends!') }}</p>
@@ -131,7 +159,7 @@ ARTICLE
             </div>
         {% endif %}
 
-        {% include "partial/neighbors.html" %}
+
 
         {% if article.related_posts %}
             <div class="related-posts">
@@ -145,6 +173,8 @@ ARTICLE
         {% elif ADD_THIS_ID %}
             <div class="addthis_relatedposts_inline"></div>
         {% endif %}
+
+        {% include "partial/neighbors.html" %}
 
         {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.article_bottom %}
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
