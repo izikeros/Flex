@@ -74,13 +74,6 @@
               href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE|default('github') }}.min.css">
     {% endif %}
 
-    {% if PLUGINS and ('tipue_search' in PLUGINS or 'pelican.plugins.tipue_search' in PLUGINS) %}
-        {% if USE_GOOGLE_FONTS != False %}
-            <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400|Open+Sans" rel="stylesheet">
-        {% endif %}
-        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/tipuesearch/tipuesearch.min.css"/>
-    {% endif %}
-
     {% if USE_APPLAUSE %}
         <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css"/>
         <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
@@ -199,13 +192,6 @@
 
         {% if SITESUBTITLE %}<p>{{ SITESUBTITLE }}</p>{% endif %}
 
-
-
-        {% if PLUGINS and ('tipue_search' in PLUGINS or 'pelican.plugins.tipue_search' in PLUGINS) %}
-            <form class="navbar-search" action="{{ SITEURL }}/search.html" role="search">
-                <input type="text" name="q" id="tipue_search_input" placeholder="{{ _('Search...') }}">
-            </form>
-        {% endif %}
 
         {% if (pages and DISPLAY_PAGES_ON_MENU) or LINKS %}
             <nav>
