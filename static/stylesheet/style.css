@@ -123,6 +123,9 @@
     --text-color: var(--color-light-grey);
 
     --sidebar-bg: var(--color-solid-dark-grey);
+    --sidebar-text-color: var(--color-light-grey);
+    --sidebar-link-color: var(--color-light-grey);
+    --sidebar-link-hover-color: var(--color-white);
 
     --footer-border-color: var(--color-solid-dark-grey);
     --rel-post-border-color: var(--color-solid-dark-grey);
@@ -160,6 +163,9 @@
   --body-bg: var(--color-grey);
   --text-color: var(--color-light-grey);
   --sidebar-bg: var(--color-solid-dark-grey);
+  --sidebar-text-color: var(--color-light-grey);
+  --sidebar-link-color: var(--color-light-grey);
+  --sidebar-link-hover-color: var(--color-white);
   --footer-border-color: var(--color-solid-dark-grey);
   --rel-post-border-color: var(--color-solid-dark-grey);
   --nav-border-color: var(--color-solid-dark-grey);
