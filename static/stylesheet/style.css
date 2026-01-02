@@ -1,0 +1,861 @@
+/* Flex Theme - Pure CSS with CSS Custom Properties */
+
+/* ==========================================================================
+   CSS Custom Properties (Variables)
+   ========================================================================== */
+
+:root {
+  /* Base colors */
+  --color-orange: #D9411E;
+  --color-light-orange: #FF5A09;
+  --color-white: #ffffff;
+  --color-grey: #333333;
+  --color-light-grey: #eeeeee;
+  --color-med-grey: #999999;
+  --color-dark-grey: #242121;
+  --color-solid-dark-grey: #222222;
+  --color-very-dark-grey: #1a1a1a;
+
+  /* Font families */
+  --font-sans: 'Source Sans Pro', 'Roboto', 'Open Sans', 'Liberation Sans', 'DejaVu Sans', 'Verdana', 'Helvetica', 'Arial', sans-serif;
+  --font-mono: 'Source Code Pro', 'Consolas', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+
+  /* Theme colors (light mode default) */
+  --body-bg: var(--color-white);
+  --text-color: var(--color-dark-grey);
+  --link-color: var(--color-orange);
+  --link-hover-color: var(--color-light-orange);
+
+  /* Sidebar */
+  --sidebar-bg: var(--color-white);
+  --sidebar-text-color: var(--color-solid-dark-grey);
+  --sidebar-link-color: var(--color-solid-dark-grey);
+  --sidebar-link-hover-color: var(--color-light-grey);
+
+  /* Buttons */
+  --btn-bg: var(--color-light-grey);
+  --btn-text-color: var(--color-solid-dark-grey);
+  --btn-hover-color: var(--color-med-grey);
+
+  /* Tag cloud */
+  --tag-bg: var(--color-orange);
+  --tag-text-color: var(--color-white);
+  --tag-hover-color: var(--color-light-orange);
+
+  /* Header */
+  --header-text-color: var(--color-med-grey);
+
+  /* Footer */
+  --footer-text-color: var(--color-med-grey);
+  --footer-border-color: var(--color-light-grey);
+
+  /* Related posts */
+  --rel-post-border-color: var(--color-light-grey);
+
+  /* Navigation */
+  --nav-border-color: var(--color-light-grey);
+
+  /* HR */
+  --hr-color: var(--color-light-grey);
+
+  /* Code blocks */
+  --code-bg: #f7f7f9;
+  --code-border: #e1e1e8;
+  --code-color: #c25;
+  --kbd-bg: #fff;
+  --kbd-color: #333;
+  --blockquote-border: rgba(128,128,128,0.075);
+
+  /* Social button colors */
+  --social-email: #578ad6;
+  --social-facebook: #3e5b98;
+  --social-github: #111010;
+  --social-google: #d93e2d;
+  --social-instagram: #125688;
+  --social-keybase: #4c8dff;
+  --social-linkedin: #3371b7;
+  --social-medium: #00ab6b;
+  --social-pinterest: #c92619;
+  --social-reddit: #ff4500;
+  --social-rss: #f26109;
+  --social-soundcloud: #ff5500;
+  --social-stack-overflow: #ff9900;
+  --social-tumblr: #36465d;
+  --social-twitch: #a970ff;
+  --social-twitter: #4da7de;
+  --social-youtube: #e02a20;
+  --social-gitlab: #fca326;
+  --social-xing: #007575;
+  --social-bitbucket: #0747A6;
+  --social-mastodon: #3088d4;
+  --social-diaspora: #D5D5D5;
+  --social-diaspora-color: #000000;
+  --social-flickr: #ff0084;
+  --social-lastfm: #d92323;
+
+  /* Admonition colors */
+  --admonition-generic-color: var(--color-dark-grey);
+  --admonition-generic-bg: #cccccc;
+
+  --admonition-attention-color: #856404;
+  --admonition-attention-bg: #fff3cd;
+
+  --admonition-danger-color: #721c24;
+  --admonition-danger-bg: #f8d7da;
+
+  --admonition-hint-color: #004085;
+  --admonition-hint-bg: #cce5ff;
+
+  --admonition-important-color: #155724;
+  --admonition-important-bg: #d4edda;
+
+  /* Figure */
+  --figure-color: #6c757d;
+}
+
+/* ==========================================================================
+   Dark Mode
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg: var(--color-grey);
+    --text-color: var(--color-light-grey);
+
+    --sidebar-bg: var(--color-solid-dark-grey);
+
+    --footer-border-color: var(--color-solid-dark-grey);
+    --rel-post-border-color: var(--color-solid-dark-grey);
+    --nav-border-color: var(--color-solid-dark-grey);
+    --hr-color: var(--color-solid-dark-grey);
+
+    --code-bg: #080808;
+    --code-border: #000;
+    --kbd-bg: #080808;
+    --kbd-color: var(--color-light-grey);
+    --blockquote-border: rgba(255,255,255,0.2);
+
+    /* Admonition dark mode */
+    --admonition-generic-color: var(--color-light-grey);
+    --admonition-generic-bg: #404040;
+
+    --admonition-attention-color: #fbda7a;
+    --admonition-attention-bg: #4a3900;
+
+    --admonition-danger-color: #ebadb3;
+    --admonition-danger-bg: #28070a;
+
+    --admonition-hint-color: #7abaff;
+    --admonition-hint-bg: #001933;
+
+    --admonition-important-color: #a8eab7;
+    --admonition-important-bg: #122b18;
+
+    --figure-color: #bfbfbf;
+  }
+}
+
+/* Manual theme override via data attribute */
+[data-theme="dark"] {
+  --body-bg: var(--color-grey);
+  --text-color: var(--color-light-grey);
+  --sidebar-bg: var(--color-solid-dark-grey);
+  --footer-border-color: var(--color-solid-dark-grey);
+  --rel-post-border-color: var(--color-solid-dark-grey);
+  --nav-border-color: var(--color-solid-dark-grey);
+  --hr-color: var(--color-solid-dark-grey);
+  --code-bg: #080808;
+  --code-border: #000;
+  --kbd-bg: #080808;
+  --kbd-color: var(--color-light-grey);
+  --blockquote-border: rgba(255,255,255,0.2);
+  --admonition-generic-color: var(--color-light-grey);
+  --admonition-generic-bg: #404040;
+  --admonition-attention-color: #fbda7a;
+  --admonition-attention-bg: #4a3900;
+  --admonition-danger-color: #ebadb3;
+  --admonition-danger-bg: #28070a;
+  --admonition-hint-color: #7abaff;
+  --admonition-hint-bg: #001933;
+  --admonition-important-color: #a8eab7;
+  --admonition-important-bg: #122b18;
+  --figure-color: #bfbfbf;
+}
+
+[data-theme="light"] {
+  --body-bg: var(--color-white);
+  --text-color: var(--color-dark-grey);
+  --sidebar-bg: var(--color-white);
+  --footer-border-color: var(--color-light-grey);
+  --rel-post-border-color: var(--color-light-grey);
+  --nav-border-color: var(--color-light-grey);
+  --hr-color: var(--color-light-grey);
+  --code-bg: #f7f7f9;
+  --code-border: #e1e1e8;
+  --kbd-bg: #fff;
+  --kbd-color: #333;
+  --blockquote-border: rgba(128,128,128,0.075);
+  --admonition-generic-color: var(--color-dark-grey);
+  --admonition-generic-bg: #cccccc;
+  --admonition-attention-color: #856404;
+  --admonition-attention-bg: #fff3cd;
+  --admonition-danger-color: #721c24;
+  --admonition-danger-bg: #f8d7da;
+  --admonition-hint-color: #004085;
+  --admonition-hint-bg: #cce5ff;
+  --admonition-important-color: #155724;
+  --admonition-important-bg: #d4edda;
+  --figure-color: #6c757d;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+h1 { font-size: 2.4em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.36em; }
+h5 { font-size: 1.2em; }
+h6 { font-size: 1.1em; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  font-size: 1.02em;
+  line-height: 1.2em;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+hr {
+  color: var(--hr-color);
+  background-color: var(--hr-color);
+  height: 1px;
+  border: none;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Sidebar (aside)
+   ========================================================================== */
+
+aside {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text-color);
+  text-align: center;
+}
+
+aside a {
+  color: var(--sidebar-link-color);
+}
+
+aside a:hover {
+  color: var(--sidebar-link-hover-color);
+}
+
+aside div {
+  padding: 20px;
+  margin: 0;
+}
+
+aside div img {
+  border-radius: 50%;
+  max-width: 140px;
+}
+
+aside div h1 {
+  margin: 15px 0 5px 0;
+}
+
+aside div p {
+  margin: 0 0 15px 0;
+  font-size: .92em;
+}
+
+aside nav ul li {
+  display: inline;
+  line-height: 1.6em;
+  font-size: 1.28em;
+  text-transform: lowercase;
+}
+
+/* ==========================================================================
+   Main Content
+   ========================================================================== */
+
+main nav {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 14px 0 14px 0;
+  border-bottom: var(--nav-border-color) 1px solid;
+  font-size: 0;
+}
+
+main nav a,
+main .translations a {
+  font-size: 12px;
+  padding: 0 4px;
+  border-right: var(--nav-border-color) 1px solid;
+}
+
+main nav :last-child,
+main .translations :last-child {
+  border-right: none;
+}
+
+main .neighbors {
+  margin: 4% 0% 4% 0%;
+  height: 20px;
+}
+
+main .pagination {
+  margin: 4% 8% 4% 8%;
+  height: 20px;
+}
+
+main .social-share p {
+  font-size: .8em;
+}
+
+/* ==========================================================================
+   Article
+   ========================================================================== */
+
+main article {
+  margin: 0 8% 2% 8%;
+}
+
+main article header h1,
+main article header h2 {
+  margin-bottom: 0;
+}
+
+main article header p {
+  color: var(--header-text-color);
+  font-size: 0.86em;
+}
+
+main article header .translations {
+  float: right;
+}
+
+main article header .translations .active {
+  font-weight: 600;
+}
+
+main article code,
+main article kbd,
+main article samp,
+main article pre {
+  font-family: var(--font-mono);
+}
+
+main article blockquote,
+main article pre {
+  background-color: rgba(128,128,128,0.05);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 10px solid var(--blockquote-border);
+}
+
+main article blockquote {
+  margin: 0;
+  padding: 10px 20px;
+  font-weight: 300;
+  font-size: 1.1em;
+}
+
+main article pre {
+  padding: 4px;
+  font-size: .9em;
+  overflow-x: auto;
+}
+
+main article samp {
+  white-space: pre;
+  display: block;
+  overflow-x: auto;
+}
+
+main article kbd {
+  padding: .1em .6em;
+  border: 1px solid rgba(63,63,63,0.25);
+  box-shadow: 0 1px 0 rgba(63,63,63,0.25);
+  background-color: var(--kbd-bg);
+  color: var(--kbd-color);
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 .1em;
+  white-space: nowrap;
+  font-size: .78em;
+}
+
+main article *:not(pre) > code {
+  font-size: .8em;
+  white-space: nowrap;
+  color: var(--code-color);
+  padding: 1px 3px;
+  background-color: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 3px;
+}
+
+main article .comment-count {
+  font-size: .8em;
+}
+
+/* Tables */
+main article table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+main article table thead:first-child tr:first-child th {
+  border-top: 0;
+}
+
+main article table th,
+main article table td {
+  padding: 8px;
+  line-height: 20px;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+
+main article table.highlighttable {
+  width: 100%;
+  table-layout: fixed;
+}
+
+main article table.highlighttable td {
+  border-style: none;
+  padding: 0px;
+}
+
+main article table.highlighttable td.linenos {
+  width: 2.5em;
+}
+
+main article table.highlighttable td.linenos pre {
+  padding-right: .8em;
+  background-color: inherit;
+  text-align: right;
+}
+
+/* Isso comments styling */
+main article section#isso-thread .auth-section .input-wrapper {
+  margin-right: 5px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+main footer {
+  padding-top: 4px;
+  border-top: var(--footer-border-color) 1px solid;
+}
+
+main footer p {
+  margin: 2px;
+  text-align: center;
+  padding: 0 40px 0 40px;
+  color: var(--footer-text-color);
+  font-size: 11px;
+}
+
+main footer span.footer-separator {
+  margin: 0 6px;
+}
+
+/* ==========================================================================
+   Tag Cloud
+   ========================================================================== */
+
+.tag-cloud a {
+  background-color: var(--tag-bg);
+  padding: .2em .6em .2em;
+  font-size: .74em;
+  line-height: 1;
+  color: var(--tag-text-color);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.tag-cloud a:hover {
+  background-color: var(--tag-hover-color);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+a.btn,
+section#isso-thread section.auth-section p.post-action input {
+  background-color: var(--btn-bg);
+  padding: .6em .6em;
+  font-size: .8em;
+  line-height: 1;
+  color: var(--btn-text-color);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border: none;
+  border-radius: .25em;
+}
+
+a.btn:hover {
+  background-color: var(--btn-hover-color);
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.center, .text-center {
+  text-align: center;
+}
+
+.img-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.align-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+/* ==========================================================================
+   Related Posts
+   ========================================================================== */
+
+div.related-posts {
+  margin: 15px 0 15px 0;
+  padding-bottom: 20px;
+  border-top: var(--rel-post-border-color) 1px solid;
+  border-bottom: var(--rel-post-border-color) 1px solid;
+}
+
+div.related-posts h4 {
+  margin: 20px 0 25px 0;
+}
+
+div.related-posts ul {
+  font-size: 1.1em;
+  padding-left: 12px;
+}
+
+div.related-posts ul li {
+  padding: 4px 0 4px 0;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+ul.list, ul.social, ul.related-posts {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.list {
+  padding: 1em 0 1em 0;
+}
+
+ul.list li {
+  padding: 4px;
+}
+
+/* ==========================================================================
+   Social Icons
+   ========================================================================== */
+
+ul.social {
+  font-size: 1.6em;
+  padding-top: 20px;
+}
+
+ul.social li {
+  display: inline;
+}
+
+ul.social a:hover {
+  z-index: 2;
+  -webkit-transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+
+ul.social a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  text-align: center;
+  font-size: .8em;
+  line-height: 36px;
+}
+
+ul.social a.sc-facebook { background-color: var(--social-facebook); }
+ul.social a.sc-google { background-color: var(--social-google); }
+ul.social a.sc-instagram { background-color: var(--social-instagram); }
+ul.social a.sc-keybase { background-color: var(--social-keybase); }
+ul.social a.sc-pinterest { background-color: var(--social-pinterest); }
+ul.social a.sc-linkedin { background-color: var(--social-linkedin); }
+ul.social a.sc-medium { background-color: var(--social-medium); }
+ul.social a.sc-rss { background-color: var(--social-rss); }
+ul.social a.sc-stack-overflow { background-color: var(--social-stack-overflow); }
+ul.social a.sc-tumblr { background-color: var(--social-tumblr); }
+ul.social a.sc-twitch { background-color: var(--social-twitch); }
+ul.social a.sc-twitter { background-color: var(--social-twitter); }
+ul.social a.sc-youtube { background-color: var(--social-youtube); }
+ul.social a.sc-github,
+ul.social a.sc-github-alt { background-color: var(--social-github); }
+ul.social a.sc-envelope { background-color: var(--social-email); }
+ul.social a.sc-reddit { background-color: var(--social-reddit); }
+ul.social a.sc-soundcloud { background-color: var(--social-soundcloud); }
+ul.social a.sc-gitlab { background-color: var(--social-gitlab); }
+ul.social a.sc-xing { background-color: var(--social-xing); }
+ul.social a.sc-bitbucket { background-color: var(--social-bitbucket); }
+ul.social a.sc-mastodon { background-color: var(--social-mastodon); }
+ul.social a.sc-diaspora { 
+  color: var(--social-diaspora-color); 
+  background-color: var(--social-diaspora); 
+}
+ul.social a.sc-flickr { background-color: var(--social-flickr); }
+ul.social a.sc-lastfm { background-color: var(--social-lastfm); }
+ul.social a.sc-envelope-o { background-color: var(--social-email); color: #000; }
+ul.social a.sc-book { background-color: var(--social-email); color: #000; }
+ul.social a.sc-mortar-board { background-color: var(--social-email); color: #fff; }
+ul.social a.sc-graduation-cap { background-color: var(--social-email); color: #fff; }
+ul.social a.sc-newspaper { background-color: var(--social-email); color: #fff; }
+
+/* ==========================================================================
+   Ads
+   ========================================================================== */
+
+.ads-aside {
+  display: inline-block;
+  height: 90px;
+  width: 70%;
+}
+
+.ads-responsive {
+  display: inline-block;
+  margin: 6px 0 6px 0;
+  width: 90%;
+  height: 70px;
+  margin-left: 5%;
+}
+
+/* ==========================================================================
+   Desktop Layout (min-width: 768px)
+   ========================================================================== */
+
+@media screen and (min-width: 768px) {
+  aside {
+    width: 25vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+  }
+
+  aside div {
+    padding: 36px 18px;
+  }
+
+  aside div nav ul li {
+    padding: 0 !important;
+    display: block;
+  }
+
+  aside div ul.social {
+    padding-top: 32px;
+  }
+
+  main {
+    height: 100vh;
+    position: relative;
+    padding-left: 25vw;
+  }
+
+  main article {
+    max-width: 760px;
+  }
+
+  main article ul.list li {
+    padding: 2px;
+  }
+
+  .ads-aside {
+    height: 250px;
+  }
+
+  .ads-responsive {
+    height: 90px;
+  }
+}
+
+/* ==========================================================================
+   Admonitions
+   ========================================================================== */
+
+div.admonition {
+  margin-bottom: 2.5rem;
+  border-radius: 4px;
+  padding: 0.5em 1.25em 1.25em 1.25em;
+  color: var(--admonition-generic-color);
+  background-color: var(--admonition-generic-bg);
+}
+
+div.admonition p.admonition-title::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-family: "Font Awesome 5 Free";
+}
+
+div.admonition p.admonition-title {
+  font-weight: 600;
+  line-height: 1.25em;
+  margin-bottom: 1.25em;
+  margin-top: inherit;
+}
+
+div.admonition p,
+div.admonition div,
+div.admonition pre {
+  margin-bottom: 0;
+}
+
+/* Attention, Caution, Warning */
+div.admonition.attention,
+div.admonition.caution,
+div.admonition.warning {
+  color: var(--admonition-attention-color);
+  background-color: var(--admonition-attention-bg);
+}
+
+div.admonition.attention p.admonition-title::before,
+div.admonition.caution p.admonition-title::before,
+div.admonition.warning p.admonition-title::before {
+  content: "\f071\00a0 ";
+}
+
+/* Danger, Error */
+div.admonition.danger,
+div.admonition.error {
+  color: var(--admonition-danger-color);
+  background-color: var(--admonition-danger-bg);
+}
+
+div.admonition.danger p.admonition-title::before,
+div.admonition.error p.admonition-title::before {
+  content: "\f06a\00a0 ";
+}
+
+/* Hint, Tip */
+div.admonition.hint,
+div.admonition.tip {
+  color: var(--admonition-hint-color);
+  background-color: var(--admonition-hint-bg);
+}
+
+div.admonition.hint p.admonition-title::before,
+div.admonition.tip p.admonition-title::before {
+  content: "\f0eb\00a0 ";
+}
+
+/* Important, Note */
+div.admonition.important,
+div.admonition.note {
+  color: var(--admonition-important-color);
+  background-color: var(--admonition-important-bg);
+}
+
+div.admonition.important p.admonition-title::before,
+div.admonition.note p.admonition-title::before {
+  content: "\f05a\00a0 ";
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+div.figure {
+  font-size: 90%;
+  color: var(--figure-color);
+}
+
+div.figure img {
+  vertical-align: middle;
+  line-height: 1;
+  display: inline;
+}
+
+div.figure p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+div.figure p.caption {
+  font-style: italic;
+}
+
+div.figure div.legend {
+  text-align: initial;
+}
+
+div.figure.align-left {
+  text-align: left;
+}
+
+div.figure.align-center {
+  text-align: center;
+}
+
+div.figure.align-right {
+  text-align: right;
+}
