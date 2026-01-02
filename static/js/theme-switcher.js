@@ -1,9 +1,12 @@
 /**
- * Theme Switcher - Dark/light mode toggle using CSS custom properties
- * Uses data-theme attribute on <html> element to override prefers-color-scheme
+ * Theme Switcher - Dark/light mode toggle with sun/moon icons
+ * 
+ * Behavior:
+ * - On first visit: Follow browser's prefers-color-scheme
+ * - When user clicks toggle: Switch theme and save to localStorage
+ * - On return visit: Restore saved preference
  * 
  * Note: Initial theme is applied via inline script in <head> to prevent FOIT.
- * This script provides the switching API and handles system preference changes.
  */
 (function() {
   'use strict';
@@ -21,22 +24,9 @@
 
   function setStoredTheme(theme) {
     try {
-      if (theme === 'browser') {
-        localStorage.removeItem(STORAGE_KEY);
-      } else {
-        localStorage.setItem(STORAGE_KEY, theme);
-      }
+      localStorage.setItem(STORAGE_KEY, theme);
     } catch (e) {
       // localStorage not available
-    }
-  }
-
-  function applyTheme(theme) {
-    if (theme === 'dark' || theme === 'light') {
-      document.documentElement.setAttribute('data-theme', theme);
-    } else {
-      // 'browser' or null - remove override, let CSS @media query handle it
-      document.documentElement.removeAttribute('data-theme');
     }
   }
 
@@ -49,26 +39,55 @@
     return darkQuery.matches ? 'dark' : 'light';
   }
 
-  // Listen for system preference changes (only matters when theme is 'browser')
+  function applyTheme(theme) {
+    if (theme === 'dark' || theme === 'light') {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    updateIcon();
+  }
+
+  function updateIcon() {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    
+    var sunIcon = btn.querySelector('.fa-sun');
+    var moonIcon = btn.querySelector('.fa-moon');
+    if (!sunIcon || !moonIcon) return;
+
+    var effective = getEffectiveTheme();
+    // Show sun when dark (click to go light), show moon when light (click to go dark)
+    sunIcon.style.display = effective === 'dark' ? 'inline' : 'none';
+    moonIcon.style.display = effective === 'light' ? 'inline' : 'none';
+  }
+
+  function toggle() {
+    var current = getEffectiveTheme();
+    var next = current === 'dark' ? 'light' : 'dark';
+    setStoredTheme(next);
+    applyTheme(next);
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.addEventListener('click', toggle);
+    }
+    updateIcon();
+  });
+
+  // Listen for system preference changes (when no manual override)
   darkQuery.addEventListener('change', function() {
-    var stored = getStoredTheme();
-    if (!stored || stored === 'browser') {
-      // No override set, CSS handles it automatically via @media query
-      // But we might want to update any UI indicators here
+    if (!getStoredTheme()) {
+      updateIcon();
     }
   });
 
-  // Expose global API for theme switching
+  // Expose global API
   window.theme = {
-    switch: function(newTheme) {
-      setStoredTheme(newTheme);
-      applyTheme(newTheme);
-    },
-    get: function() {
-      return getStoredTheme() || 'browser';
-    },
-    getEffective: function() {
-      return getEffectiveTheme();
-    }
+    toggle: toggle,
+    get: getEffectiveTheme
   };
 })();

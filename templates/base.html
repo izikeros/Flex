@@ -62,6 +62,9 @@
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/font-awesome/css/solid.css">
 
+    {# Pagefind Search #}
+    <link rel="stylesheet" href="{{ SITEURL }}/pagefind/pagefind-ui.css">
+
     {% if CUSTOM_CSS %}
         <link rel="stylesheet" type="text/css"
               href="{% if main_siteurl is defined %}{{ main_site }}{% else %}{{ SITEURL }}{% endif %}/{{ CUSTOM_CSS }}">
@@ -263,6 +266,12 @@
             {% if FEED_ALL_RSS %}
                 <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">{{ _('RSS') }}</a>
             {% endif %}
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
     {% endif %}
 
@@ -285,5 +294,20 @@
 {% endif %}
 
 {% block additional_js %}{% endblock %}
+
+{# Pagefind Search #}
+<script src="{{ SITEURL }}/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+{# Theme Switcher #}
+<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/theme-switcher.js"></script>
 </body>
 </html>

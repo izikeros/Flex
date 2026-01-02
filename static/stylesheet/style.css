@@ -340,9 +340,82 @@ main .translations a {
   border-right: var(--nav-border-color) 1px solid;
 }
 
-main nav :last-child,
+main nav a:last-of-type {
+  border-right: none;
+}
+
 main .translations :last-child {
   border-right: none;
+}
+
+/* Nav Search (Pagefind) */
+.nav-search {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 12px;
+  border-right: none;
+}
+
+.nav-search .pagefind-ui {
+  font-size: 12px;
+}
+
+.nav-search .pagefind-ui__search-input {
+  font-size: 12px;
+  padding: 4px 8px;
+  border: 1px solid var(--nav-border-color);
+  border-radius: 4px;
+  background: var(--body-bg);
+  color: var(--text-color);
+  width: 150px;
+}
+
+.nav-search .pagefind-ui__search-clear {
+  padding: 0 8px;
+  color: var(--text-color);
+}
+
+.nav-search .pagefind-ui__drawer {
+  position: absolute;
+  right: 0;
+  left: auto;
+  max-width: 400px;
+  background: var(--body-bg);
+  border: 1px solid var(--nav-border-color);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1001;
+}
+
+.nav-search .pagefind-ui__result-link {
+  color: var(--link-color);
+}
+
+.nav-search .pagefind-ui__result-excerpt {
+  color: var(--text-color);
+  font-size: 11px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  display: inline-block;
+  vertical-align: middle;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+  font-size: 14px;
+  color: var(--text-color);
+  border-right: none;
+}
+
+.theme-toggle:hover {
+  color: var(--link-color);
+}
+
+.theme-toggle .fa-sun,
+.theme-toggle .fa-moon {
+  display: none;
 }
 
 main .neighbors {
