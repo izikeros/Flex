@@ -557,9 +557,15 @@ main article table.highlighttable td.linenos pre {
   text-align: right;
 }
 
-/* Isso comments styling */
-main article section#isso-thread .auth-section .input-wrapper {
-  margin-right: 5px;
+/* Giscus Comments */
+.giscus-comments {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--nav-border-color);
+}
+
+.giscus-frame {
+  width: 100%;
 }
 
 /* ==========================================================================
