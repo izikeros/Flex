@@ -111,6 +111,10 @@
 
   /* Figure */
   --figure-color: #6c757d;
+
+  /* Social icons in light mode - use brand colors */
+  --social-icon-bg: none; /* use individual brand colors */
+  --social-icon-color: var(--color-white);
 }
 
 /* ==========================================================================
@@ -155,6 +159,10 @@
     --admonition-important-bg: #122b18;
 
     --figure-color: #bfbfbf;
+
+    /* Social icons in dark mode - muted background, bright foreground */
+    --social-icon-bg: var(--color-very-dark-grey);
+    --social-icon-color: var(--color-light-grey);
   }
 }
 
@@ -186,6 +194,8 @@
   --admonition-important-color: #a8eab7;
   --admonition-important-bg: #122b18;
   --figure-color: #bfbfbf;
+  --social-icon-bg: var(--color-very-dark-grey);
+  --social-icon-color: var(--color-light-grey);
 }
 
 [data-theme="light"] {
@@ -639,6 +649,15 @@ ul.social a {
   text-align: center;
   font-size: .8em;
   line-height: 36px;
+  color: var(--social-icon-color);
+}
+
+/* Dark mode: override all social icon backgrounds */
+[data-theme="dark"] ul.social a,
+@media (prefers-color-scheme: dark) {
+  ul.social a {
+    background-color: var(--social-icon-bg) !important;
+  }
 }
 
 ul.social a.sc-facebook { background-color: var(--social-facebook); }
@@ -705,6 +724,7 @@ ul.social a.sc-newspaper { background-color: var(--social-email); color: #fff; }
     z-index: 1000;
     top: 0;
     left: 0;
+    overflow-y: auto;
   }
 
   aside div {
