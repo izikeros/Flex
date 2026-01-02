@@ -8,6 +8,16 @@
 <html lang="{{ DEFAULT_LANG }}">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    {# Inline script to prevent flash of wrong theme - must be in head before any rendering #}
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -29,8 +39,19 @@
         <script>mermaid.initialize({startOnLoad: true});</script>
     {% endif %}
 
-    {# PYGMENTS STYLES - single stylesheet, dark mode handled by CSS variables if needed #}
+    {# PYGMENTS STYLES #}
+    {% if PYGMENTS_STYLE_DARK %}
+    {# Light theme pygments - disabled in dark mode #}
+    <link rel="stylesheet" type="text/css" 
+          href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE|default('github') }}.min.css"
+          media="(prefers-color-scheme: light)">
+    {# Dark theme pygments - enabled in dark mode #}
+    <link rel="stylesheet" type="text/css" 
+          href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE_DARK }}.min.css"
+          media="(prefers-color-scheme: dark)">
+    {% else %}
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE|default('github') }}.min.css">
+    {% endif %}
 
     {% if USE_APPLAUSE %}
         <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css"/>
