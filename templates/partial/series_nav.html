@@ -1,0 +1,36 @@
+{% if article.series %}
+<nav class="series-nav" aria-label="Article series navigation">
+    <div class="series-header">
+        <span class="series-label">Part of series:</span>
+        <strong class="series-name">{{ article.series.name }}</strong>
+    </div>
+    <ol class="series-list">
+        {% for part in article.series.all %}
+            <li class="series-item {% if part == article %}series-item-current{% endif %}">
+                {% if part == article %}
+                    <span class="series-current">{{ part.title }}</span>
+                    <span class="series-badge">You are here</span>
+                {% else %}
+                    <a href="{{ SITEURL }}/{{ part.url }}">{{ part.title }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+    {% if article.series.all|length > 1 %}
+    <div class="series-pagination">
+        {% if article.series.index > 1 %}
+            {% set prev_idx = article.series.index - 2 %}
+            <a href="{{ SITEURL }}/{{ article.series.all[prev_idx].url }}" class="series-prev">
+                ← Previous: {{ article.series.all[prev_idx].title | truncate(40) }}
+            </a>
+        {% endif %}
+        {% if article.series.index < article.series.all|length %}
+            {% set next_idx = article.series.index %}
+            <a href="{{ SITEURL }}/{{ article.series.all[next_idx].url }}" class="series-next">
+                Next: {{ article.series.all[next_idx].title | truncate(40) }} →
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</nav>
+{% endif %}

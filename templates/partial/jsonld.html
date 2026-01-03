@@ -1,10 +1,10 @@
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " {{ SITENAME }} ",
-  "url" : "{{ SITEURL }}",
-  "image": "{{ SITELOGO }}",
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "{{ SITENAME }}",
+  "url": "{{ SITEURL }}",
+  {% if SITELOGO %}"image": "{{ SITELOGO }}",{% endif %}
   "description": "{{ SITEDESCRIPTION }}"
 }
 </script>
