@@ -82,14 +82,8 @@
 
         {% include "partial/series_nav.html" %}
 
-        <div class="article-wrapper">
-            <nav id="toc" class="toc" aria-label="Table of Contents">
-                <h4 class="toc-title">Contents</h4>
-                <ul class="toc-list"></ul>
-            </nav>
-            <div class="article-content">
-                {{ article.content }}
-            </div>
+        <div>
+            {{ article.content }}
         </div>
 
         {% if USE_APPLAUSE %}
