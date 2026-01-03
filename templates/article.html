@@ -80,8 +80,14 @@
             </script>
         {% endif %}
 
-        <div>
-            {{ article.content }}
+        <div class="article-wrapper">
+            <nav id="toc" class="toc" aria-label="Table of Contents">
+                <h4 class="toc-title">Contents</h4>
+                <ul class="toc-list"></ul>
+            </nav>
+            <div class="article-content">
+                {{ article.content }}
+            </div>
         </div>
 
         {% if USE_APPLAUSE %}
@@ -132,12 +138,15 @@
 
         {% if article.related_posts %}
             <div class="related-posts">
-                <h4>{{ _('You might enjoy') }}</h4>
-                <ul class="related-posts">
-                    {% for related_post in article.related_posts %}
-                        <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+                <h4 class="related-posts-title">{{ _('You might also like') }}</h4>
+                <div class="related-posts-grid">
+                    {% for related_post in article.related_posts[:4] %}
+                        <a href="{{ SITEURL }}/{{ related_post.url }}" class="related-post-card">
+                            <span class="related-post-title">{{ related_post.title }}</span>
+                            <span class="related-post-date">{{ related_post.date.strftime('%b %d, %Y') }}</span>
+                        </a>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
         {% elif ADD_THIS_ID %}
             <div class="addthis_relatedposts_inline"></div>

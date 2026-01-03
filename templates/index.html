@@ -11,54 +11,40 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     {% endif %}
+    <div class="article-list">
     {% for article in articles_page.object_list %}
         {% if article.category != 'note' %}
-            <article>
-                <header>
-                    <h2><a href="{{ SITEURL }}/{{ article.url }}{% if not DISABLE_URL_HASH %}#{{ article.slug }}{% endif %}">{{ article.title }}</a>
-                    </h2>
-                    <p>
-                        {{ _('%(when)s ',when=article.locale_date) }}
-
-                        {% if article.tags and not HOME_HIDE_TAGS %}
-                            &#8226; {{ _('Tagged with') }}
-                            {% for tag in article.tags %}
-                                <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
-                                {% if not loop.last %},{% endif %}
-                            {% endfor %}
-                        {% endif %}
-
+            <article class="article-card">
+                {% if article.featured_image %}
+                    <a href="{{ SITEURL }}/{{ article.url }}" class="article-card-image">
+                        <img src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}" loading="lazy">
+                    </a>
+                {% endif %}
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>{{ article.locale_date }}</time>
                         {% if PLUGINS and 'post_stats' in PLUGINS %}
-                            &#8226; {{ _('%(minutes)s min read', minutes=article.stats['read_mins']) }}
+                            <span class="article-card-readtime">{{ article.stats['read_mins'] }} min read</span>
                         {% endif %}
-                    </p>
-                </header>
-                <div>
-                    {% if summarise or article.metadata['summary'] or SUMMARY_MAX_LENGTH %}
-                        {% if  article.featured_image %}
-                            <a href="{{ SITEURL }}/{{ article.url }}">
-                                <img src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}">
-                            </a>
-                        {% endif %}
-                        <div>{{ article.summary }}</div>
-                        {% if article.content != article.summary %}
-                            <p>
-                            <a class="read-more"
-                               href="{{ SITEURL }}/{{ article.url }}{% if not DISABLE_URL_HASH %}#{{ article.slug }}{% endif %}">
-                                {{ _('Continue reading') }} →
-                            </a>
-                            </p>
-                        {% endif %}
-                    {% else %}
-                        {{ article.content }}
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="{{ SITEURL }}/{{ article.url }}{% if not DISABLE_URL_HASH %}#{{ article.slug }}{% endif %}">{{ article.title }}</a>
+                    </h2>
+                    {% if article.summary %}
+                        <p class="article-card-summary">{{ article.summary | striptags | truncate(160) }}</p>
+                    {% endif %}
+                    {% if article.tags and not HOME_HIDE_TAGS %}
+                        <div class="article-card-tags">
+                            {% for tag in article.tags[:3] %}
+                                <a href="{{ SITEURL }}/{{ tag.url }}" class="article-card-tag">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
                     {% endif %}
                 </div>
-                {% if not loop.last %}
-                    <hr/>
-                {% endif %}
             </article>
         {% endif %}
     {% endfor %}
+    </div>
 
     {% include "partial/pagination.html" %}
 
