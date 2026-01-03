@@ -16,7 +16,7 @@
 
         <div>
             <dl>
-                {% for article in all_dates|default(dates) %}
+                {% for article in dates %}
                     {% if article.category == 'note' %}
                         <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                         </dd>
