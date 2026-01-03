@@ -351,9 +351,10 @@ main .translations :last-child {
 /* Nav Search (Pagefind) */
 .nav-search {
   display: inline-flex;
-  vertical-align: middle;
+  vertical-align: baseline;
   align-items: center;
   margin-left: 12px;
+  padding: 0 4px;
   border-right: none;
 }
 
@@ -408,12 +409,12 @@ main .translations :last-child {
 /* Theme Toggle Button */
 .theme-toggle {
   display: inline-flex;
-  vertical-align: middle;
+  vertical-align: baseline;
   align-items: center;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0 8px;
+  padding: 0 4px;
   font-size: 16px;
   line-height: 1;
   color: var(--text-color);
