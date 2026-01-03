@@ -495,8 +495,28 @@ main .neighbors {
 }
 
 main .pagination {
+  display: flex;
+  justify-content: space-between;
   margin: 4% 8% 4% 8%;
-  height: 20px;
+}
+
+.pagination-link {
+  color: var(--link-color);
+  font-size: 0.9em;
+}
+
+.pagination-link:hover {
+  text-decoration: underline;
+}
+
+/* Read More Link */
+.read-more {
+  color: var(--link-color);
+  font-size: 0.9em;
+}
+
+.read-more:hover {
+  text-decoration: underline;
 }
 
 main .social-share p {
