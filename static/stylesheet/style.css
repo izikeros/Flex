@@ -54,6 +54,9 @@
 
   /* Navigation */
   --nav-border-color: var(--color-light-grey);
+  --nav-item-height: 24px;
+  --nav-item-padding-x: 8px;
+  --nav-item-font-size: 12px;
 
   /* HR */
   --hr-color: var(--color-light-grey);
@@ -326,17 +329,32 @@ aside nav ul li {
    ========================================================================== */
 
 main nav {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
   text-transform: uppercase;
-  padding: 14px 0 14px 0;
+  padding: 14px 0;
   border-bottom: var(--nav-border-color) 1px solid;
-  font-size: 0;
 }
 
+/* Base styling for all nav items */
+main nav a,
+main .translations a,
+.nav-search,
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--nav-item-height);
+  padding: 0 var(--nav-item-padding-x);
+  font-size: var(--nav-item-font-size);
+}
+
+/* Nav links specific */
 main nav a,
 main .translations a {
-  font-size: 12px;
-  padding: 0 4px;
   border-right: var(--nav-border-color) 1px solid;
 }
 
@@ -350,16 +368,11 @@ main .translations :last-child {
 
 /* Nav Search (Pagefind) */
 .nav-search {
-  display: inline-flex;
-  vertical-align: baseline;
-  align-items: center;
-  margin-left: 12px;
-  padding: 0 4px;
+  margin-left: 4px;
   border-right: none;
 }
 
 .nav-search .pagefind-ui {
-  font-size: 12px;
   display: inline-flex;
   align-items: center;
 }
@@ -370,9 +383,9 @@ main .translations :last-child {
 }
 
 .nav-search .pagefind-ui__search-input {
-  font-size: 12px !important;
-  padding: 2px 6px !important;
-  height: auto !important;
+  font-size: var(--nav-item-font-size) !important;
+  height: calc(var(--nav-item-height) - 4px) !important;
+  padding: 0 6px !important;
   border: 1px solid var(--nav-border-color) !important;
   border-radius: 4px !important;
   background: var(--body-bg) !important;
@@ -408,17 +421,11 @@ main .translations :last-child {
 
 /* Theme Toggle Button */
 .theme-toggle {
-  display: inline-flex;
-  vertical-align: baseline;
-  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0 4px;
   font-size: 16px;
-  line-height: 1;
   color: var(--text-color);
-  border-right: none;
 }
 
 .theme-toggle:hover {
