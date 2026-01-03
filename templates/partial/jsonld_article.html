@@ -1,25 +1,31 @@
 {% if not PLUGINS or 'seo' not in PLUGINS %}
-  {% if SITELOGO %}
-    {% set default_cover = SITELOGO %}
-  {% else %}
-    {% set default_cover = '{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png' %}
-  {% endif %}
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "BlogPosting",
-    "name": "{{ article.title|striptags }}",
-    "headline": "{{ article.title|striptags }}",
-    "datePublished": "{{ article.date }}",
-    "dateModified": "{{ article.modified }}",
-    "author": {
-      "@type": "Person",
-      "name": "{{ article.author.name }}",
-      "url": "{{ SITEURL }}/{{ article.author.url }}"
-    },
-    "image": "{{ article.metadata.get('image', default_cover) }}",
-    "url": "{{ SITEURL }}/{{ article.url }}",
-    "description": "{{ article.summary|striptags }}"
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ SITEURL }}/{{ article.url }}"
+  },
+  "headline": "{{ article.title|striptags|truncate(110) }}",
+  "datePublished": "{{ article.date.isoformat() }}",
+  "dateModified": "{{ article.modified.isoformat() if article.modified else article.date.isoformat() }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ article.author.name }}",
+    "url": "{{ SITEURL }}/{{ article.author.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ SITENAME }}"{% if SITELOGO %},
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ SITELOGO }}"
+    }{% endif %}
+  },
+  {% if 'image' in article.metadata %}"image": "{{ SITEURL }}/{{ article.metadata['image'] }}",{% elif SITELOGO %}"image": "{{ SITELOGO }}",{% endif %}
+  "url": "{{ SITEURL }}/{{ article.url }}",
+  "description": "{{ article.summary|striptags|truncate(160) }}"
+}
+</script>
 {% endif %}

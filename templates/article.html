@@ -1,24 +1,9 @@
 {% extends "base.html" %}
-ARTICLE
+
 {% block meta %}
     <meta name="author" content="{{ article.author.name }}"/>
     <meta name="description" content="{{ article.summary|striptags|escape }}"/>
     <meta name="keywords" content="{{ article.tags|join(', ')|escape }}">
-    <meta expr:content="{{ article.date }}" itemprop='datePublished'/>
-    <meta expr:content="{{ article.modified }}" itemprop='dateModified'/>
-    <meta property="article:modified_time" content="{{ article.modified }}"/>
-    <meta property="article:published_time" content="{{ article.date }}"/>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "{{ article.title }}",
-  "datePublished": "{{ article.date }}",
-  "dateModified": "{{ article.modified }}"
-}
-
-    </script>
-
 
     {% if article.translations -%}
         <link rel="alternate" href="{{ SITEURL }}/{{ article.url }}" hreflang="{{ article.lang }}"/>
@@ -29,6 +14,7 @@ ARTICLE
 
     {% include "partial/og_article.html" %}
     {% include "partial/twitter_article.html" %}
+    {% include "partial/jsonld_article.html" %}
 {% endblock %}
 
 
