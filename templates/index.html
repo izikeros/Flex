@@ -13,36 +13,34 @@
     {% endif %}
     <div class="article-list">
     {% for article in articles_page.object_list %}
-        {% if article.category != 'note' %}
-            <article class="article-card">
-                {% if article.featured_image %}
-                    <a href="{{ SITEURL }}/{{ article.url }}" class="article-card-image">
-                        <img src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}" loading="lazy">
-                    </a>
-                {% endif %}
-                <div class="article-card-content">
-                    <div class="article-card-meta">
-                        <time>{{ article.locale_date }}</time>
-                        {% if PLUGINS and 'post_stats' in PLUGINS %}
-                            <span class="article-card-readtime">{{ article.stats['read_mins'] }} min read</span>
-                        {% endif %}
-                    </div>
-                    <h2 class="article-card-title">
-                        <a href="{{ SITEURL }}/{{ article.url }}{% if not DISABLE_URL_HASH %}#{{ article.slug }}{% endif %}">{{ article.title }}</a>
-                    </h2>
-                    {% if article.summary %}
-                        <p class="article-card-summary">{{ article.summary | striptags | truncate(160) }}</p>
-                    {% endif %}
-                    {% if article.tags and not HOME_HIDE_TAGS %}
-                        <div class="article-card-tags">
-                            {% for tag in article.tags[:3] %}
-                                <a href="{{ SITEURL }}/{{ tag.url }}" class="article-card-tag">{{ tag }}</a>
-                            {% endfor %}
-                        </div>
+        <article class="article-card">
+            {% if article.image %}
+                <a href="{{ SITEURL }}/{{ article.url }}" class="article-card-image">
+                    <img src="{{ article.image }}" alt="{{ article.title }}" loading="lazy">
+                </a>
+            {% endif %}
+            <div class="article-card-content">
+                <div class="article-card-meta">
+                    <time>{{ article.locale_date }}</time>
+                    {% if PLUGINS and 'post_stats' in PLUGINS %}
+                        <span class="article-card-readtime">{{ article.stats['read_mins'] }} min read</span>
                     {% endif %}
                 </div>
-            </article>
-        {% endif %}
+                <h2 class="article-card-title">
+                    <a href="{{ SITEURL }}/{{ article.url }}{% if not DISABLE_URL_HASH %}#{{ article.slug }}{% endif %}">{{ article.title }}</a>
+                </h2>
+                {% if article.summary %}
+                    <p class="article-card-summary">{{ article.summary | striptags | truncate(160) }}</p>
+                {% endif %}
+                {% if article.tags and not HOME_HIDE_TAGS %}
+                    <div class="article-card-tags">
+                        {% for tag in article.tags[:3] %}
+                            <a href="{{ SITEURL }}/{{ tag.url }}" class="article-card-tag">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </article>
     {% endfor %}
     </div>
 

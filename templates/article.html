@@ -58,11 +58,11 @@
                 <p class="summary">{{ article.summary }}</p>
             {% endif %}
 
-            {% if article.featured_image and article.category != 'note'%}
+            {% if article.image and article.category != 'note'%}
                 <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="{{ SITEURL }}/{{ article.url }}">
                         <img style="width: 100%; "
-                             src="{{ article.featured_image }}" alt="{{ article.featured_image_alt }}">
+                             src="{{ article.image }}" alt="{{ article.title }}">
                     </a>
                 </div>
             {% endif %}
