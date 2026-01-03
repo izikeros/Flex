@@ -11,8 +11,13 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     {% endif %}
+
+    {# Use pre-filtered article pages from exclude_category plugin #}
+    {% set current_page_num = (articles_page.number if articles_page else 1) - 1 %}
+    {% set page_articles = index_article_pages[current_page_num] if index_article_pages else [] %}
+
     <div class="article-list">
-    {% for article in articles_page.object_list %}
+    {% for article in page_articles %}
         <article class="article-card">
             {% if article.image %}
                 <a href="{{ SITEURL }}/{{ article.url }}" class="article-card-image">
@@ -44,7 +49,7 @@
     {% endfor %}
     </div>
 
-    {% include "partial/pagination.html" %}
+    {% include "partial/pagination_filtered.html" %}
 
     {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.index_bottom %}
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

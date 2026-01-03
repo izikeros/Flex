@@ -1,0 +1,20 @@
+{# Custom pagination for filtered articles using exclude_category plugin #}
+{% if index_total_pages is defined and index_total_pages > 1 %}
+    {% set current_page_num = (articles_page.number if articles_page else 1) - 1 %}
+    
+    <div class="pagination">
+        {# Older posts (next page) - only show if we have more filtered pages #}
+        {% if current_page_num < index_total_pages - 1 and articles_page.has_next() %}
+            <a class="pagination-link" href="{{ SITEURL }}/{{ articles_next_page.url }}">
+                ← {{ _('Older Posts') }}
+            </a>
+        {% endif %}
+        
+        {# Newer posts (previous page) #}
+        {% if current_page_num > 0 and articles_page.has_previous() %}
+            <a class="pagination-link" href="{{ SITEURL }}/{{ articles_previous_page.url }}">
+                {{ _('Newer Posts') }} →
+            </a>
+        {% endif %}
+    </div>
+{% endif %}
