@@ -123,6 +123,48 @@
 })();
 
 /**
+ * Table of Contents Generator
+ * Auto-generates TOC from h2/h3 headings in article content
+ * Only shows if there are 3+ headings, hidden by default (uses <details>)
+ */
+(function() {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var tocContainer = document.getElementById('toc-container');
+    var tocList = tocContainer ? tocContainer.querySelector('.toc-list') : null;
+    var content = document.querySelector('.article-content');
+    
+    if (!tocContainer || !tocList || !content) return;
+
+    var headings = content.querySelectorAll('h2, h3');
+    
+    // Hide TOC if fewer than 3 headings
+    if (headings.length < 3) {
+      tocContainer.style.display = 'none';
+      return;
+    }
+
+    headings.forEach(function(heading, index) {
+      // Ensure heading has an ID
+      if (!heading.id) {
+        heading.id = 'heading-' + index;
+      }
+
+      var li = document.createElement('li');
+      li.className = 'toc-item toc-' + heading.tagName.toLowerCase();
+      
+      var a = document.createElement('a');
+      a.href = '#' + heading.id;
+      a.textContent = heading.textContent;
+      
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+  });
+})();
+
+/**
  * Copy Code Button
  * Adds a copy button to all code blocks
  */
