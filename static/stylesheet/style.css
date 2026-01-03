@@ -773,76 +773,31 @@ ul.list li {
 }
 
 /* ==========================================================================
-   Social Icons
+   Social Icons (Minimal - Icon Only)
    ========================================================================== */
 
 ul.social {
-  font-size: 1.6em;
+  font-size: 1.4em;
   padding-top: 20px;
 }
 
 ul.social li {
-  display: inline;
-}
-
-ul.social a:hover {
-  z-index: 2;
-  -webkit-transform: translateY(-2px);
-  transform: translateY(-2px);
+  display: inline-block;
+  margin: 0 4px;
 }
 
 ul.social a {
   display: inline-block;
-  width: 36px;
-  height: 36px;
-  border-radius: 100%;
-  text-align: center;
-  font-size: .8em;
-  line-height: 36px;
-  color: var(--social-icon-color);
+  padding: 8px;
+  color: var(--sidebar-text-color);
+  background: none;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* Dark mode: override all social icon backgrounds */
-[data-theme="dark"] ul.social a,
-@media (prefers-color-scheme: dark) {
-  ul.social a {
-    background-color: var(--social-icon-bg) !important;
-  }
+ul.social a:hover {
+  color: var(--link-color);
+  transform: translateY(-2px);
 }
-
-ul.social a.sc-facebook { background-color: var(--social-facebook); }
-ul.social a.sc-google { background-color: var(--social-google); }
-ul.social a.sc-instagram { background-color: var(--social-instagram); }
-ul.social a.sc-keybase { background-color: var(--social-keybase); }
-ul.social a.sc-pinterest { background-color: var(--social-pinterest); }
-ul.social a.sc-linkedin { background-color: var(--social-linkedin); }
-ul.social a.sc-medium { background-color: var(--social-medium); }
-ul.social a.sc-rss { background-color: var(--social-rss); }
-ul.social a.sc-stack-overflow { background-color: var(--social-stack-overflow); }
-ul.social a.sc-tumblr { background-color: var(--social-tumblr); }
-ul.social a.sc-twitch { background-color: var(--social-twitch); }
-ul.social a.sc-twitter { background-color: var(--social-twitter); }
-ul.social a.sc-youtube { background-color: var(--social-youtube); }
-ul.social a.sc-github,
-ul.social a.sc-github-alt { background-color: var(--social-github); }
-ul.social a.sc-envelope { background-color: var(--social-email); }
-ul.social a.sc-reddit { background-color: var(--social-reddit); }
-ul.social a.sc-soundcloud { background-color: var(--social-soundcloud); }
-ul.social a.sc-gitlab { background-color: var(--social-gitlab); }
-ul.social a.sc-xing { background-color: var(--social-xing); }
-ul.social a.sc-bitbucket { background-color: var(--social-bitbucket); }
-ul.social a.sc-mastodon { background-color: var(--social-mastodon); }
-ul.social a.sc-diaspora { 
-  color: var(--social-diaspora-color); 
-  background-color: var(--social-diaspora); 
-}
-ul.social a.sc-flickr { background-color: var(--social-flickr); }
-ul.social a.sc-lastfm { background-color: var(--social-lastfm); }
-ul.social a.sc-envelope-o { background-color: var(--social-email); color: #000; }
-ul.social a.sc-book { background-color: var(--social-email); color: #000; }
-ul.social a.sc-mortar-board { background-color: var(--social-email); color: #fff; }
-ul.social a.sc-graduation-cap { background-color: var(--social-email); color: #fff; }
-ul.social a.sc-newspaper { background-color: var(--social-email); color: #fff; }
 
 /* ==========================================================================
    Ads
