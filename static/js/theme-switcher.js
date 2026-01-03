@@ -91,3 +91,33 @@
     get: getEffectiveTheme
   };
 })();
+
+/**
+ * Reading Progress Bar
+ * Shows scroll progress as a thin bar at the top of the page
+ */
+(function() {
+  'use strict';
+
+  var progressBar = null;
+
+  function updateProgress() {
+    if (!progressBar) return;
+    
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    
+    if (docHeight > 0) {
+      var progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = Math.min(progress, 100) + '%';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    progressBar = document.getElementById('reading-progress');
+    if (progressBar) {
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    }
+  });
+})();

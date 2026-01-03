@@ -228,6 +228,21 @@
 }
 
 /* ==========================================================================
+   Reading Progress Bar
+   ========================================================================== */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--link-color);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+/* ==========================================================================
    Base Styles
    ========================================================================== */
 
@@ -648,6 +663,52 @@ main article table.highlighttable td.linenos pre {
   text-align: right;
 }
 
+/* Article Tags */
+.article-tags {
+  margin: 2rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--nav-border-color);
+}
+
+.tags-label {
+  font-size: 0.9em;
+  color: var(--header-text-color);
+  margin-right: 0.5rem;
+}
+
+.article-tag {
+  display: inline-block;
+  margin: 0.25rem 0.25rem 0.25rem 0;
+  padding: 0.2rem 0.5rem;
+  background: var(--tag-bg);
+  color: var(--tag-text-color);
+  border-radius: 3px;
+  font-size: 0.85em;
+  text-decoration: none;
+}
+
+.article-tag:hover {
+  background: var(--tag-hover-color);
+  color: var(--tag-text-color);
+}
+
+/* Share Icons */
+.share-icons {
+  margin-left: 1rem;
+}
+
+.share-icon {
+  display: inline-block;
+  margin: 0 0.3rem;
+  color: var(--header-text-color);
+  font-size: 1.1em;
+  transition: color 0.2s ease;
+}
+
+.share-icon:hover {
+  color: var(--link-color);
+}
+
 /* Giscus Comments */
 .giscus-comments {
   margin-top: 2rem;
@@ -748,6 +809,117 @@ a.btn:hover {
 
 .float-right {
   float: right;
+}
+
+/* ==========================================================================
+   Archives Page
+   ========================================================================== */
+
+.archives-list {
+  margin-top: 1rem;
+}
+
+.archives-year {
+  font-size: 1.5em;
+  margin: 2rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--nav-border-color);
+  color: var(--text-color);
+}
+
+.archives-year:first-child {
+  margin-top: 0;
+}
+
+.archives-item {
+  display: flex;
+  align-items: baseline;
+  padding: 0.4rem 0;
+}
+
+.archives-item time {
+  flex-shrink: 0;
+  width: 70px;
+  font-size: 0.85em;
+  color: var(--header-text-color);
+}
+
+.archives-item a {
+  flex: 1;
+}
+
+/* ==========================================================================
+   Tags Page
+   ========================================================================== */
+
+.filterinput {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--nav-border-color);
+  border-radius: 4px;
+  font-size: 0.9em;
+  background: var(--body-bg);
+  color: var(--text-color);
+}
+
+.filterinput:focus {
+  outline: none;
+  border-color: var(--link-color);
+}
+
+.tag-cloud-list {
+  margin-bottom: 2rem;
+  line-height: 2;
+}
+
+.tag-item {
+  display: inline-block;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+  padding: 0.25rem 0.5rem;
+  background: var(--btn-bg);
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.tag-item:hover {
+  background: var(--link-color);
+  color: var(--color-white);
+}
+
+.tag-count {
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
+.tag-section-title {
+  font-size: 1.2em;
+  margin: 1.5rem 0 0.75rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--nav-border-color);
+}
+
+.tag-articles-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-articles-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.3rem 0;
+}
+
+.tag-articles-list time {
+  font-size: 0.85em;
+  color: var(--header-text-color);
+  flex-shrink: 0;
+  margin-left: 1rem;
 }
 
 /* ==========================================================================
