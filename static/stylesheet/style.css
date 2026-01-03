@@ -350,14 +350,22 @@ main .translations :last-child {
 
 /* Nav Search (Pagefind) */
 .nav-search {
-  display: inline-block;
+  display: inline-flex;
   vertical-align: middle;
+  align-items: center;
   margin-left: 12px;
   border-right: none;
 }
 
 .nav-search .pagefind-ui {
   font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-search .pagefind-ui__form {
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-search .pagefind-ui__search-input {
@@ -399,13 +407,15 @@ main .translations :last-child {
 
 /* Theme Toggle Button */
 .theme-toggle {
-  display: inline-block;
+  display: inline-flex;
   vertical-align: middle;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0 8px;
   font-size: 16px;
+  line-height: 1;
   color: var(--text-color);
   border-right: none;
 }
