@@ -82,12 +82,14 @@
 
         {% include "partial/series_nav.html" %}
 
+        {% if ENABLE_TOC %}
         <details class="toc-details" id="toc-container">
             <summary>Table of Contents</summary>
             <nav class="toc" aria-label="Table of Contents">
                 <ul class="toc-list"></ul>
             </nav>
         </details>
+        {% endif %}
 
         <div class="article-content">
             {{ article.content }}
