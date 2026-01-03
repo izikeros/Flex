@@ -1,0 +1,39 @@
+{% if NEWSLETTER_ENABLED %}
+<div class="newsletter-box">
+    <div class="newsletter-content">
+        <h4 class="newsletter-title">{{ NEWSLETTER_TITLE | default('Stay Updated') }}</h4>
+        <p class="newsletter-description">{{ NEWSLETTER_DESCRIPTION | default('Get notified when I publish new articles. No spam, unsubscribe anytime.') }}</p>
+        
+        {% if NEWSLETTER_PROVIDER == 'mailchimp' %}
+            <form action="{{ NEWSLETTER_ACTION_URL }}" method="post" class="newsletter-form" target="_blank">
+                <input type="email" name="EMAIL" placeholder="Enter your email" required class="newsletter-input">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        {% elif NEWSLETTER_PROVIDER == 'buttondown' %}
+            <form action="https://buttondown.email/api/emails/embed-subscribe/{{ NEWSLETTER_USERNAME }}" method="post" class="newsletter-form" target="_blank">
+                <input type="email" name="email" placeholder="Enter your email" required class="newsletter-input">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        {% elif NEWSLETTER_PROVIDER == 'convertkit' %}
+            <form action="https://app.convertkit.com/forms/{{ NEWSLETTER_FORM_ID }}/subscriptions" method="post" class="newsletter-form" target="_blank">
+                <input type="email" name="email_address" placeholder="Enter your email" required class="newsletter-input">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        {% elif NEWSLETTER_PROVIDER == 'substack' %}
+            <form action="https://{{ NEWSLETTER_PUBLICATION }}.substack.com/api/v1/free" method="post" class="newsletter-form" target="_blank">
+                <input type="email" name="email" placeholder="Enter your email" required class="newsletter-input">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        {% elif NEWSLETTER_PROVIDER == 'custom' %}
+            <form action="{{ NEWSLETTER_ACTION_URL }}" method="{{ NEWSLETTER_METHOD | default('post') }}" class="newsletter-form" target="_blank">
+                <input type="email" name="{{ NEWSLETTER_EMAIL_FIELD | default('email') }}" placeholder="Enter your email" required class="newsletter-input">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        {% else %}
+            <a href="{{ NEWSLETTER_LINK }}" class="newsletter-btn newsletter-btn-link" target="_blank">
+                {{ NEWSLETTER_CTA | default('Subscribe to Newsletter') }}
+            </a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}

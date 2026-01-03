@@ -80,6 +80,8 @@
             </script>
         {% endif %}
 
+        {% include "partial/series_nav.html" %}
+
         <div class="article-wrapper">
             <nav id="toc" class="toc" aria-label="Table of Contents">
                 <h4 class="toc-title">Contents</h4>
@@ -124,6 +126,7 @@
         </div>
         {% endif %}
 
+        {% include "partial/newsletter.html" %}
 
         {% if ADD_THIS_ID %}
             <div class="center social-share">

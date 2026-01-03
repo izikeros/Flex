@@ -191,3 +191,70 @@
     updateActiveLink();
   });
 })();
+
+/**
+ * Copy Code Button
+ * Adds a copy button to all code blocks
+ */
+(function() {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Find all code blocks (both <pre><code> and highlight tables)
+    var codeBlocks = document.querySelectorAll('.article-content pre, .article-content .highlight');
+    
+    codeBlocks.forEach(function(block) {
+      // Skip if already has a copy button
+      if (block.querySelector('.copy-btn')) return;
+      
+      // Create wrapper if needed
+      var wrapper = block;
+      if (!block.classList.contains('code-block-wrapper')) {
+        wrapper = document.createElement('div');
+        wrapper.className = 'code-block-wrapper';
+        block.parentNode.insertBefore(wrapper, block);
+        wrapper.appendChild(block);
+      }
+      
+      // Create copy button
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.setAttribute('aria-label', 'Copy code');
+      btn.innerHTML = '<i class="fas fa-copy"></i>';
+      
+      btn.addEventListener('click', function() {
+        var code = block.querySelector('code') || block.querySelector('pre') || block;
+        var text = code.textContent || code.innerText;
+        
+        navigator.clipboard.writeText(text).then(function() {
+          btn.innerHTML = '<i class="fas fa-check"></i>';
+          btn.classList.add('copied');
+          setTimeout(function() {
+            btn.innerHTML = '<i class="fas fa-copy"></i>';
+            btn.classList.remove('copied');
+          }, 2000);
+        }).catch(function() {
+          // Fallback for older browsers
+          var textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerHTML = '<i class="fas fa-check"></i>';
+            btn.classList.add('copied');
+            setTimeout(function() {
+              btn.innerHTML = '<i class="fas fa-copy"></i>';
+              btn.classList.remove('copied');
+            }, 2000);
+          } catch (e) {}
+          document.body.removeChild(textarea);
+        });
+      });
+      
+      wrapper.appendChild(btn);
+    });
+  });
+})();
