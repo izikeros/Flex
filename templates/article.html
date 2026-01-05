@@ -58,8 +58,9 @@
             <h1 id="{{ article.slug }}">{{ article.title }}</h1>
             <div class="header-underline"></div>
             {# display summary if summary is not empty and article category is not note #}
+            {# Use div instead of p to avoid nested <p> tags since summary may contain <p> from markdown #}
             {% if article.summary and article.category != 'note' %}
-                <p class="summary">{{ article.summary }}</p>
+                <div class="summary">{{ article.summary }}</div>
             {% endif %}
 
             {% if article.image and article.category != 'note'%}
