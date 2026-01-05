@@ -1,0 +1,28 @@
+{# BreadcrumbList Schema for SEO #}
+{% if article %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ SITEURL }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ article.category.name }}",
+      "item": "{{ SITEURL }}/{{ article.category.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ article.title|striptags|truncate(50) }}"
+    }
+  ]
+}
+</script>
+{% endif %}
