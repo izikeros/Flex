@@ -1,0 +1,37 @@
+{# HowTo Schema for tutorial/howto articles #}
+{# Reads HowTo-Steps from article frontmatter:
+   Article-Type: howto
+   HowTo-Steps:
+     - name: Step 1 Title
+       text: Description of step 1
+       image: /images/step1.png  (optional)
+     - name: Step 2 Title
+       text: Description of step 2
+#}
+
+{% if article and article.metadata.get('article-type') == 'howto' and article.metadata.get('howto-steps') %}
+{% set howto_steps = article.metadata.get('howto-steps') %}
+{% if howto_steps %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "{{ article.title | escape }}",
+  "description": "{{ article.summary | striptags | escape }}",
+  {% if article.image %}"image": "{{ SITEURL }}{{ article.image }}",{% endif %}
+  "totalTime": "PT{{ article.stats.read_mins | default(5) }}M",
+  "step": [
+    {% for step in howto_steps %}
+    {
+      "@type": "HowToStep",
+      "position": {{ loop.index }},
+      "name": "{{ step.name | escape }}",
+      "text": "{{ step.text | escape }}"{% if step.image %},
+      "image": "{{ SITEURL }}{{ step.image }}"{% endif %}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endif %}
