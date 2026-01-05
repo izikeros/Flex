@@ -1,0 +1,23 @@
+{# Display syndication/cross-posting links #}
+{# Reads Syndicated-To from article frontmatter #}
+
+{% if article and article.metadata.get('syndicated-to') %}
+{% set syndication_links = article.metadata.get('syndicated-to') %}
+{% if syndication_links %}
+<div class="syndication-links">
+    <p><strong>Also published on:</strong></p>
+    <ul>
+    {% for link in syndication_links %}
+        <li>
+            <a href="{{ link.url }}" rel="syndication" target="_blank" rel="noopener">
+                {{ link.platform | capitalize }}
+            </a>
+            {% if link.date %}
+            <span class="syndication-date">({{ link.date }})</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endif %}
