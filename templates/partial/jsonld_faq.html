@@ -1,14 +1,26 @@
 {# FAQPage Schema for articles with FAQ content #}
-{# Reads FAQ from article frontmatter:
+{# Reads FAQ from:
+   1. Article frontmatter (priority)
+   2. Content markers extracted by seo_leo_enhancer plugin (fallback)
+   
+   Frontmatter format:
    FAQ:
      - question: What is X?
        answer: X is...
      - question: How do I Y?
        answer: You can Y by...
+   
+   Content marker format:
+   <!-- faq-start -->
+   ### What is X?
+   X is...
+   <!-- faq-end -->
 #}
 
-{% if article and article.metadata.get('faq') %}
 {% set faq_items = article.metadata.get('faq') %}
+{% if not faq_items and article.seo_leo %}
+{% set faq_items = article.seo_leo.faq_from_content %}
+{% endif %}
 {% if faq_items %}
 <script type="application/ld+json">
 {
@@ -28,5 +40,4 @@
   ]
 }
 </script>
-{% endif %}
 {% endif %}

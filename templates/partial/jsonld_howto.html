@@ -1,5 +1,9 @@
 {# HowTo Schema for tutorial/howto articles #}
-{# Reads HowTo-Steps from article frontmatter:
+{# Reads HowTo-Steps from:
+   1. Article frontmatter (priority)
+   2. Content markers extracted by seo_leo_enhancer plugin (fallback)
+   
+   Frontmatter format:
    Article-Type: howto
    HowTo-Steps:
      - name: Step 1 Title
@@ -7,11 +11,20 @@
        image: /images/step1.png  (optional)
      - name: Step 2 Title
        text: Description of step 2
+   
+   Content marker format:
+   <!-- howto-start -->
+   ### Step 1: Install dependencies
+   Run pip install...
+   <!-- howto-end -->
 #}
 
-{% if article and article.metadata.get('article-type') == 'howto' and article.metadata.get('howto-steps') %}
 {% set howto_steps = article.metadata.get('howto-steps') %}
-{% if howto_steps %}
+{% if not howto_steps and article.seo_leo %}
+{% set howto_steps = article.seo_leo.howto_from_content %}
+{% endif %}
+{% set is_howto = article.metadata.get('article-type') == 'howto' or howto_steps %}
+{% if is_howto and howto_steps %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,5 +46,4 @@
   ]
 }
 </script>
-{% endif %}
 {% endif %}

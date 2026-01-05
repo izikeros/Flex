@@ -29,7 +29,12 @@
   "articleSection": "{{ article.category.name }}",
   "inLanguage": "{{ article.lang|default(DEFAULT_LANG)|default('en') }}",
   "keywords": "{{ article.tags|join(', ') }}"{% if article.stats and article.stats.wc %},
-  "wordCount": {{ article.stats.wc }}{% endif %}
+  "wordCount": {{ article.stats.wc }}{% elif article.seo_leo and article.seo_leo.word_count %},
+  "wordCount": {{ article.seo_leo.word_count }}{% endif %}{% if article.seo_leo and article.seo_leo.speakable_selectors %},
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": {{ article.seo_leo.speakable_selectors | tojson }}
+  }{% endif %}
 }
 </script>
 {% endif %}

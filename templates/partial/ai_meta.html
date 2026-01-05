@@ -2,8 +2,14 @@
 {# These help AI systems like ChatGPT, Perplexity, and Google AI understand and cite content #}
 
 {% if article %}
-{# AI-friendly summary - uses custom ai-summary from frontmatter or falls back to summary #}
-{% set ai_summary = article.metadata.get('ai-summary', article.summary|striptags|truncate(300)) %}
+{# AI-friendly summary - priority: ai-summary > tldr from content > summary #}
+{% set ai_summary = article.metadata.get('ai-summary') %}
+{% if not ai_summary and article.seo_leo and article.seo_leo.tldr %}
+{% set ai_summary = article.seo_leo.tldr %}
+{% endif %}
+{% if not ai_summary %}
+{% set ai_summary = article.summary|striptags|truncate(300) %}
+{% endif %}
 <meta name="ai:summary" content="{{ ai_summary|striptags|escape }}">
 
 {# Topics - prefer custom topics from frontmatter, fall back to tags #}
@@ -22,10 +28,13 @@
 <meta name="ai:article-type" content="{{ article.metadata.get('article-type') }}">
 {% endif %}
 
-{# Content stats #}
+{# Content stats - from post_stats plugin or seo_leo_enhancer #}
 {% if article.stats and article.stats.wc %}
 <meta name="ai:word-count" content="{{ article.stats.wc }}">
 <meta name="ai:reading-time" content="{{ article.stats.read_mins }} min">
+{% elif article.seo_leo and article.seo_leo.word_count %}
+<meta name="ai:word-count" content="{{ article.seo_leo.word_count }}">
+<meta name="ai:reading-time" content="{{ article.seo_leo.reading_time }} min">
 {% endif %}
 
 {# Category/section #}
