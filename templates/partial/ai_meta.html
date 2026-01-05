@@ -6,14 +6,20 @@
 {% set ai_summary = article.metadata.get('ai-summary', article.summary|striptags|truncate(300)) %}
 <meta name="ai:summary" content="{{ ai_summary|striptags|escape }}">
 
-{# Topics/themes from tags #}
-{% if article.tags %}
-<meta name="ai:topics" content="{{ article.tags|join(', ') }}">
+{# Topics - prefer custom topics from frontmatter, fall back to tags #}
+{% set topics = article.metadata.get('topics', article.tags|list) %}
+{% if topics %}
+<meta name="ai:topics" content="{{ topics|join(', ') }}">
 {% endif %}
 
 {# Expertise level if specified #}
 {% if article.metadata.get('expertise-level') %}
 <meta name="ai:expertise" content="{{ article.metadata.get('expertise-level') }}">
+{% endif %}
+
+{# Article type for schema selection #}
+{% if article.metadata.get('article-type') %}
+<meta name="ai:article-type" content="{{ article.metadata.get('article-type') }}">
 {% endif %}
 
 {# Content stats #}
@@ -29,8 +35,17 @@
 {% if article.metadata.get('key-takeaways') %}
 <meta name="ai:key-points" content="{{ article.metadata.get('key-takeaways')|join(' | ') }}">
 {% endif %}
+
+{# Canonical URL if republished from elsewhere #}
+{% if article.metadata.get('canonical-url') %}
+<link rel="canonical" href="{{ article.metadata.get('canonical-url') }}">
+{% endif %}
 {% endif %}
 
 {# Enhanced robots directive for AI crawlers #}
 {# max-snippet:-1 allows full content extraction, max-image-preview:large allows image use #}
+{% if article and article.metadata.get('no-index') %}
+<meta name="robots" content="noindex, nofollow">
+{% else %}
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+{% endif %}
