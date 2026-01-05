@@ -25,7 +25,11 @@
   },
   {% if 'image' in article.metadata %}"image": "{{ SITEURL }}/{{ article.metadata['image'] }}",{% elif SITELOGO %}"image": "{{ SITELOGO }}",{% endif %}
   "url": "{{ SITEURL }}/{{ article.url }}",
-  "description": "{{ article.summary|striptags|truncate(160) }}"
+  "description": "{{ article.summary|striptags|truncate(160) }}",
+  "articleSection": "{{ article.category.name }}",
+  "inLanguage": "{{ article.lang|default(DEFAULT_LANG)|default('en') }}",
+  "keywords": "{{ article.tags|join(', ') }}"{% if article.stats and article.stats.wc %},
+  "wordCount": {{ article.stats.wc }}{% endif %}
 }
 </script>
 {% endif %}

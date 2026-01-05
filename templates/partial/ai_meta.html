@@ -1,0 +1,36 @@
+{# AI/LLM Optimization Meta Tags #}
+{# These help AI systems like ChatGPT, Perplexity, and Google AI understand and cite content #}
+
+{% if article %}
+{# AI-friendly summary - uses custom ai-summary from frontmatter or falls back to summary #}
+{% set ai_summary = article.metadata.get('ai-summary', article.summary|striptags|truncate(300)) %}
+<meta name="ai:summary" content="{{ ai_summary|striptags|escape }}">
+
+{# Topics/themes from tags #}
+{% if article.tags %}
+<meta name="ai:topics" content="{{ article.tags|join(', ') }}">
+{% endif %}
+
+{# Expertise level if specified #}
+{% if article.metadata.get('expertise-level') %}
+<meta name="ai:expertise" content="{{ article.metadata.get('expertise-level') }}">
+{% endif %}
+
+{# Content stats #}
+{% if article.stats and article.stats.wc %}
+<meta name="ai:word-count" content="{{ article.stats.wc }}">
+<meta name="ai:reading-time" content="{{ article.stats.read_mins }} min">
+{% endif %}
+
+{# Category/section #}
+<meta name="ai:section" content="{{ article.category.name }}">
+
+{# Key takeaways if specified in frontmatter #}
+{% if article.metadata.get('key-takeaways') %}
+<meta name="ai:key-points" content="{{ article.metadata.get('key-takeaways')|join(' | ') }}">
+{% endif %}
+{% endif %}
+
+{# Enhanced robots directive for AI crawlers #}
+{# max-snippet:-1 allows full content extraction, max-image-preview:large allows image use #}
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
