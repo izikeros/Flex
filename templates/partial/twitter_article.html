@@ -2,7 +2,7 @@
     {% if 'image' in article.metadata %}
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:image" content="{{ SITEURL }}/{{ article.metadata['image'] }}"/>
-    <meta name="twitter:image:alt" content="{{ article.title|striptags }}"/>
+    <meta name="twitter:image:alt" content="{{ article.title|striptags|e }}"/>
     {% elif SITELOGO %}
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:image" content="{{ SITELOGO }}"/>
@@ -22,6 +22,6 @@
     {% if TWITTER_CREATOR %}
     <meta name="twitter:creator" content="@{{ TWITTER_CREATOR }}"/>
     {% endif %}
-    <meta name="twitter:title" content="{{ article.title|striptags }}"/>
-    <meta name="twitter:description" content="{{ article.summary|striptags|truncate(196) }}"/>
+    <meta name="twitter:title" content="{{ article.title|striptags|e }}"/>
+    <meta name="twitter:description" content="{{ article.summary|striptags|e|truncate(196) }}"/>
 {% endif %}

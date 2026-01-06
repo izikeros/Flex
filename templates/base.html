@@ -253,7 +253,7 @@
     {% endif %}
 
     {% if MAIN_MENU %}
-        <nav>
+        <nav aria-label="Main navigation">
             <a href="{{ SITEURL }}/">{{ _('Home') }}</a>
 
             {% for title, link in MENUITEMS %}
