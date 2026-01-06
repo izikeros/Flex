@@ -78,6 +78,42 @@ The theme supports [RealFaviconGenerator](https://realfavicongenerator.net/) for
 | `RFG_MSAPPLICATION_TILECOLOR` | Windows tile color (optional) |
 | `FAVICON` | Simple favicon fallback (use if RFG_FAVICONS is False) |
 
+## YouTube Video Embed
+
+The theme supports automatic embedding of YouTube videos from Obsidian `vid` code blocks. This is useful when writing content in Obsidian with the video plugin.
+
+### Usage
+
+In your markdown content, use the Obsidian video format:
+
+````markdown
+```vid
+https://www.youtube.com/watch?v=VIDEO_ID
+Title: Video Title Here
+Author: Channel Name
+AuthorUrl: https://www.youtube.com/@ChannelName
+Thumbnail: https://i.ytimg.com/vi/VIDEO_ID/mqdefault.jpg
+```
+````
+
+The code block will be converted to a responsive embedded YouTube player with an optional info bar showing the title and author.
+
+### Configuration
+
+Enable in pelicanconf.py:
+
+```python
+YOUTUBE_EMBED = True
+```
+
+### Features
+
+- Responsive 16:9 aspect ratio
+- Uses `youtube-nocookie.com` for privacy
+- Displays title and author info when metadata is present
+- Author name links to channel URL if provided
+- Lazy loading for better performance
+
 ## Integrations
 
 - [AddThis](http://www.addthis.com/)
