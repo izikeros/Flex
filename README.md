@@ -40,6 +40,44 @@ Compare differences to original Flex in details: [compare this fork](https://git
 - [Translation Support](https://github.com/alexandrevicenzi/Flex/wiki/Translations)
 - [Dark Mode](https://github.com/alexandrevicenzi/Flex/wiki/Dark-Mode)
 
+## Favicon Generator Support
+
+The theme supports [RealFaviconGenerator](https://realfavicongenerator.net/) for cross-platform favicon support (iOS, Android, Windows, all browsers).
+
+### Setup
+
+1. Go to [realfavicongenerator.net](https://realfavicongenerator.net/)
+2. Upload your logo/icon image
+3. Configure colors and options
+4. Download the favicon package
+5. Extract files to your `content/` directory
+6. Add files to `STATIC_PATHS` in pelicanconf.py:
+   ```python
+   STATIC_PATHS = [
+       # ... other paths ...
+       "favicon.ico",
+       "apple-touch-icon.png",
+       "favicon-32x32.png",
+       "favicon-16x16.png",
+       "site.webmanifest",
+   ]
+   ```
+7. Enable in pelicanconf.py:
+   ```python
+   RFG_FAVICONS = True
+   RFG_THEME_COLOR = "#333333"  # Optional: browser theme color
+   ```
+
+### Settings
+
+| Setting | Description |
+|---------|-------------|
+| `RFG_FAVICONS` | Enable RealFaviconGenerator package (True/False) |
+| `RFG_THEME_COLOR` | Browser theme color (address bar, etc.) |
+| `RFG_SAFARI_PINNED_TAB` | Safari pinned tab icon color (optional) |
+| `RFG_MSAPPLICATION_TILECOLOR` | Windows tile color (optional) |
+| `FAVICON` | Simple favicon fallback (use if RFG_FAVICONS is False) |
+
 ## Integrations
 
 - [AddThis](http://www.addthis.com/)

@@ -80,10 +80,7 @@
               title="{{ SITENAME }} RSS">
     {% endif %}
 
-    {% if FAVICON %}
-        <link rel="shortcut icon" href="{{ FAVICON }}" type="image/x-icon">
-        <link rel="icon" href="{{ FAVICON }}" type="image/x-icon">
-    {% endif %}
+    {% include "partial/favicons.html" %}
 
     {% if GOOGLE_ANALYTICS %}
         {% include "partial/ga.html" %}
@@ -253,7 +250,7 @@
     {% endif %}
 
     {% if MAIN_MENU %}
-        <nav>
+        <nav aria-label="Main navigation">
             <a href="{{ SITEURL }}/">{{ _('Home') }}</a>
 
             {% for title, link in MENUITEMS %}
@@ -269,7 +266,7 @@
             {% endif %}
 
             <div id="search" class="nav-search"></div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
             </button>
