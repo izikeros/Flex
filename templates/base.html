@@ -80,10 +80,7 @@
               title="{{ SITENAME }} RSS">
     {% endif %}
 
-    {% if FAVICON %}
-        <link rel="shortcut icon" href="{{ FAVICON }}" type="image/x-icon">
-        <link rel="icon" href="{{ FAVICON }}" type="image/x-icon">
-    {% endif %}
+    {% include "partial/favicons.html" %}
 
     {% if GOOGLE_ANALYTICS %}
         {% include "partial/ga.html" %}

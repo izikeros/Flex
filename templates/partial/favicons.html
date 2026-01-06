@@ -1,0 +1,29 @@
+{# Favicon support - either RFG package or simple FAVICON #}
+{# RFG = RealFaviconGenerator (https://realfavicongenerator.net/) #}
+
+{% if RFG_FAVICONS %}
+    {# RealFaviconGenerator package - place generated files in content root #}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ SITEURL }}/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ SITEURL }}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ SITEURL }}/favicon-16x16.png">
+    <link rel="shortcut icon" href="{{ SITEURL }}/favicon.ico">
+    <link rel="manifest" href="{{ SITEURL }}/site.webmanifest">
+    {% if RFG_THEME_COLOR %}
+    <meta name="theme-color" content="{{ RFG_THEME_COLOR }}">
+    {% elif BROWSER_COLOR %}
+    <meta name="theme-color" content="{{ BROWSER_COLOR }}">
+    {% endif %}
+    {% if RFG_SAFARI_PINNED_TAB %}
+    <link rel="mask-icon" href="{{ SITEURL }}/safari-pinned-tab.svg" color="{{ RFG_SAFARI_PINNED_TAB }}">
+    {% endif %}
+    {% if RFG_MSAPPLICATION_TILECOLOR %}
+    <meta name="msapplication-TileColor" content="{{ RFG_MSAPPLICATION_TILECOLOR }}">
+    {% endif %}
+    {% if SITENAME %}
+    <meta name="apple-mobile-web-app-title" content="{{ SITENAME }}">
+    {% endif %}
+{% elif FAVICON %}
+    {# Simple favicon fallback #}
+    <link rel="shortcut icon" href="{{ FAVICON }}" type="image/x-icon">
+    <link rel="icon" href="{{ FAVICON }}" type="image/x-icon">
+{% endif %}
