@@ -1,176 +1,447 @@
-# Flex [![Build Status](https://travis-ci.org/alexandrevicenzi/Flex.svg?branch=master)](https://travis-ci.org/alexandrevicenzi/Flex)
+# Flex
 
-The minimalist [Pelican](http://blog.getpelican.com/) theme.
+A responsive, minimalist [Pelican](https://getpelican.com/) theme with comprehensive SEO/LEO support, dark mode, and modern features.
 
-## My mods to the theme
-- add new direct template for notes: "til" (things I learned) and related mods:
-  - do not display notes on home (index) page - let the short notes do not clutter list of blog posts (loger articles)
-  - do not display notes on archive page - for the same reason as above
-- modified archives page with my custom groupping by year (inspied by elegant theme)
-- support for new meta:
-  - til_category
-  - featured_image_alt
-  - modified (?)
-  - suggested_tags
-  - ignore_tags - list - Do not add these tags to the suggested tags. When manually editing article with front matter you can review tags and move suggested tags to tags (or til_tags) and move unfortunate tags to `ignore_tags` to avoid have them suggested next time when automated tag suggention will be running.
-  - citation_needed
-  - til_tags
-  - til_category
-  - image for article featured image (not `cover` or `featured_image`)
-  - changes in styling
-  
-Compare differences to original Flex in details: [compare this fork](https://github.com/alexandrevicenzi/Flex/compare/master...izikeros:master)
-## Notes
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-- If you have questions open an issue
-- The theme is not under huge development anymore, it's stable and has a lot of features already
-- If you want a [Hugo](https://gohugo.io/) theme check out [Soho](https://github.com/alexandrevicenzi/soho)
+> **Note**: This is a heavily modified fork of [alexandrevicenzi/Flex](https://github.com/alexandrevicenzi/Flex). See [Changes from Original](#changes-from-original-flex) for details.
+
+## Table of Contents
+
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Configuration Reference](#configuration-reference)
+  - [Site Settings](#site-settings)
+  - [Navigation & Layout](#navigation--layout)
+  - [Dark Mode & Styling](#dark-mode--styling)
+  - [SEO & Social](#seo--social)
+  - [Analytics & Tracking](#analytics--tracking)
+  - [Comments](#comments)
+  - [Newsletter](#newsletter)
+  - [Advertising](#advertising)
+  - [Favicon](#favicon)
+  - [YouTube Embedding](#youtube-embedding)
+  - [Advanced Features](#advanced-features)
+- [Plugin Support](#plugin-support)
+- [Article Frontmatter](#article-frontmatter)
+- [Changes from Original Flex](#changes-from-original-flex)
+- [Documentation](#documentation)
+- [License](#license)
 
 ## Features
 
-- Mobile First
-- Responsive
-- Semantic
-- SEO Best Practices
-- Open Graph
-- Rich Snippets (JSON-LD)
-- Related Posts (via [plugin](https://github.com/getpelican/pelican-plugins/tree/master/related_posts) or AddThis)
-- Minute read (via [plugin](https://github.com/getpelican/pelican-plugins/tree/master/post_stats))
-- [Multiple Code Highlight Styles](https://github.com/alexandrevicenzi/Flex/wiki/Code-Highlight)
-- [Translation Support](https://github.com/alexandrevicenzi/Flex/wiki/Translations)
-- [Dark Mode](https://github.com/alexandrevicenzi/Flex/wiki/Dark-Mode)
+### Core
+- **Mobile-first** responsive design
+- **Dark mode** with system preference detection and manual toggle
+- **Pagefind search** integration (static search)
+- **Reading progress** indicator
+- **Table of contents** for articles (optional)
 
-## Favicon Generator Support
+### SEO & LLM Engine Optimization (LEO)
+- **Schema.org structured data**: BlogPosting, FAQPage, HowTo, BreadcrumbList
+- **Open Graph** and **Twitter Cards** meta tags
+- **AI-friendly meta tags** for ChatGPT, Perplexity, and other LLMs
+- **Speakable** schema for voice search
+- **Canonical URLs** support
 
-The theme supports [RealFaviconGenerator](https://realfavicongenerator.net/) for cross-platform favicon support (iOS, Android, Windows, all browsers).
+### Content Features
+- **Series navigation** for multi-part articles
+- **Related posts** display
+- **Previous/next article** navigation
+- **YouTube video embedding** (Obsidian `vid` code block format)
+- **Syndication links** for cross-posted content
+- **BibTeX citation** blocks
+- **Applause button** support
 
-### Setup
+### Integrations
+- Google Analytics (GA4)
+- Google Tag Manager
+- Microsoft Clarity
+- Google AdSense
+- Giscus comments (GitHub Discussions)
+- Newsletter subscriptions (Mailchimp, Buttondown, ConvertKit, Substack)
+- RealFaviconGenerator support
 
+## Quick Start
+
+### Installation
+
+```bash
+# Clone into your Pelican themes directory
+git clone https://github.com/izikeros/Flex.git pelican-themes/Flex
+```
+
+### Minimal Configuration
+
+Add to your `pelicanconf.py`:
+
+```python
+THEME = "pelican-themes/Flex"
+
+# Required
+SITENAME = "My Blog"
+SITEURL = "https://example.com"
+AUTHOR = "Your Name"
+
+# Recommended
+SITETITLE = "My Blog"
+SITESUBTITLE = "A blog about things"
+SITELOGO = "/images/logo.png"
+MAIN_MENU = True
+```
+
+## Configuration Reference
+
+### Site Settings
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `SITENAME` | Site name (used in titles) | Required | `"My Blog"` |
+| `SITETITLE` | Display title in sidebar | `SITENAME` | `"My Blog"` |
+| `SITESUBTITLE` | Tagline below title | `None` | `"Thoughts on code"` |
+| `SITELOGO` | Logo image URL | `None` | `"/images/logo.png"` |
+| `SITEDESCRIPTION` | Meta description | `""` | `"A tech blog"` |
+| `SITEURL` | Base URL (no trailing slash) | Required | `"https://example.com"` |
+
+### Navigation & Layout
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `MAIN_MENU` | Show main navigation bar | `False` | `True` |
+| `MENUITEMS` | Navigation menu items | `[]` | `[("Archives", "/archives.html")]` |
+| `LINKS` | Sidebar links | `[]` | `[("About", "/pages/about.html")]` |
+| `LINKS_IN_NEW_TAB` | Open links in new tab | `False` | `True`, `"external"`, `"all"` |
+| `SOCIAL` | Social media links | `[]` | `[("github", "https://github.com/user")]` |
+| `DISPLAY_PAGES_ON_MENU` | Show pages in sidebar | `True` | `False` |
+| `PAGES_SORT_ATTRIBUTE` | Sort pages by attribute | `None` | `"title"` |
+| `HOME_HIDE_TAGS` | Hide tags on homepage cards | `False` | `True` |
+| `DISABLE_URL_HASH` | Disable URL hash fragments | `False` | `True` |
+
+### Dark Mode & Styling
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `PYGMENTS_STYLE` | Code highlight style (light) | `"github"` | `"monokai"` |
+| `PYGMENTS_STYLE_DARK` | Code highlight style (dark) | `None` | `"monokai"` |
+| `BROWSER_COLOR` | Browser theme color | `None` | `"#333333"` |
+| `CUSTOM_CSS` | Custom stylesheet path | `None` | `"static/custom.css"` |
+| `USE_GOOGLE_FONTS` | Load Google Fonts | `True` | `False` |
+
+### SEO & Social
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `REL_CANONICAL` | Enable canonical URLs | `False` | `True` |
+| `ROBOTS` | Robots meta directive | `"index,follow"` | `"noindex,nofollow"` |
+| `OG_LOCALE` | Open Graph locale | `"en_US"` | `"de_DE"` |
+| `TWITTER_USERNAME` | Twitter handle for cards | `None` | `"username"` |
+| `TWITTER_CREATOR` | Twitter creator handle | `None` | `"username"` |
+| `FEATURED_IMAGE` | Default social share image | `None` | `"/images/default.jpg"` |
+
+### Analytics & Tracking
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `GOOGLE_ANALYTICS` | GA4 measurement ID | `None` | `"G-XXXXXXXXXX"` |
+| `GOOGLE_GLOBAL_SITE_TAG` | Alternative GA setup | `None` | `"G-XXXXXXXXXX"` |
+| `GOOGLE_TAG_MANAGER` | GTM container ID | `None` | `"GTM-XXXXXXX"` |
+| `MICROSOFT_CLARITY` | Clarity project ID | `None` | `"abcdefghij"` |
+
+### Comments
+
+#### Giscus (GitHub Discussions)
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `GISCUS_REPO` | GitHub repo | `None` | `"user/repo"` |
+| `GISCUS_REPO_ID` | Repository ID | `None` | `"R_xxxxx"` |
+| `GISCUS_CATEGORY` | Discussion category | `None` | `"Comments"` |
+| `GISCUS_CATEGORY_ID` | Category ID | `None` | `"DIC_xxxxx"` |
+| `GISCUS_MAPPING` | Comment mapping | `"pathname"` | `"title"` |
+| `GISCUS_REACTIONS` | Enable reactions | `"1"` | `"0"` |
+| `GISCUS_INPUT_POSITION` | Input box position | `"bottom"` | `"top"` |
+
+See [docs/GISCUS_COMMENTS.md](docs/GISCUS_COMMENTS.md) for setup instructions.
+
+### Newsletter
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `NEWSLETTER_ENABLED` | Enable subscription box | `False` | `True` |
+| `NEWSLETTER_PROVIDER` | Service provider | `None` | `"mailchimp"`, `"buttondown"`, `"convertkit"`, `"substack"`, `"custom"` |
+| `NEWSLETTER_TITLE` | Box title | `"Stay Updated"` | `"Subscribe"` |
+| `NEWSLETTER_DESCRIPTION` | Box description | Default text | `"Get updates"` |
+
+Provider-specific settings:
+
+| Provider | Required Variables |
+|----------|-------------------|
+| `mailchimp` | `NEWSLETTER_ACTION_URL` |
+| `buttondown` | `NEWSLETTER_USERNAME` |
+| `convertkit` | `NEWSLETTER_FORM_ID` |
+| `substack` | `NEWSLETTER_PUBLICATION` |
+| `custom` | `NEWSLETTER_ACTION_URL`, optional: `NEWSLETTER_METHOD`, `NEWSLETTER_EMAIL_FIELD` |
+
+See [docs/NEWSLETTER.md](docs/NEWSLETTER.md) for detailed setup.
+
+### Advertising
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `GOOGLE_ADSENSE` | AdSense configuration dict | `None` |
+| `USE_GOOGLE_AUTO_ADS` | Enable auto ads | `False` |
+
+AdSense configuration:
+
+```python
+GOOGLE_ADSENSE = {
+    "ca_id": "ca-pub-XXXXXXXXXX",
+    "page_level_ads": True,
+    "ads": {
+        "aside": "XXXXXXXXXX",
+        "main_menu": "XXXXXXXXXX",
+        "index_top": "XXXXXXXXXX",
+        "index_bottom": "XXXXXXXXXX",
+        "article_top": "XXXXXXXXXX",
+        "article_bottom": "XXXXXXXXXX",
+    }
+}
+```
+
+### Favicon
+
+#### Simple Favicon
+
+```python
+FAVICON = "/images/favicon.ico"
+```
+
+#### RealFaviconGenerator (Recommended)
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `RFG_FAVICONS` | Enable RFG package | `False` | `True` |
+| `RFG_THEME_COLOR` | Browser theme color | `None` | `"#333333"` |
+| `RFG_SAFARI_PINNED_TAB` | Safari pinned tab color | `None` | `"#333333"` |
+| `RFG_MSAPPLICATION_TILECOLOR` | Windows tile color | `None` | `"#333333"` |
+
+Setup:
 1. Go to [realfavicongenerator.net](https://realfavicongenerator.net/)
-2. Upload your logo/icon image
-3. Configure colors and options
-4. Download the favicon package
-5. Extract files to your `content/` directory
-6. Add files to `STATIC_PATHS` in pelicanconf.py:
-   ```python
-   STATIC_PATHS = [
-       # ... other paths ...
-       "favicon.ico",
-       "apple-touch-icon.png",
-       "favicon-32x32.png",
-       "favicon-16x16.png",
-       "site.webmanifest",
-   ]
-   ```
-7. Enable in pelicanconf.py:
-   ```python
-   RFG_FAVICONS = True
-   RFG_THEME_COLOR = "#333333"  # Optional: browser theme color
-   ```
+2. Generate and download favicon package
+3. Place files in `content/` directory
+4. Add to `STATIC_PATHS`: `favicon.ico`, `apple-touch-icon.png`, `favicon-32x32.png`, `favicon-16x16.png`, `site.webmanifest`
+5. Enable: `RFG_FAVICONS = True`
 
-### Settings
+### YouTube Embedding
 
-| Setting | Description |
-|---------|-------------|
-| `RFG_FAVICONS` | Enable RealFaviconGenerator package (True/False) |
-| `RFG_THEME_COLOR` | Browser theme color (address bar, etc.) |
-| `RFG_SAFARI_PINNED_TAB` | Safari pinned tab icon color (optional) |
-| `RFG_MSAPPLICATION_TILECOLOR` | Windows tile color (optional) |
-| `FAVICON` | Simple favicon fallback (use if RFG_FAVICONS is False) |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `YOUTUBE_EMBED` | Enable Obsidian vid block conversion | `False` |
 
-## YouTube Video Embed
-
-The theme supports automatic embedding of YouTube videos from Obsidian `vid` code blocks. This is useful when writing content in Obsidian with the video plugin.
-
-### Usage
-
-In your markdown content, use the Obsidian video format:
+Usage in markdown:
 
 ````markdown
 ```vid
 https://www.youtube.com/watch?v=VIDEO_ID
-Title: Video Title Here
+Title: Video Title
 Author: Channel Name
-AuthorUrl: https://www.youtube.com/@ChannelName
-Thumbnail: https://i.ytimg.com/vi/VIDEO_ID/mqdefault.jpg
+AuthorUrl: https://www.youtube.com/@Channel
 ```
 ````
 
-The code block will be converted to a responsive embedded YouTube player with an optional info bar showing the title and author.
+Features:
+- Responsive 16:9 aspect ratio
+- Privacy-enhanced (`youtube-nocookie.com`)
+- Lazy loading
+- Optional title/author info bar
 
-### Configuration
+### Advanced Features
 
-Enable in pelicanconf.py:
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `ENABLE_TOC` | Enable table of contents | `False` |
+| `SHOW_DATE_MODIFIED` | Show modified dates | `False` |
+| `USE_MERMAID` | Enable Mermaid diagrams | `False` |
+| `USE_APPLAUSE` | Enable applause button | `False` |
+| `ADD_BIBTEX_NOTE` | Add BibTeX citation block | `False` |
+| `BIBTEX_JOURNAL` | Journal name for BibTeX | `None` |
+| `GITHUB_CORNER_URL` | GitHub corner link | `None` |
+| `PROMO_BOX` | Enable sidebar promo box | `False` |
+| `ADD_THIS_ID` | AddThis sharing ID | `None` |
+
+#### Creative Commons License
 
 ```python
-YOUTUBE_EMBED = True
+CC_LICENSE = {
+    "slug": "by-sa",
+    "name": "Creative Commons Attribution-ShareAlike",
+    "version": "4.0",
+    "language": "en_US"
+}
+COPYRIGHT_YEAR = "2024"
+COPYRIGHT_NAME = "Your Name"
 ```
 
-### Features
+## Plugin Support
 
-- Responsive 16:9 aspect ratio
-- Uses `youtube-nocookie.com` for privacy
-- Displays title and author info when metadata is present
-- Author name links to channel URL if provided
-- Lazy loading for better performance
+### Fully Supported Plugins
 
-## Integrations
+| Plugin | Purpose | Theme Integration |
+|--------|---------|-------------------|
+| [post_stats](https://github.com/pelican-plugins/post-stats) | Reading time, word count | Displayed in article header and meta |
+| [related_posts](https://github.com/pelican-plugins/related-posts) | Related articles | Grid display after article |
+| [neighbors](https://github.com/pelican-plugins/neighbors) | Prev/next navigation | Navigation buttons |
+| [series](https://github.com/pelican-plugins/series) | Multi-part articles | Full series navigation UI |
+| [share_post](https://github.com/pelican-plugins/share-post) | Social sharing links | Share icons in header |
+| [i18n_subsites](https://github.com/pelican-plugins/i18n-subsites) | Multi-language | Translation switcher |
+| [seo](https://github.com/pelican-plugins/seo) | SEO optimization | Compatible (disables built-in) |
 
-- [AddThis](http://www.addthis.com/)
-- [Disqus](https://disqus.com/)
-- [Gauges Analytics](http://get.gaug.es/)
-- [Google AdSense](https://www.google.com.br/adsense/start/)
-- [Google Analytics](https://www.google.com/analytics/web/)
-- [Google Tag Manager](https://www.google.com/tagmanager/)
-- [Matomo Analytics (formerly Piwik)](https://matomo.org/)
-- [StatusCake](https://www.statuscake.com/)
-- [Isso](https://posativ.org/isso/)
-- [Microsoft Clarity](https://clarity.microsoft.com)
+### Recommended Companion Plugins
 
-## Plugins Support
+| Plugin | Purpose |
+|--------|---------|
+| [pelican-obsidian](https://github.com/izikeros/pelican-obsidian) | Obsidian wiki-links, hashtag removal, callouts to admonitions |
+| [seo_leo_enhancer](docs/SEO_LEO_SPEC.md) | Auto-extract FAQ/HowTo, word count, TL;DR |
+| [exclude_category](https://github.com/pelican-plugins/more-categories) | Filter categories from index |
+| [yaml_metadata](https://github.com/pelican-plugins/yaml-metadata) | YAML frontmatter parsing |
 
-- [Github Corners](https://github.com/tholman/github-corners)
-- [I18N Sub-sites](https://github.com/getpelican/pelican-plugins/tree/master/i18n_subsites)
-- [Minute read](https://github.com/getpelican/pelican-plugins/tree/master/post_stats)
-- [Related Posts](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
-- [Representative image](https://github.com/getpelican/pelican-plugins/tree/master/representative_image)
-- [Neighbors](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
-- [Tipue Search](https://github.com/getpelican/pelican-plugins/blob/master/tipue_search/)
-- [SEO](https://github.com/pelican-plugins/seo)
+### pelican-obsidian Integration
 
-## Install
+The theme works seamlessly with [pelican-obsidian](https://github.com/izikeros/pelican-obsidian):
 
-The best way to install is over [pelican-themes](https://github.com/getpelican/pelican-themes).
+- **Wiki-links**: `[[article-slug]]` converts to proper links
+- **Hashtag removal**: Inline `#tags` removed from body text
+- **Callouts to Admonitions**: Obsidian callouts render with theme's admonition CSS
 
-The alternative way is to clone this repository. The `master` branch is stable and is safe to checkout, but I would recommend you to checkout a tag branch.
+```python
+# pelicanconf.py
+PLUGINS = ["obsidian", ...]
+OBSIDIAN_CALLOUTS_USE_ADMONITION = True  # Use theme's admonition styles
+```
+
+Supported callout types: `note`, `tip`, `warning`, `danger`, `info`, `question`, `example`, `quote`, `abstract`, `success`, `failure`, `bug`, `important`, `caution`, `attention`
+
+## Article Frontmatter
+
+### Standard Fields
+
+```yaml
+Title: Article Title
+Date: 2024-01-15
+Modified: 2024-01-20
+Category: Machine Learning
+Tags: python, ml, tutorial
+Slug: article-slug
+Status: published
+Summary: Brief description for listings
+Image: /images/featured.jpg
+```
+
+### SEO/LEO Fields
+
+```yaml
+Article-Type: howto  # article, howto, faq, tutorial
+AI-Summary: Two-sentence summary for AI systems
+Key-Takeaways:
+  - First key point
+  - Second key point
+Expertise-Level: intermediate  # beginner, intermediate, advanced
+Topics: machine learning, python, data science
+```
+
+### FAQ Schema
+
+```yaml
+FAQ:
+  - question: What is X?
+    answer: X is a thing that does Y.
+  - question: How do I Z?
+    answer: You can Z by doing A, B, C.
+```
+
+Or use content markers:
+```markdown
+<!-- faq-start -->
+### What is X?
+X is a thing that does Y.
+<!-- faq-end -->
+```
+
+### HowTo Schema
+
+```yaml
+Article-Type: howto
+HowTo-Steps:
+  - name: Install dependencies
+    text: Run pip install package-name
+  - name: Configure settings
+    text: Edit config.yaml with your values
+```
+
+### Syndication
+
+```yaml
+Syndicated-To:
+  - platform: dev.to
+    url: https://dev.to/user/article
+    date: 2024-01-16
+  - platform: medium
+    url: https://medium.com/@user/article
+```
+
+See [docs/SEO_LEO_SPEC.md](docs/SEO_LEO_SPEC.md) and [docs/ARTICLE_WRITING_GUIDE.md](docs/ARTICLE_WRITING_GUIDE.md) for complete documentation.
+
+## Changes from Original Flex
+
+This fork includes significant enhancements over [alexandrevicenzi/Flex](https://github.com/alexandrevicenzi/Flex):
+
+### New Features
+- **Pagefind search** - Static site search integration
+- **Dark mode toggle** - Manual theme switcher with localStorage persistence
+- **Reading progress bar** - Visual scroll progress indicator
+- **Table of contents** - Auto-generated from headings
+- **Series navigation** - Full UI for multi-part articles
+- **YouTube embedding** - Obsidian `vid` code block support
+- **Newsletter subscription** - Multiple provider support
+- **Giscus comments** - GitHub Discussions integration
+- **RealFaviconGenerator** - Cross-platform favicon support
+- **Microsoft Clarity** - Analytics integration
+
+### SEO/LEO Enhancements
+- **FAQPage schema** - Structured data for Q&A content
+- **HowTo schema** - Structured data for tutorials
+- **BreadcrumbList schema** - Navigation structured data
+- **AI meta tags** - Optimization for LLM systems
+- **Speakable schema** - Voice search optimization
+- **Syndication display** - Cross-posting links
+
+### Template Changes
+- **TIL (Things I Learned)** - Dedicated template for notes
+- **Archives by year** - Grouped archive display
+- **Article cards** - Modern card-based homepage layout
+- **Filtered pagination** - Category exclusion from index
+- **Admonition styling** - CSS for callout/admonition blocks
+
+### Removed/Changed
+- Disqus comments (replaced with Giscus)
+- Tipue Search (replaced with Pagefind)
+- Some legacy integrations
+
+**Full diff**: [Compare with original](https://github.com/alexandrevicenzi/Flex/compare/master...izikeros:master)
 
 ## Documentation
 
-The documentation covers most of the settings available and how to use this theme.
-If something is missing or broken you can open a PR or fix the documentation by yourself.
-
-[Flex Wiki](https://github.com/alexandrevicenzi/Flex/wiki)
-
-## Live example
-
-You can see how this theme looks like at [http://flex.alxd.me/](http://flex.alxd.me/).
-
-The code is available in this project under `docs` folder.
-
-## Contributing
-
-**ALWAYS** open an issue before sending a PR.
-Discuss the problem/feature that you want to code.
-After discussing, send a PR with your changes.
-
-As always, if you want something that only makes sense to you, fork Flex and create a new theme.
-
-## Translations
-
-Translate this theme to new languages at [Transifex](https://www.transifex.com/alexandrevicenzi/flex-pelican/).
-
-Read more about [Translation Support](https://github.com/alexandrevicenzi/Flex/wiki/Translations) in the Wiki.
+- [SEO/LEO Specification](docs/SEO_LEO_SPEC.md) - Complete SEO and AI optimization guide
+- [Article Writing Guide](docs/ARTICLE_WRITING_GUIDE.md) - How to write optimized articles
+- [Giscus Setup](docs/GISCUS_COMMENTS.md) - GitHub Discussions comments
+- [Newsletter Setup](docs/NEWSLETTER.md) - Email subscription configuration
+- [Original Flex Wiki](https://github.com/alexandrevicenzi/Flex/wiki) - Base theme documentation
 
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+**Original theme by** [Alexandre Vicenzi](https://github.com/alexandrevicenzi)  
+**Fork maintained by** [Krystian Safjan](https://github.com/izikeros)
