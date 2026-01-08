@@ -63,7 +63,7 @@
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/font-awesome/css/solid.css">
 
     {# Pagefind Search #}
-    <link rel="stylesheet" href="{{ SITEURL }}/pagefind/pagefind-ui.css">
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
 
     {% if CUSTOM_CSS %}
         <link rel="stylesheet" type="text/css"
@@ -294,14 +294,14 @@
 {% block additional_js %}{% endblock %}
 
 {# Pagefind Search #}
-<script src="{{ SITEURL }}/pagefind/pagefind-ui.js"></script>
+<script src="/pagefind/pagefind-ui.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         new PagefindUI({
             element: "#search",
             showSubResults: false,
             showImages: false,
-            basePath: "{{ SITEURL }}/pagefind/"
+            basePath: "/pagefind/"
         });
     });
 </script>
@@ -309,6 +309,6 @@
 {# Theme Switcher #}
 <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/theme-switcher.js"></script>
 
-{% include "partial/youtube_embed.html" %}
+{% include "partial/video_embed.html" %}
 </body>
 </html>

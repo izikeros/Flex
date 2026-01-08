@@ -20,7 +20,8 @@ A responsive, minimalist [Pelican](https://getpelican.com/) theme with comprehen
   - [Newsletter](#newsletter)
   - [Advertising](#advertising)
   - [Favicon](#favicon)
-  - [YouTube Embedding](#youtube-embedding)
+  - [Video Embedding](#video-embedding)
+  - [Twitter/X Embedding](#twitterx-embedding)
   - [Advanced Features](#advanced-features)
 - [Plugin Support](#plugin-support)
 - [Article Frontmatter](#article-frontmatter)
@@ -48,7 +49,8 @@ A responsive, minimalist [Pelican](https://getpelican.com/) theme with comprehen
 - **Series navigation** for multi-part articles
 - **Related posts** display
 - **Previous/next article** navigation
-- **YouTube video embedding** (Obsidian `vid` code block format)
+- **Video embedding** for YouTube and Vimeo (Obsidian `vid` code block format)
+- **Twitter/X embedding** via `tweet` code block
 - **Syndication links** for cross-posted content
 - **BibTeX citation** blocks
 - **Applause button** support
@@ -232,13 +234,16 @@ Setup:
 4. Add to `STATIC_PATHS`: `favicon.ico`, `apple-touch-icon.png`, `favicon-32x32.png`, `favicon-16x16.png`, `site.webmanifest`
 5. Enable: `RFG_FAVICONS = True`
 
-### YouTube Embedding
+### Video Embedding
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `YOUTUBE_EMBED` | Enable Obsidian vid block conversion | `False` |
+| `VIDEO_EMBED` | Enable Obsidian vid block conversion | `False` |
+| `YOUTUBE_EMBED` | Legacy alias for VIDEO_EMBED | `False` |
 
-Usage in markdown:
+Supports both **YouTube** and **Vimeo** videos using the same `vid` code block format.
+
+#### YouTube
 
 ````markdown
 ```vid
@@ -249,11 +254,50 @@ AuthorUrl: https://www.youtube.com/@Channel
 ```
 ````
 
+#### Vimeo
+
+````markdown
+```vid
+https://vimeo.com/123456789
+Title: Video Title
+Author: Creator Name
+AuthorUrl: https://vimeo.com/creator
+```
+````
+
 Features:
 - Responsive 16:9 aspect ratio
-- Privacy-enhanced (`youtube-nocookie.com`)
+- Privacy-enhanced (YouTube: `youtube-nocookie.com`, Vimeo: `dnt=1`)
 - Lazy loading
 - Optional title/author info bar
+
+### Twitter/X Embedding
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `TWITTER_EMBED` | Enable tweet code block conversion | `False` |
+
+Note: Twitter embeds are also enabled if `VIDEO_EMBED` or `YOUTUBE_EMBED` is set.
+
+````markdown
+```tweet
+https://twitter.com/user/status/123456789
+```
+````
+
+Or with X.com URL:
+
+````markdown
+```tweet
+https://x.com/user/status/123456789
+```
+````
+
+Features:
+- Uses Twitter oEmbed API (no authentication required)
+- Privacy-enhanced (`dnt=true`)
+- Lazy-loads Twitter widget JS only when needed
+- Graceful fallback with link on error
 
 ### Advanced Features
 
@@ -401,7 +445,8 @@ This fork includes significant enhancements over [alexandrevicenzi/Flex](https:/
 - **Reading progress bar** - Visual scroll progress indicator
 - **Table of contents** - Auto-generated from headings
 - **Series navigation** - Full UI for multi-part articles
-- **YouTube embedding** - Obsidian `vid` code block support
+- **Video embedding** - YouTube and Vimeo via Obsidian `vid` code block
+- **Twitter/X embedding** - Tweet embeds via `tweet` code block
 - **Newsletter subscription** - Multiple provider support
 - **Giscus comments** - GitHub Discussions integration
 - **RealFaviconGenerator** - Cross-platform favicon support
