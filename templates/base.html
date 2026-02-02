@@ -222,6 +222,12 @@
                 </li>
             {% endfor %}
         </ul>
+
+        {% if LINKEDIN_FOLLOW and LINKEDIN_FOLLOW_MEMBER %}
+            <a class="linkedin-follow-btn"
+               href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember={{ LINKEDIN_FOLLOW_MEMBER }}"
+               target="_blank">Follow on LinkedIn</a>
+        {% endif %}
     </div>
 
     {% if PROMO_BOX %}
