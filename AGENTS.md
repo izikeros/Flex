@@ -79,6 +79,12 @@ make html                                    # Alternative: use Makefile
 3. Add new variables to `:root` if needed for theming
 4. Test both light and dark modes
 
+## Git Workflow
+
+- **Commit messages**: Use conventional commits (feat:, fix:, docs:, refactor:, etc.)
+- **No co-author tags**: Do NOT add `Co-authored-by: factory-droid[bot]` to commit messages
+- **Branch**: Work on `master` branch
+
 ## Gotchas
 
 - **Pagefind paths**: Use `basePath: "{{ SITEURL }}/pagefind/"` for correct search index location
