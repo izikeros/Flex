@@ -61,6 +61,8 @@
             {# Use div instead of p to avoid nested <p> tags since summary may contain <p> from markdown #}
             {% if article.summary and article.category != 'note' %}
                 <div class="summary">{{ article.summary }}</div>
+                {% set current_position = 'after_summary' %}
+                {% include "partial/ai_analyzer_bar.html" %}
             {% endif %}
 
             {% if article.image and article.category != 'note'%}
@@ -72,6 +74,8 @@
                 </div>
             {% endif %}
 
+            {% set current_position = 'after_header' %}
+            {% include "partial/ai_analyzer_bar.html" %}
 
         </header>
 

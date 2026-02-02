@@ -1,0 +1,10 @@
+{# AI Analyzer Bar - allows readers to analyze articles with AI services #}
+{% if article.ai_analyzer_bar_html %}
+{% set position = article.ai_analyzer_bar_position or 'after_header' %}
+{% set current_position = current_position|default('after_header') %}
+{% if position == current_position or position == 'both' %}
+<div class="ai-analyzer-bar">
+    {{ article.ai_analyzer_bar_html|safe }}
+</div>
+{% endif %}
+{% endif %}
