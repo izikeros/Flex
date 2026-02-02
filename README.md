@@ -118,8 +118,15 @@ MAIN_MENU = True
 | `PAGES_SORT_ATTRIBUTE` | Sort pages by attribute | `None` | `"title"` |
 | `HOME_HIDE_TAGS` | Hide tags on homepage cards | `False` | `True` |
 | `DISABLE_URL_HASH` | Disable URL hash fragments | `False` | `True` |
+| `LINKEDIN_FOLLOW` | Enable LinkedIn follow button | `False` | `True` |
+| `LINKEDIN_FOLLOW_MEMBER` | LinkedIn member ID for follow | `None` | `"your-member-id"` |
 
 ### Dark Mode & Styling
+
+Dark mode is automatically available with:
+- System preference detection (`prefers-color-scheme`)
+- Manual toggle button (persists choice in localStorage)
+- No configuration required - always enabled
 
 | Variable | Description | Default | Example |
 |----------|-------------|---------|---------|
@@ -238,10 +245,10 @@ Setup:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `VIDEO_EMBED` | Enable Obsidian vid block conversion | `False` |
-| `YOUTUBE_EMBED` | Legacy alias for VIDEO_EMBED | `False` |
+| `VIDEO_EMBED` | Enable video embedding (recommended) | `False` |
+| `YOUTUBE_EMBED` | Legacy alias (use VIDEO_EMBED instead) | `False` |
 
-Supports both **YouTube** and **Vimeo** videos using the same `vid` code block format.
+Supports both **YouTube** and **Vimeo** videos using the Obsidian `vid` code block format. Either variable enables the feature.
 
 #### YouTube
 
@@ -325,6 +332,24 @@ CC_LICENSE = {
 COPYRIGHT_YEAR = "2024"
 COPYRIGHT_NAME = "Your Name"
 ```
+
+#### Jupyter Notebook Support
+
+For blogs using [pelican-jupyter](https://github.com/danielfrg/pelican-jupyter) to publish Jupyter notebooks:
+
+```python
+# Use theme's pygments CSS for unified syntax highlighting
+IPYNB_SKIP_CSS = True
+
+# Optionally set different highlight theme for dark mode
+PYGMENTS_STYLE = "github"
+PYGMENTS_STYLE_DARK = "monokai"
+```
+
+The theme includes:
+- `.warning` class styling for notebook compatibility
+- Unified code highlighting across markdown and notebook articles
+- Support for MathJax (handled by pelican-jupyter)
 
 ## Plugin Support
 
@@ -440,7 +465,7 @@ See [docs/SEO_LEO_SPEC.md](docs/SEO_LEO_SPEC.md) and [docs/ARTICLE_WRITING_GUIDE
 This fork includes significant enhancements over [alexandrevicenzi/Flex](https://github.com/alexandrevicenzi/Flex):
 
 ### New Features
-- **Pagefind search** - Static site search integration
+- **Pagefind search** - Static site search integration (with www/non-www support)
 - **Dark mode toggle** - Manual theme switcher with localStorage persistence
 - **Reading progress bar** - Visual scroll progress indicator
 - **Table of contents** - Auto-generated from headings
@@ -451,6 +476,8 @@ This fork includes significant enhancements over [alexandrevicenzi/Flex](https:/
 - **Giscus comments** - GitHub Discussions integration
 - **RealFaviconGenerator** - Cross-platform favicon support
 - **Microsoft Clarity** - Analytics integration
+- **LinkedIn Follow button** - Sidebar follow button
+- **Jupyter notebook support** - Unified syntax highlighting with pelican-jupyter
 
 ### SEO/LEO Enhancements
 - **FAQPage schema** - Structured data for Q&A content
@@ -466,6 +493,7 @@ This fork includes significant enhancements over [alexandrevicenzi/Flex](https:/
 - **Article cards** - Modern card-based homepage layout
 - **Filtered pagination** - Category exclusion from index
 - **Admonition styling** - CSS for callout/admonition blocks
+- **Notebook CSS** - `.warning` class and unified highlighting support
 
 ### Removed/Changed
 - Disqus comments (replaced with Giscus)
