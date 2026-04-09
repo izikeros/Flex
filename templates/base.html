@@ -62,8 +62,8 @@
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/font-awesome/css/solid.css">
 
-    {# Pagefind Search #}
-    <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+    {# Pagefind Search (Component UI) #}
+    <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css">
 
     {% if CUSTOM_CSS %}
         <link rel="stylesheet" type="text/css"
@@ -271,7 +271,10 @@
                 <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">{{ _('RSS') }}</a>
             {% endif %}
 
-            <div id="search" class="nav-search"></div>
+            <div class="nav-search">
+                <pagefind-config bundle-path="/pagefind/"></pagefind-config>
+                <pagefind-searchbox placeholder="Search..." hide-shortcut></pagefind-searchbox>
+            </div>
             <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
@@ -299,18 +302,8 @@
 
 {% block additional_js %}{% endblock %}
 
-{# Pagefind Search #}
-<script src="/pagefind/pagefind-ui.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', function() {
-        new PagefindUI({
-            element: "#search",
-            showSubResults: false,
-            showImages: false,
-            basePath: "/pagefind/"
-        });
-    });
-</script>
+{# Pagefind Search (Component UI) #}
+<script src="/pagefind/pagefind-component-ui.js" type="module"></script>
 
 {# Theme Switcher #}
 <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/theme-switcher.js"></script>
