@@ -17,6 +17,13 @@
   --color-dark-grey: #242121;
   --color-solid-dark-grey: #222222;
   --color-very-dark-grey: #1a1a1a;
+  /* Dark mode scale (one neutral hue) */
+  --color-dark-bg: #1e1f22;
+  --color-dark-surface: #26272b;
+  --color-dark-code: #16171a;
+  --color-dark-border: #34363b;
+  --color-dark-text: #e6e6e6; /* 13.2:1 on dark bg */
+  --color-dark-muted: #a8abb0; /* 7.2:1 on dark bg */
 
   /* Font families */
   --font-sans: 'Source Sans Pro', 'Roboto', 'Open Sans', 'Liberation Sans', 'DejaVu Sans', 'Verdana', 'Helvetica', 'Arial', sans-serif;
@@ -67,6 +74,9 @@
 
   /* HR */
   --hr-color: var(--color-light-grey);
+
+  /* Raised surfaces (cards, boxes, TOC) */
+  --surface-bg: #f7f7f9;
 
   /* Code blocks */
   --code-bg: #f7f7f9;
@@ -135,28 +145,35 @@
   :root {
     --link-color: var(--color-soft-orange);
     --link-hover-color: var(--color-pale-orange);
-    --body-bg: var(--color-grey);
-    --text-color: var(--color-light-grey);
-    --text-muted-color: #bdbdbd;
+    --body-bg: var(--color-dark-bg);
+    --text-color: var(--color-dark-text);
+    --text-muted-color: var(--color-dark-muted);
 
-    --sidebar-bg: var(--color-solid-dark-grey);
-    --sidebar-text-color: var(--color-light-grey);
-    --sidebar-link-color: var(--color-light-grey);
+    --sidebar-bg: var(--color-dark-surface);
+    --sidebar-text-color: var(--color-dark-text);
+    --sidebar-link-color: var(--color-dark-text);
     --sidebar-link-hover-color: var(--color-white);
 
-    --footer-border-color: var(--color-solid-dark-grey);
-    --rel-post-border-color: var(--color-solid-dark-grey);
-    --nav-border-color: var(--color-solid-dark-grey);
-    --hr-color: var(--color-solid-dark-grey);
+    --footer-border-color: var(--color-dark-border);
+    --rel-post-border-color: var(--color-dark-border);
+    --nav-border-color: var(--color-dark-border);
+    --hr-color: var(--color-dark-border);
 
-    --code-bg: #080808;
-    --code-border: #000;
-    --kbd-bg: #080808;
-    --kbd-color: var(--color-light-grey);
+    --code-color: #ff8fa3;
+    --surface-bg: var(--color-dark-surface);
+    --btn-bg: var(--color-dark-border);
+    --btn-text-color: var(--color-dark-text);
+    --btn-hover-color: #44464c;
+    --header-text-color: var(--color-dark-muted);
+    --footer-text-color: var(--color-dark-muted);
+    --code-bg: var(--color-dark-code);
+    --code-border: var(--color-dark-border);
+    --kbd-bg: var(--color-dark-code);
+    --kbd-color: var(--color-dark-text);
     --blockquote-border: rgba(255,255,255,0.2);
 
     /* Admonition dark mode */
-    --admonition-generic-color: var(--color-light-grey);
+    --admonition-generic-color: var(--color-dark-text);
     --admonition-generic-bg: #404040;
 
     --admonition-attention-color: #fbda7a;
@@ -174,8 +191,8 @@
     --figure-color: #bfbfbf;
 
     /* Social icons in dark mode - muted background, bright foreground */
-    --social-icon-bg: var(--color-very-dark-grey);
-    --social-icon-color: var(--color-light-grey);
+    --social-icon-bg: var(--color-dark-border);
+    --social-icon-color: var(--color-dark-text);
   }
 }
 
@@ -183,23 +200,30 @@
 [data-theme="dark"] {
   --link-color: var(--color-soft-orange);
   --link-hover-color: var(--color-pale-orange);
-  --body-bg: var(--color-grey);
-  --text-color: var(--color-light-grey);
-  --text-muted-color: #bdbdbd;
-  --sidebar-bg: var(--color-solid-dark-grey);
-  --sidebar-text-color: var(--color-light-grey);
-  --sidebar-link-color: var(--color-light-grey);
+  --body-bg: var(--color-dark-bg);
+  --text-color: var(--color-dark-text);
+  --text-muted-color: var(--color-dark-muted);
+  --sidebar-bg: var(--color-dark-surface);
+  --sidebar-text-color: var(--color-dark-text);
+  --sidebar-link-color: var(--color-dark-text);
   --sidebar-link-hover-color: var(--color-white);
-  --footer-border-color: var(--color-solid-dark-grey);
-  --rel-post-border-color: var(--color-solid-dark-grey);
-  --nav-border-color: var(--color-solid-dark-grey);
-  --hr-color: var(--color-solid-dark-grey);
-  --code-bg: #080808;
-  --code-border: #000;
-  --kbd-bg: #080808;
-  --kbd-color: var(--color-light-grey);
+  --footer-border-color: var(--color-dark-border);
+  --rel-post-border-color: var(--color-dark-border);
+  --nav-border-color: var(--color-dark-border);
+  --hr-color: var(--color-dark-border);
+  --code-color: #ff8fa3;
+  --surface-bg: var(--color-dark-surface);
+  --btn-bg: var(--color-dark-border);
+  --btn-text-color: var(--color-dark-text);
+  --btn-hover-color: #44464c;
+  --header-text-color: var(--color-dark-muted);
+  --footer-text-color: var(--color-dark-muted);
+  --code-bg: var(--color-dark-code);
+  --code-border: var(--color-dark-border);
+  --kbd-bg: var(--color-dark-code);
+  --kbd-color: var(--color-dark-text);
   --blockquote-border: rgba(255,255,255,0.2);
-  --admonition-generic-color: var(--color-light-grey);
+  --admonition-generic-color: var(--color-dark-text);
   --admonition-generic-bg: #404040;
   --admonition-attention-color: #fbda7a;
   --admonition-attention-bg: #4a3900;
@@ -210,8 +234,8 @@
   --admonition-important-color: #a8eab7;
   --admonition-important-bg: #122b18;
   --figure-color: #bfbfbf;
-  --social-icon-bg: var(--color-very-dark-grey);
-  --social-icon-color: var(--color-light-grey);
+  --social-icon-bg: var(--color-dark-border);
+  --social-icon-color: var(--color-dark-text);
 }
 
 [data-theme="light"] {
@@ -241,6 +265,18 @@
   --admonition-important-color: #155724;
   --admonition-important-bg: #d4edda;
   --figure-color: #6c757d;
+  --sidebar-text-color: var(--color-solid-dark-grey);
+  --sidebar-link-color: var(--color-solid-dark-grey);
+  --sidebar-link-hover-color: var(--color-light-grey);
+  --code-color: #c25;
+  --surface-bg: #f7f7f9;
+  --btn-bg: var(--color-light-grey);
+  --btn-text-color: var(--color-solid-dark-grey);
+  --btn-hover-color: var(--color-med-grey);
+  --header-text-color: var(--color-med-grey);
+  --footer-text-color: var(--color-med-grey);
+  --social-icon-bg: none;
+  --social-icon-color: var(--color-white);
 }
 
 /* ==========================================================================
@@ -613,7 +649,7 @@ main .pagination {
   margin-top: 1.5rem;
   padding: 0.75rem 1rem;
   border-left: 3px solid var(--link-color);
-  background-color: var(--code-bg);
+  background-color: var(--surface-bg);
   border-radius: 0 6px 6px 0;
   line-height: 1.5;
 }
@@ -704,7 +740,7 @@ main .pagination {
 }
 
 .start-here-link:hover {
-  background-color: var(--code-bg);
+  background-color: var(--surface-bg);
   color: var(--text-color);
 }
 
@@ -743,7 +779,7 @@ main .pagination {
   height: 100%;
   box-sizing: border-box;
   padding: 0.75rem 0.9rem;
-  background-color: var(--code-bg);
+  background-color: var(--surface-bg);
   border: 1px solid var(--nav-border-color);
   border-radius: 6px;
   color: var(--text-color);
@@ -1010,7 +1046,7 @@ main article *:not(pre) > code {
 .series-nav {
   margin: 1.5rem 0 2rem 0;
   padding: 1.25rem;
-  background: var(--code-bg);
+  background: var(--surface-bg);
   border-radius: 8px;
   border-left: 4px solid var(--link-color);
 }
@@ -1098,7 +1134,7 @@ main article *:not(pre) > code {
 .newsletter-box {
   margin: 2rem 0;
   padding: 1.5rem;
-  background: linear-gradient(135deg, var(--code-bg) 0%, rgba(194, 65, 12, 0.05) 100%);
+  background: linear-gradient(135deg, var(--surface-bg) 0%, rgba(194, 65, 12, 0.05) 100%);
   border-radius: 8px;
   border: 1px solid var(--nav-border-color);
   text-align: center;
@@ -1171,7 +1207,7 @@ main article *:not(pre) > code {
 .toc-details {
   margin: 1rem 0;
   padding: 0.4rem 0.6rem;
-  background: var(--code-bg);
+  background: var(--surface-bg);
   border-radius: 4px;
   border: 1px solid var(--nav-border-color);
 }
@@ -1608,7 +1644,7 @@ a.btn:hover {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  background: var(--code-bg);
+  background: var(--surface-bg);
   border-radius: 6px;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -1888,7 +1924,7 @@ div.figure.align-right {
 .ai-analyzer-bar {
   margin: 1.5rem 0;
   padding: 1rem;
-  background-color: var(--code-bg, #f7f7f9);
+  background-color: var(--surface-bg);
   border: 1px solid var(--code-border, #e1e1e8);
   border-radius: 8px;
 }
@@ -1975,7 +2011,7 @@ div.figure.align-right {
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .ai-analyzer-bar {
-    background-color: var(--code-bg, #2d2d2d);
+    background-color: var(--surface-bg);
     border-color: var(--code-border, #444);
   }
 
