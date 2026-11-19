@@ -17,6 +17,7 @@
     {% set page_articles = index_article_pages[current_page_num] if index_article_pages else [] %}
 
     {% if current_page_num == 0 %}
+        {% if AUTHOR_STRIP %}{% include "partial/index_author_strip.html" %}{% endif %}
         {% if START_HERE %}{% include "partial/index_start_here.html" %}{% endif %}
         {% if TOPIC_HUBS %}{% include "partial/index_topic_hubs.html" %}{% endif %}
     {% endif %}

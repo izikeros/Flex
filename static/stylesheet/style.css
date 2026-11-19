@@ -596,6 +596,24 @@ main .pagination {
   margin-right: 8%;
 }
 
+.author-strip {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--link-color);
+  background-color: var(--code-bg);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.5;
+}
+
+.author-strip-text {
+  margin: 0;
+}
+
+.author-strip-links {
+  margin: 0.35rem 0 0;
+  font-size: 0.9em;
+}
+
 .home-section-title {
   font-size: 0.8em;
   font-weight: 600;

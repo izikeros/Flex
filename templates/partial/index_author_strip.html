@@ -1,0 +1,11 @@
+{# Author credibility strip. AUTHOR_STRIP: dict with "text" and optional "links" (list of (label, url)). #}
+<section class="author-strip" aria-label="{{ _('About the author') }}">
+    <p class="author-strip-text">{{ AUTHOR_STRIP.text }}</p>
+    {% if AUTHOR_STRIP.links %}
+    <p class="author-strip-links">
+        {% for label, url in AUTHOR_STRIP.links %}
+            <a href="{{ url }}">{{ label }}</a>{% if not loop.last %}<span aria-hidden="true"> · </span>{% endif %}
+        {% endfor %}
+    </p>
+    {% endif %}
+</section>
