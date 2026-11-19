@@ -694,7 +694,6 @@ main .pagination {
   column-gap: 1rem;
   padding: 0.9rem 1rem;
   border: 1px solid var(--nav-border-color);
-  border-left: 3px solid var(--link-color);
   border-radius: 6px;
   color: var(--text-color);
   text-decoration: none;
@@ -742,6 +741,7 @@ main .pagination {
 
 .start-here-link:hover {
   background-color: var(--surface-bg);
+  border-color: var(--link-color);
   color: var(--text-color);
 }
 
