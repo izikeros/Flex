@@ -380,6 +380,15 @@ img {
   max-width: 100%;
 }
 
+/* Inline SVG icons from static/icons/sprite.svg (width set per icon) */
+.icon {
+  display: inline-block;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+  overflow: visible;
+}
+
 /* ==========================================================================
    Sidebar (aside)
    ========================================================================== */
