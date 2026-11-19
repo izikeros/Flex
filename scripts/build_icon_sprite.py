@@ -1,17 +1,23 @@
 """Build static/icons/sprite.svg (and the templates/partial/icons.html macro)
 from Font Awesome Free SVG glyph data.
 
-Usage (from the theme root):  python3 scripts/build_icon_sprite.py
+Usage (from the theme root):
+    python3 scripts/build_icon_sprite.py [WEBFONTS_DIR]
+
+WEBFONTS_DIR holds Font Awesome 5 Free `fa-solid-900.svg` and `fa-brands-400.svg`
+(e.g. `npm pack @fortawesome/fontawesome-free@5` -> package/webfonts). Defaults to
+static/font-awesome/webfonts.
 
 Font Awesome Free icons are licensed CC BY 4.0 (https://fontawesome.com/license/free);
 the attribution is kept in the generated sprite.
 """
 
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FONTS = ROOT / "static" / "font-awesome" / "webfonts"
+FONTS = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "static" / "font-awesome" / "webfonts"
 OUT = ROOT / "static" / "icons" / "sprite.svg"
 MACRO = ROOT / "templates" / "partial" / "icons.html"
 

@@ -1,13 +1,14 @@
+{% from 'partial/icons.html' import icon with context %}
 {% if PLUGINS and 'neighbors' in PLUGINS %}
   <div class="neighbors">
   {% if article.prev_article %}
     <a class="btn float-left" href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title|striptags }}">
-      <i class="fa fa-angle-left" aria-hidden="true"></i> {{ _('Previous Post') }}
+      {{ icon('angle-left') }} {{ _('Previous Post') }}
     </a>
   {% endif %}
   {% if article.next_article %}
     <a class="btn float-right" href="{{ SITEURL }}/{{ article.next_article.url }}" title="{{ article.next_article.title|striptags }}">
-      {{ _('Next Post') }} <i class="fa fa-angle-right" aria-hidden="true"></i>
+      {{ _('Next Post') }} {{ icon('angle-right') }}
     </a>
   {% endif %}
   </div>

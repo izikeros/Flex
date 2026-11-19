@@ -1,3 +1,4 @@
+{% from 'partial/icons.html' import icon with context %}
 {% if 'jinja2.ext.i18n' not in JINJA_ENVIRONMENT.extensions %}
     {%- macro _(msg) -%}
         {{ msg % kwargs }}
@@ -218,7 +219,7 @@
                 <li>
                     <a rel="{% if name == 'mastodon' %}me {% endif %}noopener noreferrer" class="sc-{{ name }}" href="{{ link }}"
                        target="_blank" aria-label="{{ social_labels.get(name, name|replace('-', ' ')|title) }}">
-                        <i class="{% if name in ['envelope', 'rss', 'newspaper', 'graduation-cap'] %}fas{% else %}fab{% endif %} fa-{{ name }}" aria-hidden="true"></i>
+                        {{ icon(name) }}
                     </a>
                 </li>
             {% endfor %}
@@ -277,8 +278,8 @@
                 <pagefind-searchbox placeholder="Search..." hide-shortcut></pagefind-searchbox>
             </div>
             <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-sun" aria-hidden="true"></i>
-                <i class="fas fa-moon" aria-hidden="true"></i>
+                {{ icon('sun') }}
+                {{ icon('moon') }}
             </button>
         </nav>
     {% endif %}

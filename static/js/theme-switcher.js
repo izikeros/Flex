@@ -11,6 +11,16 @@
 (function() {
   'use strict';
 
+  var script = document.currentScript;
+  var SPRITE = script ? script.src.replace(/js\/theme-switcher\.js.*$/, 'icons/sprite.svg') : '';
+
+  function svgIcon(name, width) {
+    return '<svg class="icon icon-' + name + '" style="width: ' + width + 'em" aria-hidden="true" focusable="false">' +
+      '<use href="' + SPRITE + '#icon-' + name + '"></use></svg>';
+  }
+  var COPY_ICON = svgIcon('copy', 0.875);
+  var CHECK_ICON = svgIcon('check', 1);
+
   var STORAGE_KEY = 'theme-preference';
   var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -52,14 +62,14 @@
     var btn = document.getElementById('theme-toggle');
     if (!btn) return;
     
-    var sunIcon = btn.querySelector('.fa-sun');
-    var moonIcon = btn.querySelector('.fa-moon');
+    var sunIcon = btn.querySelector('.icon-sun');
+    var moonIcon = btn.querySelector('.icon-moon');
     if (!sunIcon || !moonIcon) return;
 
     var effective = getEffectiveTheme();
     // Show sun when dark (click to go light), show moon when light (click to go dark)
-    sunIcon.style.display = effective === 'dark' ? 'inline' : 'none';
-    moonIcon.style.display = effective === 'light' ? 'inline' : 'none';
+    sunIcon.style.display = effective === 'dark' ? 'inline-block' : 'none';
+    moonIcon.style.display = effective === 'light' ? 'inline-block' : 'none';
   }
 
   function toggle() {
@@ -99,6 +109,16 @@
 (function() {
   'use strict';
 
+  var script = document.currentScript;
+  var SPRITE = script ? script.src.replace(/js\/theme-switcher\.js.*$/, 'icons/sprite.svg') : '';
+
+  function svgIcon(name, width) {
+    return '<svg class="icon icon-' + name + '" style="width: ' + width + 'em" aria-hidden="true" focusable="false">' +
+      '<use href="' + SPRITE + '#icon-' + name + '"></use></svg>';
+  }
+  var COPY_ICON = svgIcon('copy', 0.875);
+  var CHECK_ICON = svgIcon('check', 1);
+
   var progressBar = null;
 
   function updateProgress() {
@@ -130,6 +150,16 @@
  */
 (function() {
   'use strict';
+
+  var script = document.currentScript;
+  var SPRITE = script ? script.src.replace(/js\/theme-switcher\.js.*$/, 'icons/sprite.svg') : '';
+
+  function svgIcon(name, width) {
+    return '<svg class="icon icon-' + name + '" style="width: ' + width + 'em" aria-hidden="true" focusable="false">' +
+      '<use href="' + SPRITE + '#icon-' + name + '"></use></svg>';
+  }
+  var COPY_ICON = svgIcon('copy', 0.875);
+  var CHECK_ICON = svgIcon('check', 1);
 
   document.addEventListener('DOMContentLoaded', function() {
     var tocContainer = document.getElementById('toc-container');
@@ -185,6 +215,16 @@
 (function() {
   'use strict';
 
+  var script = document.currentScript;
+  var SPRITE = script ? script.src.replace(/js\/theme-switcher\.js.*$/, 'icons/sprite.svg') : '';
+
+  function svgIcon(name, width) {
+    return '<svg class="icon icon-' + name + '" style="width: ' + width + 'em" aria-hidden="true" focusable="false">' +
+      '<use href="' + SPRITE + '#icon-' + name + '"></use></svg>';
+  }
+  var COPY_ICON = svgIcon('copy', 0.875);
+  var CHECK_ICON = svgIcon('check', 1);
+
   document.addEventListener('DOMContentLoaded', function() {
     // Find all code blocks (both <pre><code> and highlight tables)
     var codeBlocks = document.querySelectorAll('.article-content pre, .article-content .highlight');
@@ -208,17 +248,17 @@
       var btn = document.createElement('button');
       btn.className = 'copy-btn';
       btn.setAttribute('aria-label', 'Copy code');
-      btn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+      btn.innerHTML = COPY_ICON;
       
       btn.addEventListener('click', function() {
         var code = block.querySelector('code') || block.querySelector('pre') || block;
         var text = code.textContent || code.innerText;
         
         navigator.clipboard.writeText(text).then(function() {
-          btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+          btn.innerHTML = CHECK_ICON;
           btn.classList.add('copied');
           setTimeout(function() {
-            btn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+            btn.innerHTML = COPY_ICON;
             btn.classList.remove('copied');
           }, 2000);
         }).catch(function() {
@@ -231,10 +271,10 @@
           textarea.select();
           try {
             document.execCommand('copy');
-            btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+            btn.innerHTML = CHECK_ICON;
             btn.classList.add('copied');
             setTimeout(function() {
-              btn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+              btn.innerHTML = COPY_ICON;
               btn.classList.remove('copied');
             }, 2000);
           } catch (e) {}

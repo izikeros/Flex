@@ -435,6 +435,23 @@ app = FastAPI()
 ```
 ````
 
+### Icons
+
+Icons are inline SVGs from `static/icons/sprite.svg` (Font Awesome Free glyphs,
+CC BY 4.0); no icon font or icon CSS is loaded. `SOCIAL` names must exist in
+the sprite: `linkedin`, `github`, `gitlab`, `twitter`, `mastodon`, `facebook`,
+`instagram`, `youtube`, `medium`, `reddit`, `hacker-news`, `stack-overflow`,
+`kaggle`, `orcid`, `envelope`, `graduation-cap`, `newspaper`, `rss`.
+
+```jinja
+{% from 'partial/icons.html' import icon with context %}
+{{ icon('github') }}            {# decorative, aria-hidden #}
+{{ icon('rss', 'RSS feed') }}   {# labelled, role="img" #}
+```
+
+To add an icon, append it to `ICONS` in `scripts/build_icon_sprite.py` and run
+`python3 scripts/build_icon_sprite.py` (regenerates the sprite and the macro).
+
 ## Article Frontmatter
 
 ### Standard Fields

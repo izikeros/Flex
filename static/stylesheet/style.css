@@ -653,8 +653,8 @@ main .translations :last-child {
   color: var(--link-color);
 }
 
-.theme-toggle .fa-sun,
-.theme-toggle .fa-moon {
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
   display: none;
 }
 
