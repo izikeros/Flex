@@ -212,12 +212,13 @@
             </nav>
         {% endif %}
 
+        {% set social_labels = {'linkedin': 'LinkedIn', 'github': 'GitHub', 'envelope': 'Email', 'graduation-cap': 'Google Scholar', 'rss': 'RSS feed', 'newspaper': 'Newsletter', 'hacker-news': 'Hacker News', 'stack-overflow': 'Stack Overflow'} %}
         <ul class="social">
             {% for name, link in SOCIAL %}
                 <li>
                     <a rel="{% if name == 'mastodon' %}me {% endif %}noopener noreferrer" class="sc-{{ name }}" href="{{ link }}"
-                       target="_blank">
-                        <i class="{% if name in ['envelope', 'rss', 'newspaper', 'graduation-cap'] %}fas{% else %}fab{% endif %} fa-{{ name }}"></i>
+                       target="_blank" aria-label="{{ social_labels.get(name, name|replace('-', ' ')|title) }}">
+                        <i class="{% if name in ['envelope', 'rss', 'newspaper', 'graduation-cap'] %}fas{% else %}fab{% endif %} fa-{{ name }}" aria-hidden="true"></i>
                     </a>
                 </li>
             {% endfor %}
@@ -276,8 +277,8 @@
                 <pagefind-searchbox placeholder="Search..." hide-shortcut></pagefind-searchbox>
             </div>
             <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun" aria-hidden="true"></i>
+                <i class="fas fa-moon" aria-hidden="true"></i>
             </button>
         </nav>
     {% endif %}

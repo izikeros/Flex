@@ -206,17 +206,17 @@
       var btn = document.createElement('button');
       btn.className = 'copy-btn';
       btn.setAttribute('aria-label', 'Copy code');
-      btn.innerHTML = '<i class="fas fa-copy"></i>';
+      btn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
       
       btn.addEventListener('click', function() {
         var code = block.querySelector('code') || block.querySelector('pre') || block;
         var text = code.textContent || code.innerText;
         
         navigator.clipboard.writeText(text).then(function() {
-          btn.innerHTML = '<i class="fas fa-check"></i>';
+          btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
           btn.classList.add('copied');
           setTimeout(function() {
-            btn.innerHTML = '<i class="fas fa-copy"></i>';
+            btn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
             btn.classList.remove('copied');
           }, 2000);
         }).catch(function() {
@@ -229,10 +229,10 @@
           textarea.select();
           try {
             document.execCommand('copy');
-            btn.innerHTML = '<i class="fas fa-check"></i>';
+            btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
             btn.classList.add('copied');
             setTimeout(function() {
-              btn.innerHTML = '<i class="fas fa-copy"></i>';
+              btn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
               btn.classList.remove('copied');
             }, 2000);
           } catch (e) {}
