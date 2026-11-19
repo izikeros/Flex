@@ -159,7 +159,18 @@
 
         {% if article.related_posts %}
             <div class="related-posts">
-                <h4 class="related-posts-title">{{ _('You might also like') }}</h4>
+                {# Label by the article tag shared by most related posts #}
+                {% set rp = namespace(tag=None, hits=0) %}
+                {% for tag in article.tags or [] %}
+                    {% set c = namespace(n=0) %}
+                    {% for post in article.related_posts[:4] %}
+                        {% if tag.name in (post.tags or [])|map(attribute='name')|list %}{% set c.n = c.n + 1 %}{% endif %}
+                    {% endfor %}
+                    {% if c.n > rp.hits %}{% set rp.tag = tag %}{% set rp.hits = c.n %}{% endif %}
+                {% endfor %}
+                <h4 class="related-posts-title">
+                    {% if rp.tag %}{{ _('More on') }} <a href="{{ SITEURL }}/{{ rp.tag.url }}">{{ rp.tag.name }}</a>{% else %}{{ _('You might also like') }}{% endif %}
+                </h4>
                 <div class="related-posts-grid">
                     {% for related_post in article.related_posts[:4] %}
                         <a href="{{ SITEURL }}/{{ related_post.url }}" class="related-post-card">
