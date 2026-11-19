@@ -71,7 +71,7 @@
   --nav-border-color: var(--color-light-grey);
   --nav-item-height: 24px;
   --nav-item-padding-x: 8px;
-  --nav-item-font-size: 12px;
+  --nav-item-font-size: 14px;
 
   /* HR */
   --hr-color: var(--color-light-grey);
@@ -523,6 +523,7 @@ main .translations :last-child {
 
 .nav-search .pf-searchbox-input {
   font-size: var(--nav-item-font-size) !important;
+  font-family: var(--font-sans) !important;
   height: calc(var(--nav-item-height) - 4px) !important;
   padding: 0 6px 0 26px !important;
   border: 1px solid var(--nav-border-color) !important;
@@ -1258,7 +1259,7 @@ main article *:not(pre) > code {
 .toc-details summary {
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: var(--text-color);
   list-style: none;
   user-select: none;
@@ -1281,8 +1282,12 @@ main article *:not(pre) > code {
 }
 
 .toc-details .toc {
+  /* reset top-nav styles inherited from `main nav` */
+  display: block;
+  padding: 0 0 0 0.3rem;
+  border-bottom: none;
+  text-transform: none;
   margin-top: 0.3rem;
-  padding-left: 0.3rem;
   border-left: 2px solid var(--link-color);
 }
 
@@ -1303,9 +1308,13 @@ main article *:not(pre) > code {
 }
 
 .toc-details .toc-item a {
+  display: inline;
+  height: auto;
+  padding: 0;
+  border: none;
   color: var(--text-color);
   text-decoration: none;
-  font-size: 0.78em;
+  font-size: 0.9em;
 }
 
 .toc-details .toc-item a:hover {
@@ -1425,7 +1434,7 @@ main footer p {
   text-align: center;
   padding: 0 40px 0 40px;
   color: var(--footer-text-color);
-  font-size: 11px;
+  font-size: 0.85em;
 }
 
 main footer span.footer-separator {
