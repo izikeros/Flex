@@ -51,8 +51,8 @@
                     </span>
                 {% endif %}
                 <br/>
-                {% if SHOW_DATE_MODIFIED and article.modified %}
-                    Updated: {{ article.modified.strftime('%Y-%m-%d') }}
+                {% if SHOW_DATE_MODIFIED and article.modified and article.modified.date() != article.date.date() %}
+                    <span class="article-updated">{{ _('Updated') }}: <time datetime="{{ article.modified.isoformat() }}">{{ article.modified.strftime('%Y-%m-%d') }}</time></span>
                 {% endif %}
             </p>
             <h1 data-pagefind-body data-pagefind-meta="title" data-pagefind-weight="10">{{ article.title }}</h1>
