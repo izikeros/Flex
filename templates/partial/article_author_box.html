@@ -1,0 +1,17 @@
+{# Author box at article end. SHOW_AUTHOR_BOX enables it; AUTHOR_BOX_ROLE and AUTHOR_BOX_LINKS ((label, url) pairs) are optional. #}
+<section class="author-box" aria-label="{{ _('About the author') }}">
+    {% if SITELOGO %}
+        <img class="author-box-photo" src="{{ SITELOGO }}" alt="" width="64" height="64" loading="lazy" decoding="async">
+    {% endif %}
+    <div class="author-box-body">
+        <p class="author-box-name">{{ AUTHOR }}</p>
+        {% if AUTHOR_BOX_ROLE %}<p class="author-box-role">{{ AUTHOR_BOX_ROLE }}</p>{% endif %}
+        {% if AUTHOR_BOX_LINKS %}
+        <p class="author-box-links">
+            {% for label, url in AUTHOR_BOX_LINKS %}
+                <a href="{{ url }}"{% if url.startswith('http') %} rel="noopener noreferrer" target="_blank"{% endif %}>{{ label }}</a>{% if not loop.last %}<span aria-hidden="true"> · </span>{% endif %}
+            {% endfor %}
+        </p>
+        {% endif %}
+    </div>
+</section>

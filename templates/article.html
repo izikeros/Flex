@@ -138,6 +138,10 @@
         </div>
         {% endif %}
 
+        {% if SHOW_AUTHOR_BOX and article.category != 'note' %}
+            {% include "partial/article_author_box.html" %}
+        {% endif %}
+
         {% include "partial/syndication.html" %}
 
         {% include "partial/newsletter.html" %}

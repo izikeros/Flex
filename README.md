@@ -325,6 +325,9 @@ Features:
 |----------|-------------|---------|
 | `ENABLE_TOC` | Enable collapsible table of contents (not on `note` posts; skipped when the post already has a hand-written anchor TOC) | `False` |
 | `TOC_MIN_HEADINGS` | Minimum h2/h3 headings before the TOC is shown | `3` |
+| `SHOW_AUTHOR_BOX` | Author box at the end of articles (photo from `SITELOGO`, `AUTHOR`; not on `note` posts) | `False` |
+| `AUTHOR_BOX_ROLE` | One-line role under the author name | `None` |
+| `AUTHOR_BOX_LINKS` | Links in the author box as `(label, url)` pairs | `None` |
 | `SHOW_DATE_MODIFIED` | Show "Updated" date on articles when it differs from the publish date | `False` |
 | `USE_MERMAID` | Enable Mermaid diagrams | `False` |
 | `USE_APPLAUSE` | Enable applause button | `False` |
