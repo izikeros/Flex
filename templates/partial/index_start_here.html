@@ -1,0 +1,24 @@
+{# Curated flagship posts. START_HERE: list of article slugs, rendered in order. #}
+{% set start_here_articles = [] %}
+{% for slug in START_HERE %}
+    {% set found = articles|selectattr('slug', 'equalto', slug)|first %}
+    {% if found %}{% set _ignored = start_here_articles.append(found) %}{% endif %}
+{% endfor %}
+{% if start_here_articles %}
+<section class="start-here" aria-labelledby="start-here-title">
+    <h2 id="start-here-title" class="home-section-title">{{ START_HERE_TITLE|default(_('Start here')) }}</h2>
+    {% if START_HERE_INTRO %}<p class="home-section-intro">{{ START_HERE_INTRO }}</p>{% endif %}
+    <ol class="start-here-list">
+    {% for article in start_here_articles %}
+        <li class="start-here-item">
+            <a href="{{ SITEURL }}/{{ article.url }}" class="start-here-link">
+                <span class="start-here-title">{{ article.title }}</span>
+                {% if article.summary %}
+                    <span class="start-here-summary">{{ article.summary|striptags|truncate(140) }}</span>
+                {% endif %}
+            </a>
+        </li>
+    {% endfor %}
+    </ol>
+</section>
+{% endif %}

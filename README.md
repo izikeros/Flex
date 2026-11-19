@@ -121,6 +121,16 @@ MAIN_MENU = True
 | `LINKEDIN_FOLLOW` | Enable LinkedIn follow button | `False` | `True` |
 | `LINKEDIN_FOLLOW_MEMBER` | LinkedIn member ID for follow | `None` | `"your-member-id"` |
 
+### Homepage
+
+Shown on the first index page only, above the chronological feed.
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `START_HERE` | Slugs of flagship posts, rendered in order as a numbered "Start here" list | `None` | `["my-best-post", "another-post"]` |
+| `START_HERE_TITLE` | Heading for the Start here block | `"Start here"` | `"Read these first"` |
+| `START_HERE_INTRO` | One-line intro under the heading | `None` | `"Three posts that explain how I work."` |
+
 ### Dark Mode & Styling
 
 Dark mode is automatically available with:

@@ -16,6 +16,13 @@
     {% set current_page_num = (articles_page.number if articles_page else 1) - 1 %}
     {% set page_articles = index_article_pages[current_page_num] if index_article_pages else [] %}
 
+    {% if current_page_num == 0 %}
+        {% if START_HERE %}{% include "partial/index_start_here.html" %}{% endif %}
+    {% endif %}
+
+    {% if current_page_num == 0 and START_HERE %}
+        <h2 class="home-section-title home-latest-title">{{ _('Latest') }}</h2>
+    {% endif %}
     <div class="article-list">
     {% for article in page_articles %}
         <article class="article-card">

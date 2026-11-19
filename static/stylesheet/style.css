@@ -532,6 +532,93 @@ main .pagination {
 }
 
 /* ==========================================================================
+   Home Sections (Start here, topic hubs, author strip)
+   ========================================================================== */
+
+.start-here,
+.topic-hubs,
+.author-strip,
+.home-latest-title {
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+.home-section-title {
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--header-text-color);
+  margin: 2rem 0 0.75rem;
+}
+
+.home-section-intro {
+  margin: 0 0 1rem;
+  color: var(--header-text-color);
+  line-height: 1.5;
+}
+
+.start-here-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  counter-reset: start-here;
+}
+
+.start-here-item {
+  counter-increment: start-here;
+}
+
+.start-here-link {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  column-gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--nav-border-color);
+  border-left: 3px solid var(--link-color);
+  border-radius: 6px;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.start-here-link::before {
+  content: counter(start-here, decimal-leading-zero);
+  grid-row: span 2;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--link-color);
+  padding-top: 0.15rem;
+}
+
+.start-here-link:hover {
+  background-color: var(--code-bg);
+  color: var(--text-color);
+}
+
+.start-here-title {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.start-here-link:hover .start-here-title {
+  color: var(--link-color);
+}
+
+.start-here-summary {
+  margin-top: 0.3rem;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: var(--header-text-color);
+}
+
+.home-latest-title {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
    Article Cards (Index Page)
    ========================================================================== */
 
