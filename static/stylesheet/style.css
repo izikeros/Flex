@@ -115,20 +115,20 @@
   --social-lastfm: #d92323;
 
   /* Admonition colors */
-  --admonition-generic-color: var(--color-dark-grey);
-  --admonition-generic-bg: #cccccc;
+  --admonition-generic-color: #5f6368;
+  --admonition-generic-bg: #f3f4f6;
 
-  --admonition-attention-color: #856404;
-  --admonition-attention-bg: #fff3cd;
+  --admonition-attention-color: #8a5a00;
+  --admonition-attention-bg: #fdf6e3;
 
-  --admonition-danger-color: #721c24;
-  --admonition-danger-bg: #f8d7da;
+  --admonition-danger-color: #a4262c;
+  --admonition-danger-bg: #fbecec;
 
-  --admonition-hint-color: #004085;
-  --admonition-hint-bg: #cce5ff;
+  --admonition-hint-color: #2f5d8a;
+  --admonition-hint-bg: #eef3f8;
 
-  --admonition-important-color: #155724;
-  --admonition-important-bg: #d4edda;
+  --admonition-important-color: #2e6b3f;
+  --admonition-important-bg: #edf6ef;
 
   /* Figure */
   --figure-color: #6c757d;
@@ -174,20 +174,20 @@
     --blockquote-border: rgba(255,255,255,0.2);
 
     /* Admonition dark mode */
-    --admonition-generic-color: var(--color-dark-text);
-    --admonition-generic-bg: #404040;
+    --admonition-generic-color: var(--color-dark-muted);
+    --admonition-generic-bg: var(--color-dark-surface);
 
-    --admonition-attention-color: #fbda7a;
-    --admonition-attention-bg: #4a3900;
+    --admonition-attention-color: #f0c36b;
+    --admonition-attention-bg: #2e2718;
 
-    --admonition-danger-color: #ebadb3;
-    --admonition-danger-bg: #28070a;
+    --admonition-danger-color: #f2a7a9;
+    --admonition-danger-bg: #2f1d1f;
 
-    --admonition-hint-color: #7abaff;
-    --admonition-hint-bg: #001933;
+    --admonition-hint-color: #8fb8e0;
+    --admonition-hint-bg: #1c2530;
 
-    --admonition-important-color: #a8eab7;
-    --admonition-important-bg: #122b18;
+    --admonition-important-color: #8fd1a5;
+    --admonition-important-bg: #1b2a21;
 
     --figure-color: #bfbfbf;
 
@@ -224,16 +224,16 @@
   --kbd-bg: var(--color-dark-code);
   --kbd-color: var(--color-dark-text);
   --blockquote-border: rgba(255,255,255,0.2);
-  --admonition-generic-color: var(--color-dark-text);
-  --admonition-generic-bg: #404040;
-  --admonition-attention-color: #fbda7a;
-  --admonition-attention-bg: #4a3900;
-  --admonition-danger-color: #ebadb3;
-  --admonition-danger-bg: #28070a;
-  --admonition-hint-color: #7abaff;
-  --admonition-hint-bg: #001933;
-  --admonition-important-color: #a8eab7;
-  --admonition-important-bg: #122b18;
+  --admonition-generic-color: var(--color-dark-muted);
+  --admonition-generic-bg: var(--color-dark-surface);
+  --admonition-attention-color: #f0c36b;
+  --admonition-attention-bg: #2e2718;
+  --admonition-danger-color: #f2a7a9;
+  --admonition-danger-bg: #2f1d1f;
+  --admonition-hint-color: #8fb8e0;
+  --admonition-hint-bg: #1c2530;
+  --admonition-important-color: #8fd1a5;
+  --admonition-important-bg: #1b2a21;
   --figure-color: #bfbfbf;
   --social-icon-bg: var(--color-dark-border);
   --social-icon-color: var(--color-dark-text);
@@ -255,16 +255,16 @@
   --kbd-bg: #fff;
   --kbd-color: #333;
   --blockquote-border: rgba(128,128,128,0.075);
-  --admonition-generic-color: var(--color-dark-grey);
-  --admonition-generic-bg: #cccccc;
-  --admonition-attention-color: #856404;
-  --admonition-attention-bg: #fff3cd;
-  --admonition-danger-color: #721c24;
-  --admonition-danger-bg: #f8d7da;
-  --admonition-hint-color: #004085;
-  --admonition-hint-bg: #cce5ff;
-  --admonition-important-color: #155724;
-  --admonition-important-bg: #d4edda;
+  --admonition-generic-color: #5f6368;
+  --admonition-generic-bg: #f3f4f6;
+  --admonition-attention-color: #8a5a00;
+  --admonition-attention-bg: #fdf6e3;
+  --admonition-danger-color: #a4262c;
+  --admonition-danger-bg: #fbecec;
+  --admonition-hint-color: #2f5d8a;
+  --admonition-hint-bg: #eef3f8;
+  --admonition-important-color: #2e6b3f;
+  --admonition-important-bg: #edf6ef;
   --figure-color: #6c757d;
   --sidebar-text-color: var(--color-solid-dark-grey);
   --sidebar-link-color: var(--color-solid-dark-grey);
@@ -1794,8 +1794,13 @@ div.admonition {
   margin-bottom: 2.5rem;
   border-radius: 4px;
   padding: 0.5em 1.25em 1.25em 1.25em;
-  color: var(--admonition-generic-color);
+  color: var(--text-color);
   background-color: var(--admonition-generic-bg);
+  border-left: 4px solid var(--admonition-generic-color);
+}
+
+div.admonition p.admonition-title {
+  color: var(--admonition-generic-color);
 }
 
 div.admonition p.admonition-title::before {
@@ -1823,8 +1828,14 @@ div.admonition pre {
 div.admonition.attention,
 div.admonition.caution,
 div.admonition.warning {
-  color: var(--admonition-attention-color);
   background-color: var(--admonition-attention-bg);
+  border-left-color: var(--admonition-attention-color);
+}
+
+div.admonition.attention p.admonition-title,
+div.admonition.caution p.admonition-title,
+div.admonition.warning p.admonition-title {
+  color: var(--admonition-attention-color);
 }
 
 div.admonition.attention p.admonition-title::before,
@@ -1836,8 +1847,13 @@ div.admonition.warning p.admonition-title::before {
 /* Danger, Error */
 div.admonition.danger,
 div.admonition.error {
-  color: var(--admonition-danger-color);
   background-color: var(--admonition-danger-bg);
+  border-left-color: var(--admonition-danger-color);
+}
+
+div.admonition.danger p.admonition-title,
+div.admonition.error p.admonition-title {
+  color: var(--admonition-danger-color);
 }
 
 div.admonition.danger p.admonition-title::before,
@@ -1848,8 +1864,13 @@ div.admonition.error p.admonition-title::before {
 /* Hint, Tip */
 div.admonition.hint,
 div.admonition.tip {
-  color: var(--admonition-hint-color);
   background-color: var(--admonition-hint-bg);
+  border-left-color: var(--admonition-hint-color);
+}
+
+div.admonition.hint p.admonition-title,
+div.admonition.tip p.admonition-title {
+  color: var(--admonition-hint-color);
 }
 
 div.admonition.hint p.admonition-title::before,
@@ -1860,8 +1881,13 @@ div.admonition.tip p.admonition-title::before {
 /* Important, Note */
 div.admonition.important,
 div.admonition.note {
-  color: var(--admonition-important-color);
   background-color: var(--admonition-important-bg);
+  border-left-color: var(--admonition-important-color);
+}
+
+div.admonition.important p.admonition-title,
+div.admonition.note p.admonition-title {
+  color: var(--admonition-important-color);
 }
 
 div.admonition.important p.admonition-title::before,
