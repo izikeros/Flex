@@ -27,8 +27,11 @@
   --color-dark-muted: #a8abb0; /* 7.2:1 on dark bg */
 
   /* Font families */
-  --font-sans: 'Source Sans Pro', 'Roboto', 'Open Sans', 'Liberation Sans', 'DejaVu Sans', 'Verdana', 'Helvetica', 'Arial', sans-serif;
-  --font-mono: 'Source Code Pro', 'Consolas', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+  /* Web fonts first (USE_GOOGLE_FONTS), then native UI fonts per platform */
+  --font-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif;
+  --font-system-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+  --font-sans: 'Source Sans Pro', var(--font-system);
+  --font-mono: 'Source Code Pro', var(--font-system-mono);
 
   /* Theme colors (light mode default) */
   --body-bg: var(--color-white);

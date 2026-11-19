@@ -147,7 +147,7 @@ Dark mode is automatically available with:
 | `PYGMENTS_STYLE_DARK` | Code highlight style (dark) | `None` | `"monokai"` |
 | `BROWSER_COLOR` | Browser theme color | `None` | `"#333333"` |
 | `CUSTOM_CSS` | Custom stylesheet path | `None` | `"static/custom.css"` |
-| `USE_GOOGLE_FONTS` | Load Google Fonts | `True` | `False` |
+| `USE_GOOGLE_FONTS` | Load Source Sans/Code Pro from Google Fonts; when `False`, native system UI fonts are used (override `--font-sans`/`--font-mono` in custom CSS to force one stack) | `True` | `False` |
 
 ### SEO & Social
 
