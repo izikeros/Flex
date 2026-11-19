@@ -422,6 +422,19 @@ types (`note`, `tip`/`hint`, `important`, `warning`/`caution`/`attention`,
     Use hybrid search with a reranker; revisit after the next eval run.
 ```
 
+### Code blocks
+
+Highlighted blocks share one surface (`--code-block-bg`, `--code-block-border`,
+`--code-block-color`) and get a copy button. To show a filename bar, pass the
+Pygments `filename` option as a fenced-code attribute (needs `codehilite` and
+`attr_list`, both included via `markdown.extensions.extra`):
+
+````markdown
+```{.python filename="app/main.py"}
+app = FastAPI()
+```
+````
+
 ## Article Frontmatter
 
 ### Standard Fields

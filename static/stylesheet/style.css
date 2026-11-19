@@ -85,6 +85,11 @@
   /* Code blocks */
   --code-bg: #f7f7f9;
   --code-border: #e1e1e8;
+  --code-block-bg: #f6f8fa;
+  --code-block-color: #24292e;
+  --code-block-border: #e1e4e8;
+  --code-filename-bg: #eaeef2;
+  --code-filename-color: #57606a;
   --code-color: #c25;
   --kbd-bg: #fff;
   --kbd-color: #333;
@@ -172,6 +177,12 @@
     --footer-text-color: var(--color-dark-muted);
     --code-bg: var(--color-dark-code);
     --code-border: var(--color-dark-border);
+    /* light surface: token colours come from the light Pygments style */
+    --code-block-bg: #f6f8fa;
+    --code-block-color: #24292e;
+    --code-block-border: var(--color-dark-border);
+    --code-filename-bg: #eaeef2;
+    --code-filename-color: #57606a;
     --kbd-bg: var(--color-dark-code);
     --kbd-color: var(--color-dark-text);
     --blockquote-border: rgba(255,255,255,0.2);
@@ -224,6 +235,12 @@
   --footer-text-color: var(--color-dark-muted);
   --code-bg: var(--color-dark-code);
   --code-border: var(--color-dark-border);
+  /* light surface: token colours come from the light Pygments style */
+  --code-block-bg: #f6f8fa;
+  --code-block-color: #24292e;
+  --code-block-border: var(--color-dark-border);
+  --code-filename-bg: #eaeef2;
+  --code-filename-color: #57606a;
   --kbd-bg: var(--color-dark-code);
   --kbd-color: var(--color-dark-text);
   --blockquote-border: rgba(255,255,255,0.2);
@@ -255,6 +272,11 @@
   --hr-color: var(--color-light-grey);
   --code-bg: #f7f7f9;
   --code-border: #e1e1e8;
+  --code-block-bg: #f6f8fa;
+  --code-block-color: #24292e;
+  --code-block-border: #e1e4e8;
+  --code-filename-bg: #eaeef2;
+  --code-filename-color: #57606a;
   --kbd-bg: #fff;
   --kbd-color: #333;
   --blockquote-border: rgba(128,128,128,0.075);
@@ -1104,6 +1126,35 @@ main article *:not(pre) > code {
   background: #28a745;
   color: var(--color-white);
   border-color: #28a745;
+}
+
+/* Code block surface: one bordered container, flat inner pre, optional
+   filename bar from ```{.python filename="app.py"} */
+main article .highlight {
+  background: var(--code-block-bg);
+  color: var(--code-block-color);
+  border: 1px solid var(--code-block-border);
+  border-radius: 6px;
+  margin: 1.25rem 0;
+  overflow: hidden;
+}
+
+main article .highlight pre {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 0.85em 1em;
+}
+
+main article .highlight .filename {
+  display: block;
+  padding: 0.35em 1em;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--code-filename-color);
+  background: var(--code-filename-bg);
+  border-bottom: 1px solid var(--code-block-border);
 }
 
 /* Series Navigation */
