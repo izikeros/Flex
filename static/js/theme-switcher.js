@@ -125,7 +125,8 @@
 /**
  * Table of Contents Generator
  * Auto-generates TOC from h2/h3 headings in article content
- * Only shows if there are 3+ headings, hidden by default (uses <details>)
+ * Shows only with data-min-headings+ headings (default 3) and when the
+ * article has no hand-written TOC; hidden by default (uses <details>)
  */
 (function() {
   'use strict';
@@ -138,9 +139,17 @@
     if (!tocContainer || !tocList || !content) return;
 
     var headings = content.querySelectorAll('h2, h3');
-    
-    // Hide TOC if fewer than 3 headings
-    if (headings.length < 3) {
+    var minHeadings = parseInt(tocContainer.getAttribute('data-min-headings'), 10) || 3;
+
+    // Skip if the article already links to most of its headings (manual TOC)
+    var linked = 0;
+    headings.forEach(function(heading) {
+      if (heading.id && content.querySelector('a[href="#' + CSS.escape(heading.id) + '"]')) {
+        linked++;
+      }
+    });
+
+    if (headings.length < minHeadings || linked * 2 >= headings.length) {
       tocContainer.style.display = 'none';
       return;
     }
