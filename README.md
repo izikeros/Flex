@@ -130,6 +130,8 @@ Shown on the first index page only, above the chronological feed.
 | `START_HERE` | Slugs of flagship posts, rendered in order as a numbered "Start here" list | `None` | `["my-best-post", "another-post"]` |
 | `START_HERE_TITLE` | Heading for the Start here block | `"Start here"` | `"Read these first"` |
 | `START_HERE_INTRO` | One-line intro under the heading | `None` | `"Three posts that explain how I work."` |
+| `TOPIC_HUBS` | Topic hub tiles linking to tag/category pages (`title`, `url`, optional `description`) | `None` | `[{"title": "RAG", "url": "/tag/rag/", "description": "Retrieval in production"}]` |
+| `TOPIC_HUBS_TITLE` | Heading for the topic hubs block | `"Topics"` | `"Browse by topic"` |
 
 ### Dark Mode & Styling
 

@@ -18,9 +18,10 @@
 
     {% if current_page_num == 0 %}
         {% if START_HERE %}{% include "partial/index_start_here.html" %}{% endif %}
+        {% if TOPIC_HUBS %}{% include "partial/index_topic_hubs.html" %}{% endif %}
     {% endif %}
 
-    {% if current_page_num == 0 and START_HERE %}
+    {% if current_page_num == 0 and (START_HERE or TOPIC_HUBS) %}
         <h2 class="home-section-title home-latest-title">{{ _('Latest') }}</h2>
     {% endif %}
     <div class="article-list">

@@ -1,0 +1,14 @@
+{# Topic hubs. TOPIC_HUBS: list of dicts with "title", "url" and optional "description". #}
+<section class="topic-hubs" aria-labelledby="topic-hubs-title">
+    <h2 id="topic-hubs-title" class="home-section-title">{{ TOPIC_HUBS_TITLE|default(_('Topics')) }}</h2>
+    <ul class="topic-hubs-grid">
+    {% for hub in TOPIC_HUBS %}
+        <li>
+            <a href="{{ hub.url }}" class="topic-hub">
+                <span class="topic-hub-title">{{ hub.title }}</span>
+                {% if hub.description %}<span class="topic-hub-description">{{ hub.description }}</span>{% endif %}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+</section>

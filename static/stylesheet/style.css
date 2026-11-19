@@ -618,6 +618,49 @@ main .pagination {
   margin-bottom: 0;
 }
 
+.topic-hubs-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.75rem;
+}
+
+.topic-hub {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 0.9rem;
+  background-color: var(--code-bg);
+  border: 1px solid var(--nav-border-color);
+  border-radius: 6px;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.topic-hub:hover {
+  border-color: var(--link-color);
+  color: var(--text-color);
+}
+
+.topic-hub-title {
+  font-weight: 600;
+}
+
+.topic-hub:hover .topic-hub-title {
+  color: var(--link-color);
+}
+
+.topic-hub-description {
+  margin-top: 0.25rem;
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: var(--header-text-color);
+}
+
 /* ==========================================================================
    Article Cards (Index Page)
    ========================================================================== */
