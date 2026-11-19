@@ -25,6 +25,7 @@
   --text-color: var(--color-dark-grey);
   --link-color: var(--color-orange);
   --link-hover-color: var(--color-light-orange);
+  --text-muted-color: #5f6368; /* 6:1 on white (WCAG AA) */
 
   /* Sidebar */
   --sidebar-bg: var(--color-white);
@@ -128,6 +129,7 @@
   :root {
     --body-bg: var(--color-grey);
     --text-color: var(--color-light-grey);
+    --text-muted-color: #bdbdbd;
 
     --sidebar-bg: var(--color-solid-dark-grey);
     --sidebar-text-color: var(--color-light-grey);
@@ -173,6 +175,7 @@
 [data-theme="dark"] {
   --body-bg: var(--color-grey);
   --text-color: var(--color-light-grey);
+  --text-muted-color: #bdbdbd;
   --sidebar-bg: var(--color-solid-dark-grey);
   --sidebar-text-color: var(--color-light-grey);
   --sidebar-link-color: var(--color-light-grey);
@@ -204,6 +207,7 @@
 [data-theme="light"] {
   --body-bg: var(--color-white);
   --text-color: var(--color-dark-grey);
+  --text-muted-color: #5f6368;
   --sidebar-bg: var(--color-white);
   --footer-border-color: var(--color-light-grey);
   --rel-post-border-color: var(--color-light-grey);
@@ -444,11 +448,22 @@ main .translations :last-child {
   border-right: none;
 }
 
-/* Nav Search (Pagefind Component UI) */
+/* Nav Search (Pagefind Component UI)
+   Pagefind's own selectors are high-specificity, so layout overrides need
+   !important. Colours are mapped through its --pf-* variables, which also
+   makes the dropdown follow the theme toggle. */
 .nav-search {
   margin-left: 4px;
   border-right: none;
   position: relative;
+  --pf-text: var(--text-color);
+  --pf-text-secondary: var(--text-muted-color);
+  --pf-text-muted: var(--text-muted-color);
+  --pf-background: var(--body-bg);
+  --pf-border: var(--nav-border-color);
+  --pf-hover: var(--code-bg);
+  --pf-mark: var(--link-color);
+  --pf-outline-focus: var(--link-color);
 }
 
 .nav-search pagefind-searchbox {
@@ -459,7 +474,7 @@ main .translations :last-child {
 .nav-search .pf-searchbox-input {
   font-size: var(--nav-item-font-size) !important;
   height: calc(var(--nav-item-height) - 4px) !important;
-  padding: 0 6px !important;
+  padding: 0 6px 0 26px !important;
   border: 1px solid var(--nav-border-color) !important;
   border-radius: 4px !important;
   background: var(--body-bg) !important;
@@ -473,24 +488,62 @@ main .translations :last-child {
 }
 
 .nav-search .pf-searchbox-dropdown {
-  position: absolute;
-  right: 0;
-  left: auto;
-  max-width: 400px;
-  background: var(--body-bg);
-  border: 1px solid var(--nav-border-color);
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  z-index: 1001;
+  left: auto !important;
+  right: 0 !important;
+  width: min(460px, 92vw) !important;
+  max-height: min(70vh, 560px) !important;
+  margin-top: 4px;
+  border: 1px solid var(--nav-border-color) !important;
+  border-radius: 6px !important;
+  text-transform: none;
+  text-align: left;
+  z-index: 1001 !important;
 }
 
-.nav-search .pf-searchbox-result a {
-  color: var(--link-color);
+@media (max-width: 600px) {
+  /* Anchor the dropdown to <nav> so it can span the viewport width;
+     contain:layout would make the 150px box the containing block */
+  nav {
+    position: relative;
+  }
+
+  .nav-search,
+  .nav-search pagefind-searchbox,
+  .nav-search .pf-searchbox {
+    position: static !important;
+    contain: style !important;
+  }
+
+  .nav-search .pf-searchbox-dropdown {
+    position: absolute !important;
+    left: 2vw !important;
+    right: 2vw !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+
+.nav-search .pf-searchbox-result {
+  padding: 10px 12px !important;
+}
+
+.nav-search .pf-searchbox-result-title {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  color: var(--text-color) !important;
 }
 
 .nav-search .pf-searchbox-result-excerpt {
-  color: var(--text-color);
-  font-size: 11px;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  white-space: normal !important;
+  max-height: calc(1.45em * 3);
+  overflow: hidden !important;
+}
+
+.nav-search .pf-searchbox-result-excerpt mark {
+  font-weight: 600 !important;
 }
 
 /* Theme Toggle Button */
