@@ -154,6 +154,11 @@
       return;
     }
 
+    // Long outlines: list only top-level sections
+    if (headings.length > 20 && content.querySelectorAll('h2').length >= minHeadings) {
+      headings = content.querySelectorAll('h2');
+    }
+
     headings.forEach(function(heading, index) {
       // Ensure heading has an ID
       if (!heading.id) {
