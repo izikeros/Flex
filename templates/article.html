@@ -24,9 +24,7 @@
 
 
 
-{% block title %}
-    {{ article.title|striptags|escape }}
-{% endblock %}
+{% block title %}{{ article.title|striptags|escape }}{% endblock %}
 
 {% block content %}
     <article class="single">
