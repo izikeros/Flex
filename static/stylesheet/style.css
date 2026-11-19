@@ -954,9 +954,10 @@ main article header h1 {
   letter-spacing: -0.01em;
 }
 
-/* Reading typography: ~68 characters per line, relaxed leading */
+/* Reading typography: ~65-75 characters per line (em, not ch: the width
+   of "0" varies a lot between fonts), relaxed leading */
 .article-content {
-  max-width: 68ch;
+  max-width: 36em;
   font-size: 1.125rem;
   line-height: 1.65;
 }
