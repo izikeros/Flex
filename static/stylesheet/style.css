@@ -338,6 +338,13 @@ a:hover {
   color: var(--link-hover-color);
 }
 
+/* Keyboard focus ring (not shown for mouse clicks) */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 hr {
   color: var(--hr-color);
   background-color: var(--hr-color);
@@ -2143,7 +2150,6 @@ div.figure.align-right {
   justify-content: center;
   padding: 7px;
   text-align: center;
-  outline: none;
   text-decoration: none !important;
   color: var(--sidebar-link-color) !important;
   width: 200px;
