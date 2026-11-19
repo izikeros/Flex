@@ -645,6 +645,7 @@ main .pagination {
 .start-here-link {
   display: grid;
   grid-template-columns: 2rem 1fr;
+  align-items: start;
   column-gap: 0.75rem;
   padding: 0.9rem 1rem;
   border: 1px solid var(--nav-border-color);
@@ -657,11 +658,48 @@ main .pagination {
 
 .start-here-link::before {
   content: counter(start-here, decimal-leading-zero);
-  grid-row: span 2;
   font-family: var(--font-mono);
   font-size: 0.9em;
   color: var(--link-color);
-  padding-top: 0.15rem;
+  padding-top: 1.35rem;
+}
+
+.start-here-link.has-image {
+  grid-template-columns: 2rem 1fr 160px;
+}
+
+.start-here-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.start-here-date {
+  font-size: 0.8em;
+  color: var(--text-muted-color);
+  margin-bottom: 0.2rem;
+}
+
+.start-here-image {
+  width: 160px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .start-here-link.has-image {
+    grid-template-columns: 1.5rem 1fr 88px;
+  }
+
+  .start-here-image {
+    width: 88px;
+    height: 66px;
+  }
+
+  .start-here-summary {
+    display: none;
+  }
 }
 
 .start-here-link:hover {

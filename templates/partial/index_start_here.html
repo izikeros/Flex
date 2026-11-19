@@ -11,10 +11,16 @@
     <ol class="start-here-list">
     {% for article in start_here_articles %}
         <li class="start-here-item">
-            <a href="{{ SITEURL }}/{{ article.url }}" class="start-here-link">
-                <span class="start-here-title">{{ article.title }}</span>
-                {% if article.summary %}
-                    <span class="start-here-summary">{{ article.summary|striptags|truncate(140) }}</span>
+            <a href="{{ SITEURL }}/{{ article.url }}" class="start-here-link{% if article.image %} has-image{% endif %}">
+                <span class="start-here-body">
+                    <time class="start-here-date" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+                    <span class="start-here-title">{{ article.title }}</span>
+                    {% if article.summary %}
+                        <span class="start-here-summary">{{ article.summary|striptags|truncate(140) }}</span>
+                    {% endif %}
+                </span>
+                {% if article.image %}
+                    <img class="start-here-image" src="{{ article.image }}" alt="" width="160" height="90" loading="lazy" decoding="async">
                 {% endif %}
             </a>
         </li>
