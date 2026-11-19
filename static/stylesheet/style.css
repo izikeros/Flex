@@ -1966,6 +1966,34 @@ div.admonition.note p.admonition-title::before {
   content: "\f05a\00a0 ";
 }
 
+/* Trade-off: amber, balance-scale icon */
+div.admonition.tradeoff {
+  background-color: var(--admonition-attention-bg);
+  border-left-color: var(--admonition-attention-color);
+}
+
+div.admonition.tradeoff p.admonition-title {
+  color: var(--admonition-attention-color);
+}
+
+div.admonition.tradeoff p.admonition-title::before {
+  content: "\f24e\00a0 ";
+}
+
+/* Decision: green, check-circle icon */
+div.admonition.decision {
+  background-color: var(--admonition-important-bg);
+  border-left-color: var(--admonition-important-color);
+}
+
+div.admonition.decision p.admonition-title {
+  color: var(--admonition-important-color);
+}
+
+div.admonition.decision p.admonition-title::before {
+  content: "\f058\00a0 ";
+}
+
 /* ==========================================================================
    Figures
    ========================================================================== */

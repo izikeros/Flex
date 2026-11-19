@@ -407,6 +407,21 @@ OBSIDIAN_CALLOUTS_USE_ADMONITION = True  # Use theme's admonition styles
 
 Supported callout types: `note`, `tip`, `warning`, `danger`, `info`, `question`, `example`, `quote`, `abstract`, `success`, `failure`, `bug`, `important`, `caution`, `attention`
 
+### Admonitions (Markdown)
+
+With `markdown.extensions.admonition` enabled in `MARKDOWN["extension_configs"]`,
+`!!! type "Title"` blocks render with the same styles. Besides the standard
+types (`note`, `tip`/`hint`, `important`, `warning`/`caution`/`attention`,
+`danger`/`error`) the theme styles two decision-oriented types:
+
+```markdown
+!!! tradeoff "Trade-off: latency vs recall"
+    Raising `top_k` from 5 to 20 improves recall but adds ~120 ms.
+
+!!! decision "Decision"
+    Use hybrid search with a reranker; revisit after the next eval run.
+```
+
 ## Article Frontmatter
 
 ### Standard Fields
