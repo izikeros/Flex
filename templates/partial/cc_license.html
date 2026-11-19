@@ -5,5 +5,5 @@
   {% set cc_lang = CC_LICENSE['language'] or "en_US" %}
   {% set cc_url = "http://creativecommons.org/licenses/{}/{}/deed.{}".format(cc_slug, cc_version, cc_lang) %}
   &copy; {{ COPYRIGHT_YEAR }} {{ COPYRIGHT_NAME }} - {{ _('This work is licensed under a %(cc)s',
-   cc='<a rel="license" href="{}" target="_blank">{}</a>'.format(cc_url, cc_name)|safe) }}
+   cc='<a rel="license noopener noreferrer" href="{}" target="_blank">{}</a>'.format(cc_url, cc_name)|safe) }}
 </p>

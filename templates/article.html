@@ -44,10 +44,10 @@
 
                 {% if article.share_post and article.status != 'draft' %}
                     <span class="share-icons">
-                        <a href="{{ article.share_post['twitter'] }}" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="{{ article.share_post['facebook'] }}" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
-                        <a href="{{ article.share_post['hacker-news'] }}" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
-                        <a href="{{ article.share_post['reddit'] }}" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
+                        <a href="{{ article.share_post['twitter'] }}" target="_blank" rel="noopener noreferrer" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="{{ article.share_post['facebook'] }}" target="_blank" rel="noopener noreferrer" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="{{ article.share_post['hacker-news'] }}" target="_blank" rel="noopener noreferrer" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="{{ article.share_post['reddit'] }}" target="_blank" rel="noopener noreferrer" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
                 {% endif %}
                 <br/>

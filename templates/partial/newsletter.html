@@ -30,7 +30,7 @@
                 <button type="submit" class="newsletter-btn">Subscribe</button>
             </form>
         {% else %}
-            <a href="{{ NEWSLETTER_LINK }}" class="newsletter-btn newsletter-btn-link" target="_blank">
+            <a href="{{ NEWSLETTER_LINK }}" class="newsletter-btn newsletter-btn-link" target="_blank" rel="noopener noreferrer">
                 {{ NEWSLETTER_CTA | default('Subscribe to Newsletter') }}
             </a>
         {% endif %}

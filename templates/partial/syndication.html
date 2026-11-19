@@ -9,7 +9,7 @@
     <ul>
     {% for link in syndication_links %}
         <li>
-            <a href="{{ link.url }}" rel="syndication" target="_blank" rel="noopener">
+            <a href="{{ link.url }}" rel="syndication noopener noreferrer" target="_blank">
                 {{ link.platform | capitalize }}
             </a>
             {% if link.date %}
