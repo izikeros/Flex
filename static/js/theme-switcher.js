@@ -192,6 +192,8 @@
     codeBlocks.forEach(function(block) {
       // Skip if already has a copy button
       if (block.querySelector('.copy-btn')) return;
+      // A <pre> inside .highlight is covered by the .highlight button
+      if (block.tagName === 'PRE' && block.parentElement.closest('.highlight')) return;
       
       // Create wrapper if needed
       var wrapper = block;
