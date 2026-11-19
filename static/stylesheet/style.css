@@ -2081,11 +2081,13 @@ div.figure.align-right {
   text-align: center;
   outline: none;
   text-decoration: none !important;
-  color: #ffffff !important;
+  color: var(--sidebar-link-color) !important;
   width: 200px;
   height: 32px;
   border-radius: 16px;
-  background-color: #0A66C2;
+  background-color: transparent;
+  border: 1px solid var(--text-muted-color);
+  box-sizing: border-box;
   font-family: "SF Pro Text", Helvetica, sans-serif;
   margin-top: 15px;
   margin-left: auto;
@@ -2093,6 +2095,6 @@ div.figure.align-right {
 }
 
 .linkedin-follow-btn:hover {
-  background-color: #004182;
-  color: #ffffff !important;
+  border-color: var(--link-color);
+  color: var(--link-color) !important;
 }
