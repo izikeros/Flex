@@ -96,7 +96,7 @@ make html                                    # Alternative: use Makefile
 ## External Dependencies
 
 - **Pagefind**: Static search (loaded from CDN or local build)
-- **Font Awesome**: Icons (loaded from CDN)
+- **Icons**: inline SVG sprite `static/icons/sprite.svg` (Font Awesome Free glyphs) via `{{ icon(name) }}` from `partial/icons.html`; no icon font
 - **MathJax**: Math rendering (optional, loaded when needed)
 - **Google Fonts**: Source Sans Pro, Source Code Pro (optional)
 

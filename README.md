@@ -450,7 +450,8 @@ the sprite: `linkedin`, `github`, `gitlab`, `twitter`, `mastodon`, `facebook`,
 ```
 
 To add an icon, append it to `ICONS` in `scripts/build_icon_sprite.py` and run
-`python3 scripts/build_icon_sprite.py` (regenerates the sprite and the macro).
+`python3 scripts/build_icon_sprite.py <webfonts-dir>` with the Font Awesome 5
+Free `webfonts/` folder (regenerates the sprite and the macro).
 
 ## Article Frontmatter
 

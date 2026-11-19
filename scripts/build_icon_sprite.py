@@ -2,11 +2,10 @@
 from Font Awesome Free SVG glyph data.
 
 Usage (from the theme root):
-    python3 scripts/build_icon_sprite.py [WEBFONTS_DIR]
+    python3 scripts/build_icon_sprite.py WEBFONTS_DIR
 
 WEBFONTS_DIR holds Font Awesome 5 Free `fa-solid-900.svg` and `fa-brands-400.svg`
-(e.g. `npm pack @fortawesome/fontawesome-free@5` -> package/webfonts). Defaults to
-static/font-awesome/webfonts.
+(e.g. `npm pack @fortawesome/fontawesome-free@5` -> package/webfonts).
 
 Font Awesome Free icons are licensed CC BY 4.0 (https://fontawesome.com/license/free);
 the attribution is kept in the generated sprite.
@@ -17,7 +16,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FONTS = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "static" / "font-awesome" / "webfonts"
+if len(sys.argv) != 2:
+    sys.exit(__doc__)
+FONTS = Path(sys.argv[1])
 OUT = ROOT / "static" / "icons" / "sprite.svg"
 MACRO = ROOT / "templates" / "partial" / "icons.html"
 
