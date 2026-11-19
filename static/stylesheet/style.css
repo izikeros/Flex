@@ -6,8 +6,10 @@
 
 :root {
   /* Base colors */
-  --color-orange: #D9411E;
-  --color-light-orange: #FF5A09;
+  --color-orange: #C2410C; /* 5.2:1 on white */
+  --color-dark-orange: #9A2E10; /* 7.6:1 on white */
+  --color-soft-orange: #FF8A65; /* 7.1:1 on dark bg */
+  --color-pale-orange: #FFAB91;
   --color-white: #ffffff;
   --color-grey: #333333;
   --color-light-grey: #eeeeee;
@@ -24,7 +26,11 @@
   --body-bg: var(--color-white);
   --text-color: var(--color-dark-grey);
   --link-color: var(--color-orange);
-  --link-hover-color: var(--color-light-orange);
+  --link-hover-color: var(--color-dark-orange);
+  /* Filled accent surfaces (white text on accent); same in both modes */
+  --accent-fill: var(--color-orange);
+  --accent-fill-hover: var(--color-dark-orange);
+  --on-accent: var(--color-white);
   --text-muted-color: #5f6368; /* 6:1 on white (WCAG AA) */
 
   /* Sidebar */
@@ -39,9 +45,9 @@
   --btn-hover-color: var(--color-med-grey);
 
   /* Tag cloud */
-  --tag-bg: var(--color-orange);
-  --tag-text-color: var(--color-white);
-  --tag-hover-color: var(--color-light-orange);
+  --tag-bg: var(--accent-fill);
+  --tag-text-color: var(--on-accent);
+  --tag-hover-color: var(--accent-fill-hover);
 
   /* Header */
   --header-text-color: var(--color-med-grey);
@@ -127,6 +133,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --link-color: var(--color-soft-orange);
+    --link-hover-color: var(--color-pale-orange);
     --body-bg: var(--color-grey);
     --text-color: var(--color-light-grey);
     --text-muted-color: #bdbdbd;
@@ -173,6 +181,8 @@
 
 /* Manual theme override via data attribute */
 [data-theme="dark"] {
+  --link-color: var(--color-soft-orange);
+  --link-hover-color: var(--color-pale-orange);
   --body-bg: var(--color-grey);
   --text-color: var(--color-light-grey);
   --text-muted-color: #bdbdbd;
@@ -205,6 +215,8 @@
 }
 
 [data-theme="light"] {
+  --link-color: var(--color-orange);
+  --link-hover-color: var(--color-dark-orange);
   --body-bg: var(--color-white);
   --text-color: var(--color-dark-grey);
   --text-muted-color: #5f6368;
@@ -395,8 +407,9 @@ aside nav ul li {
 }
 
 .promo-box-cta:hover {
-  background-color: var(--link-color);
-  color: var(--color-white);
+  background-color: var(--accent-fill);
+  border-color: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .promo-box-features {
@@ -853,8 +866,8 @@ main .pagination {
 }
 
 .article-card-tag:hover {
-  background: var(--link-color);
-  color: var(--color-white);
+  background: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 @media (max-width: 768px) {
@@ -982,9 +995,9 @@ main article *:not(pre) > code {
 }
 
 .copy-btn:hover {
-  background: var(--link-color);
-  color: var(--color-white);
-  border-color: var(--link-color);
+  background: var(--accent-fill);
+  color: var(--on-accent);
+  border-color: var(--accent-fill);
 }
 
 .copy-btn.copied {
@@ -1050,8 +1063,8 @@ main article *:not(pre) > code {
   padding: 0.15rem 0.4rem;
   font-size: 0.7em;
   font-weight: 500;
-  background: var(--link-color);
-  color: var(--color-white);
+  background: var(--accent-fill);
+  color: var(--on-accent);
   border-radius: 3px;
   text-transform: uppercase;
 }
@@ -1085,7 +1098,7 @@ main article *:not(pre) > code {
 .newsletter-box {
   margin: 2rem 0;
   padding: 1.5rem;
-  background: linear-gradient(135deg, var(--code-bg) 0%, rgba(217, 65, 30, 0.05) 100%);
+  background: linear-gradient(135deg, var(--code-bg) 0%, rgba(194, 65, 12, 0.05) 100%);
   border-radius: 8px;
   border: 1px solid var(--nav-border-color);
   text-align: center;
@@ -1134,8 +1147,8 @@ main article *:not(pre) > code {
 
 .newsletter-btn {
   padding: 0.75rem 1.5rem;
-  background: var(--link-color);
-  color: var(--color-white);
+  background: var(--accent-fill);
+  color: var(--on-accent);
   border: none;
   border-radius: 4px;
   font-size: 0.95em;
@@ -1147,7 +1160,7 @@ main article *:not(pre) > code {
 }
 
 .newsletter-btn:hover {
-  background: var(--link-hover-color);
+  background: var(--accent-fill-hover);
 }
 
 .newsletter-btn-link {
@@ -1485,8 +1498,8 @@ a.btn:hover {
 }
 
 .tag-item:hover {
-  background: var(--link-color);
-  color: var(--color-white);
+  background: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .tag-count {
