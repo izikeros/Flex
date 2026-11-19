@@ -144,7 +144,7 @@ Dark mode is automatically available with:
 | Variable | Description | Default | Example |
 |----------|-------------|---------|---------|
 | `PYGMENTS_STYLE` | Code highlight style (light) | `"github"` | `"monokai"` |
-| `PYGMENTS_STYLE_DARK` | Code highlight style (dark) | `None` | `"monokai"` |
+| `PYGMENTS_STYLE_DARK` | Code highlight style for dark mode (system preference or toggle); also switches the code surface to dark | `None` | `"github-dark"` |
 | `BROWSER_COLOR` | Browser theme color | `None` | `"#333333"` |
 | `CUSTOM_CSS` | Custom stylesheet path | `None` | `"static/custom.css"` |
 | `USE_GOOGLE_FONTS` | Load Source Sans/Code Pro from Google Fonts; when `False`, native system UI fonts are used (override `--font-sans`/`--font-mono` in custom CSS to force one stack) | `True` | `False` |

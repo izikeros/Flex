@@ -6,7 +6,7 @@
 {% endif %}
 
 <!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}">
+<html lang="{{ DEFAULT_LANG }}"{% if PYGMENTS_STYLE_DARK %} class="dark-code"{% endif %}>
 <head>
     <meta charset="utf-8"/>
     <meta name="color-scheme" content="light dark"/>
@@ -42,14 +42,22 @@
 
     {# PYGMENTS STYLES #}
     {% if PYGMENTS_STYLE_DARK %}
-    {# Light theme pygments - disabled in dark mode #}
-    <link rel="stylesheet" type="text/css" 
+    {# Follows the system scheme; a stored toggle choice overrides `media` (also in theme-switcher.js) #}
+    <link id="pygments-light" rel="stylesheet" type="text/css"
           href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE|default('github') }}.min.css"
           media="(prefers-color-scheme: light)">
-    {# Dark theme pygments - enabled in dark mode #}
-    <link rel="stylesheet" type="text/css" 
+    <link id="pygments-dark" rel="stylesheet" type="text/css"
           href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE_DARK }}.min.css"
           media="(prefers-color-scheme: dark)">
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        if (t === 'dark' || t === 'light') {
+          document.getElementById('pygments-light').media = t === 'light' ? 'all' : 'not all';
+          document.getElementById('pygments-dark').media = t === 'dark' ? 'all' : 'not all';
+        }
+      })();
+    </script>
     {% else %}
     <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/pygments/{{ PYGMENTS_STYLE|default('github') }}.min.css">
     {% endif %}

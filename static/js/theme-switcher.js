@@ -55,7 +55,22 @@
     } else {
       document.documentElement.removeAttribute('data-theme');
     }
+    updatePygments(theme);
     updateIcon();
+  }
+
+  // Swap light/dark Pygments stylesheets (only present with PYGMENTS_STYLE_DARK)
+  function updatePygments(theme) {
+    var light = document.getElementById('pygments-light');
+    var dark = document.getElementById('pygments-dark');
+    if (!light || !dark) return;
+    if (theme === 'dark' || theme === 'light') {
+      light.media = theme === 'light' ? 'all' : 'not all';
+      dark.media = theme === 'dark' ? 'all' : 'not all';
+    } else {
+      light.media = '(prefers-color-scheme: light)';
+      dark.media = '(prefers-color-scheme: dark)';
+    }
   }
 
   function updateIcon() {

@@ -1137,6 +1137,23 @@ main article *:not(pre) > code {
   border-color: #28a745;
 }
 
+/* Dark code surface, only when PYGMENTS_STYLE_DARK provides dark token colours */
+@media (prefers-color-scheme: dark) {
+  :root.dark-code:not([data-theme="light"]) {
+    --code-block-bg: var(--color-dark-code);
+    --code-block-color: #e6edf3;
+    --code-filename-bg: var(--color-dark-surface);
+    --code-filename-color: var(--color-dark-muted);
+  }
+}
+
+:root.dark-code[data-theme="dark"] {
+  --code-block-bg: var(--color-dark-code);
+  --code-block-color: #e6edf3;
+  --code-filename-bg: var(--color-dark-surface);
+  --code-filename-color: var(--color-dark-muted);
+}
+
 /* Code block surface: one bordered container, flat inner pre, optional
    filename bar from ```{.python filename="app.py"} */
 main article .highlight {
