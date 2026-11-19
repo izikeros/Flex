@@ -635,18 +635,13 @@ main .pagination {
   padding: 0;
   display: grid;
   gap: 0.75rem;
-  counter-reset: start-here;
-}
-
-.start-here-item {
-  counter-increment: start-here;
 }
 
 .start-here-link {
   display: grid;
-  grid-template-columns: 2rem 1fr;
+  grid-template-columns: 1fr;
   align-items: start;
-  column-gap: 0.75rem;
+  column-gap: 1rem;
   padding: 0.9rem 1rem;
   border: 1px solid var(--nav-border-color);
   border-left: 3px solid var(--link-color);
@@ -656,16 +651,8 @@ main .pagination {
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.start-here-link::before {
-  content: counter(start-here, decimal-leading-zero);
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  color: var(--link-color);
-  padding-top: 1.35rem;
-}
-
 .start-here-link.has-image {
-  grid-template-columns: 2rem 1fr 160px;
+  grid-template-columns: 160px 1fr;
 }
 
 .start-here-body {
@@ -689,7 +676,8 @@ main .pagination {
 
 @media (max-width: 600px) {
   .start-here-link.has-image {
-    grid-template-columns: 1.5rem 1fr 88px;
+    grid-template-columns: 88px 1fr;
+    column-gap: 0.75rem;
   }
 
   .start-here-image {

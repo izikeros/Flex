@@ -8,10 +8,13 @@
 <section class="start-here" aria-labelledby="start-here-title">
     <h2 id="start-here-title" class="home-section-title">{{ START_HERE_TITLE|default(_('Start here')) }}</h2>
     {% if START_HERE_INTRO %}<p class="home-section-intro">{{ START_HERE_INTRO }}</p>{% endif %}
-    <ol class="start-here-list">
+    <ul class="start-here-list">
     {% for article in start_here_articles %}
         <li class="start-here-item">
             <a href="{{ SITEURL }}/{{ article.url }}" class="start-here-link{% if article.image %} has-image{% endif %}">
+                {% if article.image %}
+                    <img class="start-here-image" src="{{ article.image }}" alt="" width="160" height="90" loading="lazy" decoding="async">
+                {% endif %}
                 <span class="start-here-body">
                     <time class="start-here-date" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
                     <span class="start-here-title">{{ article.title }}</span>
@@ -19,12 +22,9 @@
                         <span class="start-here-summary">{{ article.summary|striptags|truncate(140) }}</span>
                     {% endif %}
                 </span>
-                {% if article.image %}
-                    <img class="start-here-image" src="{{ article.image }}" alt="" width="160" height="90" loading="lazy" decoding="async">
-                {% endif %}
             </a>
         </li>
     {% endfor %}
-    </ol>
+    </ul>
 </section>
 {% endif %}
