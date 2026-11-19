@@ -30,7 +30,7 @@
         <article class="article-card">
             {% if article.image %}
                 <a href="{{ SITEURL }}/{{ article.url }}" class="article-card-image">
-                    <img src="{{ article.image }}" alt="{{ article.title }}" loading="lazy">
+                    <img src="{{ article.image }}" alt="{{ article.title }}"{% if article.image_width %} width="{{ article.image_width }}" height="{{ article.image_height }}"{% endif %} loading="lazy" decoding="async">
                 </a>
             {% endif %}
             <div class="article-card-content">

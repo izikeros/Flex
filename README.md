@@ -451,6 +451,12 @@ Summary: Brief description for listings
 Image: /images/featured.jpg
 ```
 
+When an article object has `image_width` / `image_height` (set by a plugin
+that reads the image file, or by frontmatter `Image_Width` / `Image_Height`),
+the hero and card `<img>` tags get `width`/`height` attributes so the browser
+reserves space and the page doesn't shift. The hero image also gets
+`fetchpriority="high"`.
+
 ### SEO/LEO Fields
 
 ```yaml
